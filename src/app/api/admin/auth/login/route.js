@@ -15,8 +15,6 @@ export async function POST(request) {
             where: { email },
         });
 
-        delete admin.password; // Remove password from the response
-
         if (!admin) {
             return NextResponse.json({ message: "Invalid email or password" }, { status: 401 });
         }
@@ -26,6 +24,8 @@ export async function POST(request) {
         if (admin.password !== hashedPassword) {
             return NextResponse.json({ message: "Invalid email or password" }, { status: 401 });
         }
+
+        delete admin.password; // Remove password from the response
 
         // Generate a jwt token 
         const token = jwt.sign(admin, process.env.JWT_SECRET, { expiresIn: '1h' });

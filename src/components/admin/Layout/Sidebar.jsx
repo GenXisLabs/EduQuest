@@ -32,9 +32,14 @@ const NavItem = ({ href, icon, children }) => {
 export default function Sidebar({ isOpen, toggleSidebar }) {
     const router = useRouter();
 
-    const handleLogout = () => {
-        // clear jwt token from local storage or cookies
-        localStorage.removeItem('adminToken');
+    const handleLogout = async () => {
+        const response = await fetch('/api/admin/auth/logout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
         router.push('/admin/login');
     };
 
