@@ -33,7 +33,8 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
     const router = useRouter();
 
     const handleLogout = () => {
-        // In a real app, clear session/token
+        // clear jwt token from local storage or cookies
+        localStorage.removeItem('adminToken');
         router.push('/admin/login');
     };
 
