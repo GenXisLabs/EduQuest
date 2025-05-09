@@ -1,15 +1,12 @@
 "use client";
 
-export default function UserProfileCard({ user }) {
-    const defaultUser = {
-      name: 'Admin User',
-      email: 'admin@example.com',
-      role: 'Administrator',
-      avatar: 'https://via.placeholder.com/150/007bff/FFFFFF?text=A', // Placeholder avatar
-      bio: 'Oversees all administrative tasks and ensures the smooth operation of the dashboard.',
-    };
-  
-    const currentUser = user || defaultUser;
+import { useAdmin } from "../Auth/AuthLoading";
+
+export default function UserProfileCard() {  
+    const currentUser = useAdmin();
+
+    console.log(currentUser);
+    
   
     return (
       <div className="bg-white p-6 md:p-8 rounded-xl shadow-lg max-w-2xl mx-auto">
