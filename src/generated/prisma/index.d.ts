@@ -3310,32 +3310,35 @@ export namespace Prisma {
   }
 
   export type StudentAvgAggregateOutputType = {
-    studentId: number | null
+    id: number | null
     universityId: number | null
     batchId: number | null
   }
 
   export type StudentSumAggregateOutputType = {
-    studentId: number | null
+    id: number | null
     universityId: number | null
     batchId: number | null
   }
 
   export type StudentMinAggregateOutputType = {
-    studentId: number | null
+    id: number | null
+    studentId: string | null
     universityId: number | null
     batchId: number | null
     name: string | null
   }
 
   export type StudentMaxAggregateOutputType = {
-    studentId: number | null
+    id: number | null
+    studentId: string | null
     universityId: number | null
     batchId: number | null
     name: string | null
   }
 
   export type StudentCountAggregateOutputType = {
+    id: number
     studentId: number
     universityId: number
     batchId: number
@@ -3345,18 +3348,19 @@ export namespace Prisma {
 
 
   export type StudentAvgAggregateInputType = {
-    studentId?: true
+    id?: true
     universityId?: true
     batchId?: true
   }
 
   export type StudentSumAggregateInputType = {
-    studentId?: true
+    id?: true
     universityId?: true
     batchId?: true
   }
 
   export type StudentMinAggregateInputType = {
+    id?: true
     studentId?: true
     universityId?: true
     batchId?: true
@@ -3364,6 +3368,7 @@ export namespace Prisma {
   }
 
   export type StudentMaxAggregateInputType = {
+    id?: true
     studentId?: true
     universityId?: true
     batchId?: true
@@ -3371,6 +3376,7 @@ export namespace Prisma {
   }
 
   export type StudentCountAggregateInputType = {
+    id?: true
     studentId?: true
     universityId?: true
     batchId?: true
@@ -3465,7 +3471,8 @@ export namespace Prisma {
   }
 
   export type StudentGroupByOutputType = {
-    studentId: number
+    id: number
+    studentId: string
     universityId: number
     batchId: number
     name: string
@@ -3491,6 +3498,7 @@ export namespace Prisma {
 
 
   export type StudentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
     studentId?: boolean
     universityId?: boolean
     batchId?: boolean
@@ -3500,6 +3508,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["student"]>
 
   export type StudentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
     studentId?: boolean
     universityId?: boolean
     batchId?: boolean
@@ -3509,6 +3518,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["student"]>
 
   export type StudentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
     studentId?: boolean
     universityId?: boolean
     batchId?: boolean
@@ -3518,13 +3528,14 @@ export namespace Prisma {
   }, ExtArgs["result"]["student"]>
 
   export type StudentSelectScalar = {
+    id?: boolean
     studentId?: boolean
     universityId?: boolean
     batchId?: boolean
     name?: boolean
   }
 
-  export type StudentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"studentId" | "universityId" | "batchId" | "name", ExtArgs["result"]["student"]>
+  export type StudentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "studentId" | "universityId" | "batchId" | "name", ExtArgs["result"]["student"]>
   export type StudentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     university?: boolean | UniversityDefaultArgs<ExtArgs>
     batch?: boolean | BatchDefaultArgs<ExtArgs>
@@ -3545,7 +3556,8 @@ export namespace Prisma {
       batch: Prisma.$BatchPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      studentId: number
+      id: number
+      studentId: string
       universityId: number
       batchId: number
       name: string
@@ -3632,8 +3644,8 @@ export namespace Prisma {
      * // Get first 10 Students
      * const students = await prisma.student.findMany({ take: 10 })
      * 
-     * // Only select the `studentId`
-     * const studentWithStudentIdOnly = await prisma.student.findMany({ select: { studentId: true } })
+     * // Only select the `id`
+     * const studentWithIdOnly = await prisma.student.findMany({ select: { id: true } })
      * 
      */
     findMany<T extends StudentFindManyArgs>(args?: SelectSubset<T, StudentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -3677,9 +3689,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Create many Students and only return the `studentId`
-     * const studentWithStudentIdOnly = await prisma.student.createManyAndReturn({
-     *   select: { studentId: true },
+     * // Create many Students and only return the `id`
+     * const studentWithIdOnly = await prisma.student.createManyAndReturn({
+     *   select: { id: true },
      *   data: [
      *     // ... provide data here
      *   ]
@@ -3768,9 +3780,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Students and only return the `studentId`
-     * const studentWithStudentIdOnly = await prisma.student.updateManyAndReturn({
-     *   select: { studentId: true },
+     * // Update zero or more Students and only return the `id`
+     * const studentWithIdOnly = await prisma.student.updateManyAndReturn({
+     *   select: { id: true },
      *   where: {
      *     // ... provide filter here
      *   },
@@ -3974,7 +3986,8 @@ export namespace Prisma {
    * Fields of the Student model
    */
   interface StudentFieldRefs {
-    readonly studentId: FieldRef<"Student", 'Int'>
+    readonly id: FieldRef<"Student", 'Int'>
+    readonly studentId: FieldRef<"Student", 'String'>
     readonly universityId: FieldRef<"Student", 'Int'>
     readonly batchId: FieldRef<"Student", 'Int'>
     readonly name: FieldRef<"Student", 'String'>
@@ -5491,6 +5504,7 @@ export namespace Prisma {
 
 
   export const StudentScalarFieldEnum: {
+    id: 'id',
     studentId: 'studentId',
     universityId: 'universityId',
     batchId: 'batchId',
@@ -5688,7 +5702,8 @@ export namespace Prisma {
     AND?: StudentWhereInput | StudentWhereInput[]
     OR?: StudentWhereInput[]
     NOT?: StudentWhereInput | StudentWhereInput[]
-    studentId?: IntFilter<"Student"> | number
+    id?: IntFilter<"Student"> | number
+    studentId?: StringFilter<"Student"> | string
     universityId?: IntFilter<"Student"> | number
     batchId?: IntFilter<"Student"> | number
     name?: StringFilter<"Student"> | string
@@ -5697,6 +5712,7 @@ export namespace Prisma {
   }
 
   export type StudentOrderByWithRelationInput = {
+    id?: SortOrder
     studentId?: SortOrder
     universityId?: SortOrder
     batchId?: SortOrder
@@ -5706,7 +5722,8 @@ export namespace Prisma {
   }
 
   export type StudentWhereUniqueInput = Prisma.AtLeast<{
-    studentId?: number
+    id?: number
+    studentId?: string
     AND?: StudentWhereInput | StudentWhereInput[]
     OR?: StudentWhereInput[]
     NOT?: StudentWhereInput | StudentWhereInput[]
@@ -5715,9 +5732,10 @@ export namespace Prisma {
     name?: StringFilter<"Student"> | string
     university?: XOR<UniversityScalarRelationFilter, UniversityWhereInput>
     batch?: XOR<BatchScalarRelationFilter, BatchWhereInput>
-  }, "studentId">
+  }, "id" | "studentId">
 
   export type StudentOrderByWithAggregationInput = {
+    id?: SortOrder
     studentId?: SortOrder
     universityId?: SortOrder
     batchId?: SortOrder
@@ -5733,7 +5751,8 @@ export namespace Prisma {
     AND?: StudentScalarWhereWithAggregatesInput | StudentScalarWhereWithAggregatesInput[]
     OR?: StudentScalarWhereWithAggregatesInput[]
     NOT?: StudentScalarWhereWithAggregatesInput | StudentScalarWhereWithAggregatesInput[]
-    studentId?: IntWithAggregatesFilter<"Student"> | number
+    id?: IntWithAggregatesFilter<"Student"> | number
+    studentId?: StringWithAggregatesFilter<"Student"> | string
     universityId?: IntWithAggregatesFilter<"Student"> | number
     batchId?: IntWithAggregatesFilter<"Student"> | number
     name?: StringWithAggregatesFilter<"Student"> | string
@@ -5871,44 +5890,51 @@ export namespace Prisma {
   }
 
   export type StudentCreateInput = {
+    studentId: string
     name: string
     university: UniversityCreateNestedOneWithoutStudentsInput
     batch: BatchCreateNestedOneWithoutStudentsInput
   }
 
   export type StudentUncheckedCreateInput = {
-    studentId?: number
+    id?: number
+    studentId: string
     universityId: number
     batchId: number
     name: string
   }
 
   export type StudentUpdateInput = {
+    studentId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     university?: UniversityUpdateOneRequiredWithoutStudentsNestedInput
     batch?: BatchUpdateOneRequiredWithoutStudentsNestedInput
   }
 
   export type StudentUncheckedUpdateInput = {
-    studentId?: IntFieldUpdateOperationsInput | number
+    id?: IntFieldUpdateOperationsInput | number
+    studentId?: StringFieldUpdateOperationsInput | string
     universityId?: IntFieldUpdateOperationsInput | number
     batchId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
   }
 
   export type StudentCreateManyInput = {
-    studentId?: number
+    id?: number
+    studentId: string
     universityId: number
     batchId: number
     name: string
   }
 
   export type StudentUpdateManyMutationInput = {
+    studentId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
   }
 
   export type StudentUncheckedUpdateManyInput = {
-    studentId?: IntFieldUpdateOperationsInput | number
+    id?: IntFieldUpdateOperationsInput | number
+    studentId?: StringFieldUpdateOperationsInput | string
     universityId?: IntFieldUpdateOperationsInput | number
     batchId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
@@ -6111,6 +6137,7 @@ export namespace Prisma {
   }
 
   export type StudentCountOrderByAggregateInput = {
+    id?: SortOrder
     studentId?: SortOrder
     universityId?: SortOrder
     batchId?: SortOrder
@@ -6118,12 +6145,13 @@ export namespace Prisma {
   }
 
   export type StudentAvgOrderByAggregateInput = {
-    studentId?: SortOrder
+    id?: SortOrder
     universityId?: SortOrder
     batchId?: SortOrder
   }
 
   export type StudentMaxOrderByAggregateInput = {
+    id?: SortOrder
     studentId?: SortOrder
     universityId?: SortOrder
     batchId?: SortOrder
@@ -6131,6 +6159,7 @@ export namespace Prisma {
   }
 
   export type StudentMinOrderByAggregateInput = {
+    id?: SortOrder
     studentId?: SortOrder
     universityId?: SortOrder
     batchId?: SortOrder
@@ -6138,7 +6167,7 @@ export namespace Prisma {
   }
 
   export type StudentSumOrderByAggregateInput = {
-    studentId?: SortOrder
+    id?: SortOrder
     universityId?: SortOrder
     batchId?: SortOrder
   }
@@ -6389,12 +6418,14 @@ export namespace Prisma {
   }
 
   export type StudentCreateWithoutBatchInput = {
+    studentId: string
     name: string
     university: UniversityCreateNestedOneWithoutStudentsInput
   }
 
   export type StudentUncheckedCreateWithoutBatchInput = {
-    studentId?: number
+    id?: number
+    studentId: string
     universityId: number
     name: string
   }
@@ -6429,7 +6460,8 @@ export namespace Prisma {
     AND?: StudentScalarWhereInput | StudentScalarWhereInput[]
     OR?: StudentScalarWhereInput[]
     NOT?: StudentScalarWhereInput | StudentScalarWhereInput[]
-    studentId?: IntFilter<"Student"> | number
+    id?: IntFilter<"Student"> | number
+    studentId?: StringFilter<"Student"> | string
     universityId?: IntFilter<"Student"> | number
     batchId?: IntFilter<"Student"> | number
     name?: StringFilter<"Student"> | string
@@ -6504,12 +6536,14 @@ export namespace Prisma {
   }
 
   export type StudentCreateWithoutUniversityInput = {
+    studentId: string
     name: string
     batch: BatchCreateNestedOneWithoutStudentsInput
   }
 
   export type StudentUncheckedCreateWithoutUniversityInput = {
-    studentId?: number
+    id?: number
+    studentId: string
     batchId: number
     name: string
   }
@@ -6541,47 +6575,55 @@ export namespace Prisma {
   }
 
   export type StudentCreateManyBatchInput = {
-    studentId?: number
+    id?: number
+    studentId: string
     universityId: number
     name: string
   }
 
   export type StudentUpdateWithoutBatchInput = {
+    studentId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     university?: UniversityUpdateOneRequiredWithoutStudentsNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutBatchInput = {
-    studentId?: IntFieldUpdateOperationsInput | number
+    id?: IntFieldUpdateOperationsInput | number
+    studentId?: StringFieldUpdateOperationsInput | string
     universityId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
   }
 
   export type StudentUncheckedUpdateManyWithoutBatchInput = {
-    studentId?: IntFieldUpdateOperationsInput | number
+    id?: IntFieldUpdateOperationsInput | number
+    studentId?: StringFieldUpdateOperationsInput | string
     universityId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
   }
 
   export type StudentCreateManyUniversityInput = {
-    studentId?: number
+    id?: number
+    studentId: string
     batchId: number
     name: string
   }
 
   export type StudentUpdateWithoutUniversityInput = {
+    studentId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     batch?: BatchUpdateOneRequiredWithoutStudentsNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutUniversityInput = {
-    studentId?: IntFieldUpdateOperationsInput | number
+    id?: IntFieldUpdateOperationsInput | number
+    studentId?: StringFieldUpdateOperationsInput | string
     batchId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
   }
 
   export type StudentUncheckedUpdateManyWithoutUniversityInput = {
-    studentId?: IntFieldUpdateOperationsInput | number
+    id?: IntFieldUpdateOperationsInput | number
+    studentId?: StringFieldUpdateOperationsInput | string
     batchId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
   }

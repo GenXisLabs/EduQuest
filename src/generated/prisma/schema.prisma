@@ -29,7 +29,8 @@ model Batch {
 }
 
 model Student {
-  studentId    Int        @id @default(autoincrement())
+  id           Int        @id @default(autoincrement())
+  studentId    String     @unique
   universityId Int
   batchId      Int
   name         String

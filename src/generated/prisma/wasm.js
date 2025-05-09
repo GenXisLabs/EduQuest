@@ -134,6 +134,7 @@ exports.Prisma.BatchScalarFieldEnum = {
 };
 
 exports.Prisma.StudentScalarFieldEnum = {
+  id: 'id',
   studentId: 'studentId',
   universityId: 'universityId',
   batchId: 'batchId',
