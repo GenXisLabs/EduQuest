@@ -34,7 +34,7 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
 
     const handleLogout = () => {
         // In a real app, clear session/token
-        router.push('/login');
+        router.push('/admin/login');
     };
 
     return (
@@ -58,10 +58,10 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
                     <span className="text-2xl font-semibold text-white">Admin</span>
                 </div>
                 <nav className="flex-1 px-2 py-4 space-y-2">
-                    <NavItem href="/dashboard" icon={<HomeIcon />}>
+                    <NavItem href="/admin/dashboard" icon={<HomeIcon />}>
                         Dashboard
                     </NavItem>
-                    <NavItem href="/dashboard/profile" icon={<ProfileIcon />}>
+                    <NavItem href="/admin/dashboard/profile" icon={<ProfileIcon />}>
                         Profile
                     </NavItem>
                     {/* Add more NavItems here */}
