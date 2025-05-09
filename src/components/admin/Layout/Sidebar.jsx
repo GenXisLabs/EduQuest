@@ -32,8 +32,14 @@ const NavItem = ({ href, icon, children }) => {
 export default function Sidebar({ isOpen, toggleSidebar }) {
     const router = useRouter();
 
-    const handleLogout = () => {
-        // In a real app, clear session/token
+    const handleLogout = async () => {
+        const response = await fetch('/api/admin/auth/logout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
         router.push('/admin/login');
     };
 

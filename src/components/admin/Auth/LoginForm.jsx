@@ -6,23 +6,43 @@ import { useRouter } from 'next/navigation';
 export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(null); // State to handle errors
   const router = useRouter();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Basic validation (in a real app, much more robust)
-    if (email === 'admin@example.com' && password === 'password') {
-      // In a real app, you'd set a token/session here
-      console.log('Login successful');
-      router.push('/admin/dashboard');
-    } else {
-      alert('Invalid credentials');
+    setError(null); // Reset error state
+
+    try {
+      const response = await fetch('/api/admin/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Login successful:', data);
+        // Store the token in local storage or a cookie
+        localStorage.setItem('adminToken', data.token);
+        // Redirect to the admin dashboard
+        router.push('/admin/dashboard');
+      } else {
+        const errorData = await response.json();
+        setError(errorData.message || 'Login failed');
+      }
+    } catch (err) {
+      setError('An unexpected error occurred');
+      console.error(err);
     }
   };
 
   return (
     <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-xl shadow-lg">
       <h2 className="text-3xl font-bold text-center text-gray-800">Admin Login</h2>
+      {error && <p className="text-red-500 text-sm">{error}</p>}
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
           <label
