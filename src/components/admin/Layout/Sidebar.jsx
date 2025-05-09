@@ -81,6 +81,9 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
                     <NavItem href="/admin/dashboard/batches" icon={<DotIcon />}>
                         Batchs
                     </NavItem>
+                    <NavItem href="/admin/dashboard/admins" icon={<DotIcon />}>
+                        Admins
+                    </NavItem>
                     <NavItem href="/admin/dashboard/profile" icon={<ProfileIcon />}>
                         Profile
                     </NavItem>
