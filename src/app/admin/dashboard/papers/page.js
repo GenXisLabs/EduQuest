@@ -144,7 +144,7 @@ function View() {
                                     confirmation={true}
                                 />
                                 <button
-                                    onClick={() => router.push(`/admin/papers/${paper.id}`)}
+                                    onClick={() => router.push(`/admin/dashboard/papers/${paper.id}`)}
                                     className="bg-blue-500 text-white px-4 py-1 rounded"
                                 >
                                     Quiz

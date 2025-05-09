@@ -6,9 +6,19 @@ import { AuthLoading } from '@/components/admin/Auth/AuthLoading';
 import CallBtn from '@/components/common/CallBtn';
 import { useRouter } from 'next/navigation';
 
+import { Editor } from 'primereact/editor'
+        
+
 function View({ id }) {
     if (!id) {
         return <div className="text-red-500">Waiting for ID...</div>;
+    }
+
+    const [text, setText] = useState('');
+
+    const changeText = (html) => {
+        console.log(html);
+        setText(html);
     }
 
     return (
@@ -18,6 +28,9 @@ function View({ id }) {
                 <h2 className="text-lg font-semibold text-gray-800 mb-2">Paper ID: {id}</h2>
                 {/* Add more details about the paper here */}
             </div>
+            
+            <Editor value={text} onTextChange={(e) => changeText(e.htmlValue)} style={{ height: '320px' }} />
+        
         </div>
     );
 };
