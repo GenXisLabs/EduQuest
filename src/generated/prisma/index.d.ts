@@ -33,6 +33,16 @@ export type Student = $Result.DefaultSelection<Prisma.$StudentPayload>
  * 
  */
 export type University = $Result.DefaultSelection<Prisma.$UniversityPayload>
+/**
+ * Model Paper
+ * 
+ */
+export type Paper = $Result.DefaultSelection<Prisma.$PaperPayload>
+/**
+ * Model Question
+ * 
+ */
+export type Question = $Result.DefaultSelection<Prisma.$QuestionPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -198,6 +208,26 @@ export class PrismaClient<
     * ```
     */
   get university(): Prisma.UniversityDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.paper`: Exposes CRUD operations for the **Paper** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Papers
+    * const papers = await prisma.paper.findMany()
+    * ```
+    */
+  get paper(): Prisma.PaperDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.question`: Exposes CRUD operations for the **Question** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Questions
+    * const questions = await prisma.question.findMany()
+    * ```
+    */
+  get question(): Prisma.QuestionDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -641,7 +671,9 @@ export namespace Prisma {
     Admin: 'Admin',
     Batch: 'Batch',
     Student: 'Student',
-    University: 'University'
+    University: 'University',
+    Paper: 'Paper',
+    Question: 'Question'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -660,7 +692,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "admin" | "batch" | "student" | "university"
+      modelProps: "admin" | "batch" | "student" | "university" | "paper" | "question"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -960,6 +992,154 @@ export namespace Prisma {
           }
         }
       }
+      Paper: {
+        payload: Prisma.$PaperPayload<ExtArgs>
+        fields: Prisma.PaperFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PaperFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaperPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PaperFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaperPayload>
+          }
+          findFirst: {
+            args: Prisma.PaperFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaperPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PaperFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaperPayload>
+          }
+          findMany: {
+            args: Prisma.PaperFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaperPayload>[]
+          }
+          create: {
+            args: Prisma.PaperCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaperPayload>
+          }
+          createMany: {
+            args: Prisma.PaperCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PaperCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaperPayload>[]
+          }
+          delete: {
+            args: Prisma.PaperDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaperPayload>
+          }
+          update: {
+            args: Prisma.PaperUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaperPayload>
+          }
+          deleteMany: {
+            args: Prisma.PaperDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PaperUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PaperUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaperPayload>[]
+          }
+          upsert: {
+            args: Prisma.PaperUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaperPayload>
+          }
+          aggregate: {
+            args: Prisma.PaperAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePaper>
+          }
+          groupBy: {
+            args: Prisma.PaperGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PaperGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PaperCountArgs<ExtArgs>
+            result: $Utils.Optional<PaperCountAggregateOutputType> | number
+          }
+        }
+      }
+      Question: {
+        payload: Prisma.$QuestionPayload<ExtArgs>
+        fields: Prisma.QuestionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.QuestionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuestionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.QuestionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuestionPayload>
+          }
+          findFirst: {
+            args: Prisma.QuestionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuestionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.QuestionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuestionPayload>
+          }
+          findMany: {
+            args: Prisma.QuestionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuestionPayload>[]
+          }
+          create: {
+            args: Prisma.QuestionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuestionPayload>
+          }
+          createMany: {
+            args: Prisma.QuestionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.QuestionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuestionPayload>[]
+          }
+          delete: {
+            args: Prisma.QuestionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuestionPayload>
+          }
+          update: {
+            args: Prisma.QuestionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuestionPayload>
+          }
+          deleteMany: {
+            args: Prisma.QuestionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.QuestionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.QuestionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuestionPayload>[]
+          }
+          upsert: {
+            args: Prisma.QuestionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuestionPayload>
+          }
+          aggregate: {
+            args: Prisma.QuestionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateQuestion>
+          }
+          groupBy: {
+            args: Prisma.QuestionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<QuestionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.QuestionCountArgs<ExtArgs>
+            result: $Utils.Optional<QuestionCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1048,6 +1228,8 @@ export namespace Prisma {
     batch?: BatchOmit
     student?: StudentOmit
     university?: UniversityOmit
+    paper?: PaperOmit
+    question?: QuestionOmit
   }
 
   /* Types for Logging */
@@ -1143,10 +1325,12 @@ export namespace Prisma {
 
   export type BatchCountOutputType = {
     students: number
+    papers: number
   }
 
   export type BatchCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     students?: boolean | BatchCountOutputTypeCountStudentsArgs
+    papers?: boolean | BatchCountOutputTypeCountPapersArgs
   }
 
   // Custom InputTypes
@@ -1165,6 +1349,13 @@ export namespace Prisma {
    */
   export type BatchCountOutputTypeCountStudentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: StudentWhereInput
+  }
+
+  /**
+   * BatchCountOutputType without action
+   */
+  export type BatchCountOutputTypeCountPapersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PaperWhereInput
   }
 
 
@@ -1196,6 +1387,37 @@ export namespace Prisma {
    */
   export type UniversityCountOutputTypeCountStudentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: StudentWhereInput
+  }
+
+
+  /**
+   * Count Type PaperCountOutputType
+   */
+
+  export type PaperCountOutputType = {
+    questions: number
+  }
+
+  export type PaperCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    questions?: boolean | PaperCountOutputTypeCountQuestionsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * PaperCountOutputType without action
+   */
+  export type PaperCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaperCountOutputType
+     */
+    select?: PaperCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * PaperCountOutputType without action
+   */
+  export type PaperCountOutputTypeCountQuestionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: QuestionWhereInput
   }
 
 
@@ -2407,6 +2629,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     students?: boolean | Batch$studentsArgs<ExtArgs>
+    papers?: boolean | Batch$papersArgs<ExtArgs>
     _count?: boolean | BatchCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["batch"]>
 
@@ -2428,6 +2651,7 @@ export namespace Prisma {
   export type BatchOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name", ExtArgs["result"]["batch"]>
   export type BatchInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     students?: boolean | Batch$studentsArgs<ExtArgs>
+    papers?: boolean | Batch$papersArgs<ExtArgs>
     _count?: boolean | BatchCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type BatchIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2437,6 +2661,7 @@ export namespace Prisma {
     name: "Batch"
     objects: {
       students: Prisma.$StudentPayload<ExtArgs>[]
+      papers: Prisma.$PaperPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -2836,6 +3061,7 @@ export namespace Prisma {
   export interface Prisma__BatchClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     students<T extends Batch$studentsArgs<ExtArgs> = {}>(args?: Subset<T, Batch$studentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    papers<T extends Batch$papersArgs<ExtArgs> = {}>(args?: Subset<T, Batch$papersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaperPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3276,6 +3502,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: StudentScalarFieldEnum | StudentScalarFieldEnum[]
+  }
+
+  /**
+   * Batch.papers
+   */
+  export type Batch$papersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Paper
+     */
+    select?: PaperSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Paper
+     */
+    omit?: PaperOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaperInclude<ExtArgs> | null
+    where?: PaperWhereInput
+    orderBy?: PaperOrderByWithRelationInput | PaperOrderByWithRelationInput[]
+    cursor?: PaperWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PaperScalarFieldEnum | PaperScalarFieldEnum[]
   }
 
   /**
@@ -5471,6 +5721,2275 @@ export namespace Prisma {
 
 
   /**
+   * Model Paper
+   */
+
+  export type AggregatePaper = {
+    _count: PaperCountAggregateOutputType | null
+    _avg: PaperAvgAggregateOutputType | null
+    _sum: PaperSumAggregateOutputType | null
+    _min: PaperMinAggregateOutputType | null
+    _max: PaperMaxAggregateOutputType | null
+  }
+
+  export type PaperAvgAggregateOutputType = {
+    id: number | null
+    batchId: number | null
+    duration: number | null
+  }
+
+  export type PaperSumAggregateOutputType = {
+    id: number | null
+    batchId: number | null
+    duration: number | null
+  }
+
+  export type PaperMinAggregateOutputType = {
+    id: number | null
+    batchId: number | null
+    name: string | null
+    duration: number | null
+    isActive: boolean | null
+    password: string | null
+    metadata: string | null
+    createdAt: Date | null
+  }
+
+  export type PaperMaxAggregateOutputType = {
+    id: number | null
+    batchId: number | null
+    name: string | null
+    duration: number | null
+    isActive: boolean | null
+    password: string | null
+    metadata: string | null
+    createdAt: Date | null
+  }
+
+  export type PaperCountAggregateOutputType = {
+    id: number
+    batchId: number
+    name: number
+    duration: number
+    isActive: number
+    password: number
+    metadata: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type PaperAvgAggregateInputType = {
+    id?: true
+    batchId?: true
+    duration?: true
+  }
+
+  export type PaperSumAggregateInputType = {
+    id?: true
+    batchId?: true
+    duration?: true
+  }
+
+  export type PaperMinAggregateInputType = {
+    id?: true
+    batchId?: true
+    name?: true
+    duration?: true
+    isActive?: true
+    password?: true
+    metadata?: true
+    createdAt?: true
+  }
+
+  export type PaperMaxAggregateInputType = {
+    id?: true
+    batchId?: true
+    name?: true
+    duration?: true
+    isActive?: true
+    password?: true
+    metadata?: true
+    createdAt?: true
+  }
+
+  export type PaperCountAggregateInputType = {
+    id?: true
+    batchId?: true
+    name?: true
+    duration?: true
+    isActive?: true
+    password?: true
+    metadata?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type PaperAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Paper to aggregate.
+     */
+    where?: PaperWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Papers to fetch.
+     */
+    orderBy?: PaperOrderByWithRelationInput | PaperOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PaperWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Papers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Papers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Papers
+    **/
+    _count?: true | PaperCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PaperAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PaperSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PaperMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PaperMaxAggregateInputType
+  }
+
+  export type GetPaperAggregateType<T extends PaperAggregateArgs> = {
+        [P in keyof T & keyof AggregatePaper]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePaper[P]>
+      : GetScalarType<T[P], AggregatePaper[P]>
+  }
+
+
+
+
+  export type PaperGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PaperWhereInput
+    orderBy?: PaperOrderByWithAggregationInput | PaperOrderByWithAggregationInput[]
+    by: PaperScalarFieldEnum[] | PaperScalarFieldEnum
+    having?: PaperScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PaperCountAggregateInputType | true
+    _avg?: PaperAvgAggregateInputType
+    _sum?: PaperSumAggregateInputType
+    _min?: PaperMinAggregateInputType
+    _max?: PaperMaxAggregateInputType
+  }
+
+  export type PaperGroupByOutputType = {
+    id: number
+    batchId: number
+    name: string
+    duration: number
+    isActive: boolean
+    password: string
+    metadata: string
+    createdAt: Date
+    _count: PaperCountAggregateOutputType | null
+    _avg: PaperAvgAggregateOutputType | null
+    _sum: PaperSumAggregateOutputType | null
+    _min: PaperMinAggregateOutputType | null
+    _max: PaperMaxAggregateOutputType | null
+  }
+
+  type GetPaperGroupByPayload<T extends PaperGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PaperGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PaperGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PaperGroupByOutputType[P]>
+            : GetScalarType<T[P], PaperGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PaperSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    batchId?: boolean
+    name?: boolean
+    duration?: boolean
+    isActive?: boolean
+    password?: boolean
+    metadata?: boolean
+    createdAt?: boolean
+    batch?: boolean | BatchDefaultArgs<ExtArgs>
+    questions?: boolean | Paper$questionsArgs<ExtArgs>
+    _count?: boolean | PaperCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["paper"]>
+
+  export type PaperSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    batchId?: boolean
+    name?: boolean
+    duration?: boolean
+    isActive?: boolean
+    password?: boolean
+    metadata?: boolean
+    createdAt?: boolean
+    batch?: boolean | BatchDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["paper"]>
+
+  export type PaperSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    batchId?: boolean
+    name?: boolean
+    duration?: boolean
+    isActive?: boolean
+    password?: boolean
+    metadata?: boolean
+    createdAt?: boolean
+    batch?: boolean | BatchDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["paper"]>
+
+  export type PaperSelectScalar = {
+    id?: boolean
+    batchId?: boolean
+    name?: boolean
+    duration?: boolean
+    isActive?: boolean
+    password?: boolean
+    metadata?: boolean
+    createdAt?: boolean
+  }
+
+  export type PaperOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "batchId" | "name" | "duration" | "isActive" | "password" | "metadata" | "createdAt", ExtArgs["result"]["paper"]>
+  export type PaperInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    batch?: boolean | BatchDefaultArgs<ExtArgs>
+    questions?: boolean | Paper$questionsArgs<ExtArgs>
+    _count?: boolean | PaperCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type PaperIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    batch?: boolean | BatchDefaultArgs<ExtArgs>
+  }
+  export type PaperIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    batch?: boolean | BatchDefaultArgs<ExtArgs>
+  }
+
+  export type $PaperPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Paper"
+    objects: {
+      batch: Prisma.$BatchPayload<ExtArgs>
+      questions: Prisma.$QuestionPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      batchId: number
+      name: string
+      duration: number
+      isActive: boolean
+      password: string
+      metadata: string
+      createdAt: Date
+    }, ExtArgs["result"]["paper"]>
+    composites: {}
+  }
+
+  type PaperGetPayload<S extends boolean | null | undefined | PaperDefaultArgs> = $Result.GetResult<Prisma.$PaperPayload, S>
+
+  type PaperCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PaperFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PaperCountAggregateInputType | true
+    }
+
+  export interface PaperDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Paper'], meta: { name: 'Paper' } }
+    /**
+     * Find zero or one Paper that matches the filter.
+     * @param {PaperFindUniqueArgs} args - Arguments to find a Paper
+     * @example
+     * // Get one Paper
+     * const paper = await prisma.paper.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PaperFindUniqueArgs>(args: SelectSubset<T, PaperFindUniqueArgs<ExtArgs>>): Prisma__PaperClient<$Result.GetResult<Prisma.$PaperPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Paper that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PaperFindUniqueOrThrowArgs} args - Arguments to find a Paper
+     * @example
+     * // Get one Paper
+     * const paper = await prisma.paper.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PaperFindUniqueOrThrowArgs>(args: SelectSubset<T, PaperFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PaperClient<$Result.GetResult<Prisma.$PaperPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Paper that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaperFindFirstArgs} args - Arguments to find a Paper
+     * @example
+     * // Get one Paper
+     * const paper = await prisma.paper.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PaperFindFirstArgs>(args?: SelectSubset<T, PaperFindFirstArgs<ExtArgs>>): Prisma__PaperClient<$Result.GetResult<Prisma.$PaperPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Paper that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaperFindFirstOrThrowArgs} args - Arguments to find a Paper
+     * @example
+     * // Get one Paper
+     * const paper = await prisma.paper.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PaperFindFirstOrThrowArgs>(args?: SelectSubset<T, PaperFindFirstOrThrowArgs<ExtArgs>>): Prisma__PaperClient<$Result.GetResult<Prisma.$PaperPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Papers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaperFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Papers
+     * const papers = await prisma.paper.findMany()
+     * 
+     * // Get first 10 Papers
+     * const papers = await prisma.paper.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const paperWithIdOnly = await prisma.paper.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PaperFindManyArgs>(args?: SelectSubset<T, PaperFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaperPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Paper.
+     * @param {PaperCreateArgs} args - Arguments to create a Paper.
+     * @example
+     * // Create one Paper
+     * const Paper = await prisma.paper.create({
+     *   data: {
+     *     // ... data to create a Paper
+     *   }
+     * })
+     * 
+     */
+    create<T extends PaperCreateArgs>(args: SelectSubset<T, PaperCreateArgs<ExtArgs>>): Prisma__PaperClient<$Result.GetResult<Prisma.$PaperPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Papers.
+     * @param {PaperCreateManyArgs} args - Arguments to create many Papers.
+     * @example
+     * // Create many Papers
+     * const paper = await prisma.paper.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PaperCreateManyArgs>(args?: SelectSubset<T, PaperCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Papers and returns the data saved in the database.
+     * @param {PaperCreateManyAndReturnArgs} args - Arguments to create many Papers.
+     * @example
+     * // Create many Papers
+     * const paper = await prisma.paper.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Papers and only return the `id`
+     * const paperWithIdOnly = await prisma.paper.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PaperCreateManyAndReturnArgs>(args?: SelectSubset<T, PaperCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaperPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Paper.
+     * @param {PaperDeleteArgs} args - Arguments to delete one Paper.
+     * @example
+     * // Delete one Paper
+     * const Paper = await prisma.paper.delete({
+     *   where: {
+     *     // ... filter to delete one Paper
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PaperDeleteArgs>(args: SelectSubset<T, PaperDeleteArgs<ExtArgs>>): Prisma__PaperClient<$Result.GetResult<Prisma.$PaperPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Paper.
+     * @param {PaperUpdateArgs} args - Arguments to update one Paper.
+     * @example
+     * // Update one Paper
+     * const paper = await prisma.paper.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PaperUpdateArgs>(args: SelectSubset<T, PaperUpdateArgs<ExtArgs>>): Prisma__PaperClient<$Result.GetResult<Prisma.$PaperPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Papers.
+     * @param {PaperDeleteManyArgs} args - Arguments to filter Papers to delete.
+     * @example
+     * // Delete a few Papers
+     * const { count } = await prisma.paper.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PaperDeleteManyArgs>(args?: SelectSubset<T, PaperDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Papers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaperUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Papers
+     * const paper = await prisma.paper.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PaperUpdateManyArgs>(args: SelectSubset<T, PaperUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Papers and returns the data updated in the database.
+     * @param {PaperUpdateManyAndReturnArgs} args - Arguments to update many Papers.
+     * @example
+     * // Update many Papers
+     * const paper = await prisma.paper.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Papers and only return the `id`
+     * const paperWithIdOnly = await prisma.paper.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PaperUpdateManyAndReturnArgs>(args: SelectSubset<T, PaperUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaperPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Paper.
+     * @param {PaperUpsertArgs} args - Arguments to update or create a Paper.
+     * @example
+     * // Update or create a Paper
+     * const paper = await prisma.paper.upsert({
+     *   create: {
+     *     // ... data to create a Paper
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Paper we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PaperUpsertArgs>(args: SelectSubset<T, PaperUpsertArgs<ExtArgs>>): Prisma__PaperClient<$Result.GetResult<Prisma.$PaperPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Papers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaperCountArgs} args - Arguments to filter Papers to count.
+     * @example
+     * // Count the number of Papers
+     * const count = await prisma.paper.count({
+     *   where: {
+     *     // ... the filter for the Papers we want to count
+     *   }
+     * })
+    **/
+    count<T extends PaperCountArgs>(
+      args?: Subset<T, PaperCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PaperCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Paper.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaperAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PaperAggregateArgs>(args: Subset<T, PaperAggregateArgs>): Prisma.PrismaPromise<GetPaperAggregateType<T>>
+
+    /**
+     * Group by Paper.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaperGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PaperGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PaperGroupByArgs['orderBy'] }
+        : { orderBy?: PaperGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PaperGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPaperGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Paper model
+   */
+  readonly fields: PaperFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Paper.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PaperClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    batch<T extends BatchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BatchDefaultArgs<ExtArgs>>): Prisma__BatchClient<$Result.GetResult<Prisma.$BatchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    questions<T extends Paper$questionsArgs<ExtArgs> = {}>(args?: Subset<T, Paper$questionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Paper model
+   */
+  interface PaperFieldRefs {
+    readonly id: FieldRef<"Paper", 'Int'>
+    readonly batchId: FieldRef<"Paper", 'Int'>
+    readonly name: FieldRef<"Paper", 'String'>
+    readonly duration: FieldRef<"Paper", 'Int'>
+    readonly isActive: FieldRef<"Paper", 'Boolean'>
+    readonly password: FieldRef<"Paper", 'String'>
+    readonly metadata: FieldRef<"Paper", 'String'>
+    readonly createdAt: FieldRef<"Paper", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Paper findUnique
+   */
+  export type PaperFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Paper
+     */
+    select?: PaperSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Paper
+     */
+    omit?: PaperOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaperInclude<ExtArgs> | null
+    /**
+     * Filter, which Paper to fetch.
+     */
+    where: PaperWhereUniqueInput
+  }
+
+  /**
+   * Paper findUniqueOrThrow
+   */
+  export type PaperFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Paper
+     */
+    select?: PaperSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Paper
+     */
+    omit?: PaperOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaperInclude<ExtArgs> | null
+    /**
+     * Filter, which Paper to fetch.
+     */
+    where: PaperWhereUniqueInput
+  }
+
+  /**
+   * Paper findFirst
+   */
+  export type PaperFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Paper
+     */
+    select?: PaperSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Paper
+     */
+    omit?: PaperOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaperInclude<ExtArgs> | null
+    /**
+     * Filter, which Paper to fetch.
+     */
+    where?: PaperWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Papers to fetch.
+     */
+    orderBy?: PaperOrderByWithRelationInput | PaperOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Papers.
+     */
+    cursor?: PaperWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Papers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Papers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Papers.
+     */
+    distinct?: PaperScalarFieldEnum | PaperScalarFieldEnum[]
+  }
+
+  /**
+   * Paper findFirstOrThrow
+   */
+  export type PaperFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Paper
+     */
+    select?: PaperSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Paper
+     */
+    omit?: PaperOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaperInclude<ExtArgs> | null
+    /**
+     * Filter, which Paper to fetch.
+     */
+    where?: PaperWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Papers to fetch.
+     */
+    orderBy?: PaperOrderByWithRelationInput | PaperOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Papers.
+     */
+    cursor?: PaperWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Papers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Papers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Papers.
+     */
+    distinct?: PaperScalarFieldEnum | PaperScalarFieldEnum[]
+  }
+
+  /**
+   * Paper findMany
+   */
+  export type PaperFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Paper
+     */
+    select?: PaperSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Paper
+     */
+    omit?: PaperOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaperInclude<ExtArgs> | null
+    /**
+     * Filter, which Papers to fetch.
+     */
+    where?: PaperWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Papers to fetch.
+     */
+    orderBy?: PaperOrderByWithRelationInput | PaperOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Papers.
+     */
+    cursor?: PaperWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Papers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Papers.
+     */
+    skip?: number
+    distinct?: PaperScalarFieldEnum | PaperScalarFieldEnum[]
+  }
+
+  /**
+   * Paper create
+   */
+  export type PaperCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Paper
+     */
+    select?: PaperSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Paper
+     */
+    omit?: PaperOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaperInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Paper.
+     */
+    data: XOR<PaperCreateInput, PaperUncheckedCreateInput>
+  }
+
+  /**
+   * Paper createMany
+   */
+  export type PaperCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Papers.
+     */
+    data: PaperCreateManyInput | PaperCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Paper createManyAndReturn
+   */
+  export type PaperCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Paper
+     */
+    select?: PaperSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Paper
+     */
+    omit?: PaperOmit<ExtArgs> | null
+    /**
+     * The data used to create many Papers.
+     */
+    data: PaperCreateManyInput | PaperCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaperIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Paper update
+   */
+  export type PaperUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Paper
+     */
+    select?: PaperSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Paper
+     */
+    omit?: PaperOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaperInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Paper.
+     */
+    data: XOR<PaperUpdateInput, PaperUncheckedUpdateInput>
+    /**
+     * Choose, which Paper to update.
+     */
+    where: PaperWhereUniqueInput
+  }
+
+  /**
+   * Paper updateMany
+   */
+  export type PaperUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Papers.
+     */
+    data: XOR<PaperUpdateManyMutationInput, PaperUncheckedUpdateManyInput>
+    /**
+     * Filter which Papers to update
+     */
+    where?: PaperWhereInput
+    /**
+     * Limit how many Papers to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Paper updateManyAndReturn
+   */
+  export type PaperUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Paper
+     */
+    select?: PaperSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Paper
+     */
+    omit?: PaperOmit<ExtArgs> | null
+    /**
+     * The data used to update Papers.
+     */
+    data: XOR<PaperUpdateManyMutationInput, PaperUncheckedUpdateManyInput>
+    /**
+     * Filter which Papers to update
+     */
+    where?: PaperWhereInput
+    /**
+     * Limit how many Papers to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaperIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Paper upsert
+   */
+  export type PaperUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Paper
+     */
+    select?: PaperSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Paper
+     */
+    omit?: PaperOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaperInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Paper to update in case it exists.
+     */
+    where: PaperWhereUniqueInput
+    /**
+     * In case the Paper found by the `where` argument doesn't exist, create a new Paper with this data.
+     */
+    create: XOR<PaperCreateInput, PaperUncheckedCreateInput>
+    /**
+     * In case the Paper was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PaperUpdateInput, PaperUncheckedUpdateInput>
+  }
+
+  /**
+   * Paper delete
+   */
+  export type PaperDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Paper
+     */
+    select?: PaperSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Paper
+     */
+    omit?: PaperOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaperInclude<ExtArgs> | null
+    /**
+     * Filter which Paper to delete.
+     */
+    where: PaperWhereUniqueInput
+  }
+
+  /**
+   * Paper deleteMany
+   */
+  export type PaperDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Papers to delete
+     */
+    where?: PaperWhereInput
+    /**
+     * Limit how many Papers to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Paper.questions
+   */
+  export type Paper$questionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Question
+     */
+    select?: QuestionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Question
+     */
+    omit?: QuestionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuestionInclude<ExtArgs> | null
+    where?: QuestionWhereInput
+    orderBy?: QuestionOrderByWithRelationInput | QuestionOrderByWithRelationInput[]
+    cursor?: QuestionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: QuestionScalarFieldEnum | QuestionScalarFieldEnum[]
+  }
+
+  /**
+   * Paper without action
+   */
+  export type PaperDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Paper
+     */
+    select?: PaperSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Paper
+     */
+    omit?: PaperOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaperInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Question
+   */
+
+  export type AggregateQuestion = {
+    _count: QuestionCountAggregateOutputType | null
+    _avg: QuestionAvgAggregateOutputType | null
+    _sum: QuestionSumAggregateOutputType | null
+    _min: QuestionMinAggregateOutputType | null
+    _max: QuestionMaxAggregateOutputType | null
+  }
+
+  export type QuestionAvgAggregateOutputType = {
+    id: number | null
+    paperId: number | null
+    marks: number | null
+  }
+
+  export type QuestionSumAggregateOutputType = {
+    id: number | null
+    paperId: number | null
+    marks: number | null
+  }
+
+  export type QuestionMinAggregateOutputType = {
+    id: number | null
+    paperId: number | null
+    type: string | null
+    marks: number | null
+    content: string | null
+  }
+
+  export type QuestionMaxAggregateOutputType = {
+    id: number | null
+    paperId: number | null
+    type: string | null
+    marks: number | null
+    content: string | null
+  }
+
+  export type QuestionCountAggregateOutputType = {
+    id: number
+    paperId: number
+    type: number
+    marks: number
+    content: number
+    _all: number
+  }
+
+
+  export type QuestionAvgAggregateInputType = {
+    id?: true
+    paperId?: true
+    marks?: true
+  }
+
+  export type QuestionSumAggregateInputType = {
+    id?: true
+    paperId?: true
+    marks?: true
+  }
+
+  export type QuestionMinAggregateInputType = {
+    id?: true
+    paperId?: true
+    type?: true
+    marks?: true
+    content?: true
+  }
+
+  export type QuestionMaxAggregateInputType = {
+    id?: true
+    paperId?: true
+    type?: true
+    marks?: true
+    content?: true
+  }
+
+  export type QuestionCountAggregateInputType = {
+    id?: true
+    paperId?: true
+    type?: true
+    marks?: true
+    content?: true
+    _all?: true
+  }
+
+  export type QuestionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Question to aggregate.
+     */
+    where?: QuestionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Questions to fetch.
+     */
+    orderBy?: QuestionOrderByWithRelationInput | QuestionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: QuestionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Questions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Questions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Questions
+    **/
+    _count?: true | QuestionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: QuestionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: QuestionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: QuestionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: QuestionMaxAggregateInputType
+  }
+
+  export type GetQuestionAggregateType<T extends QuestionAggregateArgs> = {
+        [P in keyof T & keyof AggregateQuestion]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateQuestion[P]>
+      : GetScalarType<T[P], AggregateQuestion[P]>
+  }
+
+
+
+
+  export type QuestionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: QuestionWhereInput
+    orderBy?: QuestionOrderByWithAggregationInput | QuestionOrderByWithAggregationInput[]
+    by: QuestionScalarFieldEnum[] | QuestionScalarFieldEnum
+    having?: QuestionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: QuestionCountAggregateInputType | true
+    _avg?: QuestionAvgAggregateInputType
+    _sum?: QuestionSumAggregateInputType
+    _min?: QuestionMinAggregateInputType
+    _max?: QuestionMaxAggregateInputType
+  }
+
+  export type QuestionGroupByOutputType = {
+    id: number
+    paperId: number
+    type: string
+    marks: number
+    content: string
+    _count: QuestionCountAggregateOutputType | null
+    _avg: QuestionAvgAggregateOutputType | null
+    _sum: QuestionSumAggregateOutputType | null
+    _min: QuestionMinAggregateOutputType | null
+    _max: QuestionMaxAggregateOutputType | null
+  }
+
+  type GetQuestionGroupByPayload<T extends QuestionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<QuestionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof QuestionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], QuestionGroupByOutputType[P]>
+            : GetScalarType<T[P], QuestionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type QuestionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    paperId?: boolean
+    type?: boolean
+    marks?: boolean
+    content?: boolean
+    paper?: boolean | PaperDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["question"]>
+
+  export type QuestionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    paperId?: boolean
+    type?: boolean
+    marks?: boolean
+    content?: boolean
+    paper?: boolean | PaperDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["question"]>
+
+  export type QuestionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    paperId?: boolean
+    type?: boolean
+    marks?: boolean
+    content?: boolean
+    paper?: boolean | PaperDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["question"]>
+
+  export type QuestionSelectScalar = {
+    id?: boolean
+    paperId?: boolean
+    type?: boolean
+    marks?: boolean
+    content?: boolean
+  }
+
+  export type QuestionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "paperId" | "type" | "marks" | "content", ExtArgs["result"]["question"]>
+  export type QuestionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    paper?: boolean | PaperDefaultArgs<ExtArgs>
+  }
+  export type QuestionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    paper?: boolean | PaperDefaultArgs<ExtArgs>
+  }
+  export type QuestionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    paper?: boolean | PaperDefaultArgs<ExtArgs>
+  }
+
+  export type $QuestionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Question"
+    objects: {
+      paper: Prisma.$PaperPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      paperId: number
+      type: string
+      marks: number
+      content: string
+    }, ExtArgs["result"]["question"]>
+    composites: {}
+  }
+
+  type QuestionGetPayload<S extends boolean | null | undefined | QuestionDefaultArgs> = $Result.GetResult<Prisma.$QuestionPayload, S>
+
+  type QuestionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<QuestionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: QuestionCountAggregateInputType | true
+    }
+
+  export interface QuestionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Question'], meta: { name: 'Question' } }
+    /**
+     * Find zero or one Question that matches the filter.
+     * @param {QuestionFindUniqueArgs} args - Arguments to find a Question
+     * @example
+     * // Get one Question
+     * const question = await prisma.question.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends QuestionFindUniqueArgs>(args: SelectSubset<T, QuestionFindUniqueArgs<ExtArgs>>): Prisma__QuestionClient<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Question that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {QuestionFindUniqueOrThrowArgs} args - Arguments to find a Question
+     * @example
+     * // Get one Question
+     * const question = await prisma.question.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends QuestionFindUniqueOrThrowArgs>(args: SelectSubset<T, QuestionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__QuestionClient<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Question that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuestionFindFirstArgs} args - Arguments to find a Question
+     * @example
+     * // Get one Question
+     * const question = await prisma.question.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends QuestionFindFirstArgs>(args?: SelectSubset<T, QuestionFindFirstArgs<ExtArgs>>): Prisma__QuestionClient<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Question that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuestionFindFirstOrThrowArgs} args - Arguments to find a Question
+     * @example
+     * // Get one Question
+     * const question = await prisma.question.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends QuestionFindFirstOrThrowArgs>(args?: SelectSubset<T, QuestionFindFirstOrThrowArgs<ExtArgs>>): Prisma__QuestionClient<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Questions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuestionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Questions
+     * const questions = await prisma.question.findMany()
+     * 
+     * // Get first 10 Questions
+     * const questions = await prisma.question.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const questionWithIdOnly = await prisma.question.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends QuestionFindManyArgs>(args?: SelectSubset<T, QuestionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Question.
+     * @param {QuestionCreateArgs} args - Arguments to create a Question.
+     * @example
+     * // Create one Question
+     * const Question = await prisma.question.create({
+     *   data: {
+     *     // ... data to create a Question
+     *   }
+     * })
+     * 
+     */
+    create<T extends QuestionCreateArgs>(args: SelectSubset<T, QuestionCreateArgs<ExtArgs>>): Prisma__QuestionClient<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Questions.
+     * @param {QuestionCreateManyArgs} args - Arguments to create many Questions.
+     * @example
+     * // Create many Questions
+     * const question = await prisma.question.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends QuestionCreateManyArgs>(args?: SelectSubset<T, QuestionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Questions and returns the data saved in the database.
+     * @param {QuestionCreateManyAndReturnArgs} args - Arguments to create many Questions.
+     * @example
+     * // Create many Questions
+     * const question = await prisma.question.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Questions and only return the `id`
+     * const questionWithIdOnly = await prisma.question.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends QuestionCreateManyAndReturnArgs>(args?: SelectSubset<T, QuestionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Question.
+     * @param {QuestionDeleteArgs} args - Arguments to delete one Question.
+     * @example
+     * // Delete one Question
+     * const Question = await prisma.question.delete({
+     *   where: {
+     *     // ... filter to delete one Question
+     *   }
+     * })
+     * 
+     */
+    delete<T extends QuestionDeleteArgs>(args: SelectSubset<T, QuestionDeleteArgs<ExtArgs>>): Prisma__QuestionClient<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Question.
+     * @param {QuestionUpdateArgs} args - Arguments to update one Question.
+     * @example
+     * // Update one Question
+     * const question = await prisma.question.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends QuestionUpdateArgs>(args: SelectSubset<T, QuestionUpdateArgs<ExtArgs>>): Prisma__QuestionClient<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Questions.
+     * @param {QuestionDeleteManyArgs} args - Arguments to filter Questions to delete.
+     * @example
+     * // Delete a few Questions
+     * const { count } = await prisma.question.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends QuestionDeleteManyArgs>(args?: SelectSubset<T, QuestionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Questions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuestionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Questions
+     * const question = await prisma.question.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends QuestionUpdateManyArgs>(args: SelectSubset<T, QuestionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Questions and returns the data updated in the database.
+     * @param {QuestionUpdateManyAndReturnArgs} args - Arguments to update many Questions.
+     * @example
+     * // Update many Questions
+     * const question = await prisma.question.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Questions and only return the `id`
+     * const questionWithIdOnly = await prisma.question.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends QuestionUpdateManyAndReturnArgs>(args: SelectSubset<T, QuestionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Question.
+     * @param {QuestionUpsertArgs} args - Arguments to update or create a Question.
+     * @example
+     * // Update or create a Question
+     * const question = await prisma.question.upsert({
+     *   create: {
+     *     // ... data to create a Question
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Question we want to update
+     *   }
+     * })
+     */
+    upsert<T extends QuestionUpsertArgs>(args: SelectSubset<T, QuestionUpsertArgs<ExtArgs>>): Prisma__QuestionClient<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Questions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuestionCountArgs} args - Arguments to filter Questions to count.
+     * @example
+     * // Count the number of Questions
+     * const count = await prisma.question.count({
+     *   where: {
+     *     // ... the filter for the Questions we want to count
+     *   }
+     * })
+    **/
+    count<T extends QuestionCountArgs>(
+      args?: Subset<T, QuestionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], QuestionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Question.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuestionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends QuestionAggregateArgs>(args: Subset<T, QuestionAggregateArgs>): Prisma.PrismaPromise<GetQuestionAggregateType<T>>
+
+    /**
+     * Group by Question.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuestionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends QuestionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: QuestionGroupByArgs['orderBy'] }
+        : { orderBy?: QuestionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, QuestionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetQuestionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Question model
+   */
+  readonly fields: QuestionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Question.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__QuestionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    paper<T extends PaperDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PaperDefaultArgs<ExtArgs>>): Prisma__PaperClient<$Result.GetResult<Prisma.$PaperPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Question model
+   */
+  interface QuestionFieldRefs {
+    readonly id: FieldRef<"Question", 'Int'>
+    readonly paperId: FieldRef<"Question", 'Int'>
+    readonly type: FieldRef<"Question", 'String'>
+    readonly marks: FieldRef<"Question", 'Int'>
+    readonly content: FieldRef<"Question", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Question findUnique
+   */
+  export type QuestionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Question
+     */
+    select?: QuestionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Question
+     */
+    omit?: QuestionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuestionInclude<ExtArgs> | null
+    /**
+     * Filter, which Question to fetch.
+     */
+    where: QuestionWhereUniqueInput
+  }
+
+  /**
+   * Question findUniqueOrThrow
+   */
+  export type QuestionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Question
+     */
+    select?: QuestionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Question
+     */
+    omit?: QuestionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuestionInclude<ExtArgs> | null
+    /**
+     * Filter, which Question to fetch.
+     */
+    where: QuestionWhereUniqueInput
+  }
+
+  /**
+   * Question findFirst
+   */
+  export type QuestionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Question
+     */
+    select?: QuestionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Question
+     */
+    omit?: QuestionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuestionInclude<ExtArgs> | null
+    /**
+     * Filter, which Question to fetch.
+     */
+    where?: QuestionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Questions to fetch.
+     */
+    orderBy?: QuestionOrderByWithRelationInput | QuestionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Questions.
+     */
+    cursor?: QuestionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Questions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Questions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Questions.
+     */
+    distinct?: QuestionScalarFieldEnum | QuestionScalarFieldEnum[]
+  }
+
+  /**
+   * Question findFirstOrThrow
+   */
+  export type QuestionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Question
+     */
+    select?: QuestionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Question
+     */
+    omit?: QuestionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuestionInclude<ExtArgs> | null
+    /**
+     * Filter, which Question to fetch.
+     */
+    where?: QuestionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Questions to fetch.
+     */
+    orderBy?: QuestionOrderByWithRelationInput | QuestionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Questions.
+     */
+    cursor?: QuestionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Questions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Questions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Questions.
+     */
+    distinct?: QuestionScalarFieldEnum | QuestionScalarFieldEnum[]
+  }
+
+  /**
+   * Question findMany
+   */
+  export type QuestionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Question
+     */
+    select?: QuestionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Question
+     */
+    omit?: QuestionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuestionInclude<ExtArgs> | null
+    /**
+     * Filter, which Questions to fetch.
+     */
+    where?: QuestionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Questions to fetch.
+     */
+    orderBy?: QuestionOrderByWithRelationInput | QuestionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Questions.
+     */
+    cursor?: QuestionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Questions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Questions.
+     */
+    skip?: number
+    distinct?: QuestionScalarFieldEnum | QuestionScalarFieldEnum[]
+  }
+
+  /**
+   * Question create
+   */
+  export type QuestionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Question
+     */
+    select?: QuestionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Question
+     */
+    omit?: QuestionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuestionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Question.
+     */
+    data: XOR<QuestionCreateInput, QuestionUncheckedCreateInput>
+  }
+
+  /**
+   * Question createMany
+   */
+  export type QuestionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Questions.
+     */
+    data: QuestionCreateManyInput | QuestionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Question createManyAndReturn
+   */
+  export type QuestionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Question
+     */
+    select?: QuestionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Question
+     */
+    omit?: QuestionOmit<ExtArgs> | null
+    /**
+     * The data used to create many Questions.
+     */
+    data: QuestionCreateManyInput | QuestionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuestionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Question update
+   */
+  export type QuestionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Question
+     */
+    select?: QuestionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Question
+     */
+    omit?: QuestionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuestionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Question.
+     */
+    data: XOR<QuestionUpdateInput, QuestionUncheckedUpdateInput>
+    /**
+     * Choose, which Question to update.
+     */
+    where: QuestionWhereUniqueInput
+  }
+
+  /**
+   * Question updateMany
+   */
+  export type QuestionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Questions.
+     */
+    data: XOR<QuestionUpdateManyMutationInput, QuestionUncheckedUpdateManyInput>
+    /**
+     * Filter which Questions to update
+     */
+    where?: QuestionWhereInput
+    /**
+     * Limit how many Questions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Question updateManyAndReturn
+   */
+  export type QuestionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Question
+     */
+    select?: QuestionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Question
+     */
+    omit?: QuestionOmit<ExtArgs> | null
+    /**
+     * The data used to update Questions.
+     */
+    data: XOR<QuestionUpdateManyMutationInput, QuestionUncheckedUpdateManyInput>
+    /**
+     * Filter which Questions to update
+     */
+    where?: QuestionWhereInput
+    /**
+     * Limit how many Questions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuestionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Question upsert
+   */
+  export type QuestionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Question
+     */
+    select?: QuestionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Question
+     */
+    omit?: QuestionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuestionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Question to update in case it exists.
+     */
+    where: QuestionWhereUniqueInput
+    /**
+     * In case the Question found by the `where` argument doesn't exist, create a new Question with this data.
+     */
+    create: XOR<QuestionCreateInput, QuestionUncheckedCreateInput>
+    /**
+     * In case the Question was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<QuestionUpdateInput, QuestionUncheckedUpdateInput>
+  }
+
+  /**
+   * Question delete
+   */
+  export type QuestionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Question
+     */
+    select?: QuestionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Question
+     */
+    omit?: QuestionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuestionInclude<ExtArgs> | null
+    /**
+     * Filter which Question to delete.
+     */
+    where: QuestionWhereUniqueInput
+  }
+
+  /**
+   * Question deleteMany
+   */
+  export type QuestionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Questions to delete
+     */
+    where?: QuestionWhereInput
+    /**
+     * Limit how many Questions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Question without action
+   */
+  export type QuestionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Question
+     */
+    select?: QuestionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Question
+     */
+    omit?: QuestionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuestionInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -5520,6 +8039,31 @@ export namespace Prisma {
   };
 
   export type UniversityScalarFieldEnum = (typeof UniversityScalarFieldEnum)[keyof typeof UniversityScalarFieldEnum]
+
+
+  export const PaperScalarFieldEnum: {
+    id: 'id',
+    batchId: 'batchId',
+    name: 'name',
+    duration: 'duration',
+    isActive: 'isActive',
+    password: 'password',
+    metadata: 'metadata',
+    createdAt: 'createdAt'
+  };
+
+  export type PaperScalarFieldEnum = (typeof PaperScalarFieldEnum)[keyof typeof PaperScalarFieldEnum]
+
+
+  export const QuestionScalarFieldEnum: {
+    id: 'id',
+    paperId: 'paperId',
+    type: 'type',
+    marks: 'marks',
+    content: 'content'
+  };
+
+  export type QuestionScalarFieldEnum = (typeof QuestionScalarFieldEnum)[keyof typeof QuestionScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -5582,6 +8126,13 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -5663,12 +8214,14 @@ export namespace Prisma {
     id?: IntFilter<"Batch"> | number
     name?: StringFilter<"Batch"> | string
     students?: StudentListRelationFilter
+    papers?: PaperListRelationFilter
   }
 
   export type BatchOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
     students?: StudentOrderByRelationAggregateInput
+    papers?: PaperOrderByRelationAggregateInput
   }
 
   export type BatchWhereUniqueInput = Prisma.AtLeast<{
@@ -5678,6 +8231,7 @@ export namespace Prisma {
     NOT?: BatchWhereInput | BatchWhereInput[]
     name?: StringFilter<"Batch"> | string
     students?: StudentListRelationFilter
+    papers?: PaperListRelationFilter
   }, "id">
 
   export type BatchOrderByWithAggregationInput = {
@@ -5800,6 +8354,138 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"University"> | string
   }
 
+  export type PaperWhereInput = {
+    AND?: PaperWhereInput | PaperWhereInput[]
+    OR?: PaperWhereInput[]
+    NOT?: PaperWhereInput | PaperWhereInput[]
+    id?: IntFilter<"Paper"> | number
+    batchId?: IntFilter<"Paper"> | number
+    name?: StringFilter<"Paper"> | string
+    duration?: IntFilter<"Paper"> | number
+    isActive?: BoolFilter<"Paper"> | boolean
+    password?: StringFilter<"Paper"> | string
+    metadata?: StringFilter<"Paper"> | string
+    createdAt?: DateTimeFilter<"Paper"> | Date | string
+    batch?: XOR<BatchScalarRelationFilter, BatchWhereInput>
+    questions?: QuestionListRelationFilter
+  }
+
+  export type PaperOrderByWithRelationInput = {
+    id?: SortOrder
+    batchId?: SortOrder
+    name?: SortOrder
+    duration?: SortOrder
+    isActive?: SortOrder
+    password?: SortOrder
+    metadata?: SortOrder
+    createdAt?: SortOrder
+    batch?: BatchOrderByWithRelationInput
+    questions?: QuestionOrderByRelationAggregateInput
+  }
+
+  export type PaperWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: PaperWhereInput | PaperWhereInput[]
+    OR?: PaperWhereInput[]
+    NOT?: PaperWhereInput | PaperWhereInput[]
+    batchId?: IntFilter<"Paper"> | number
+    name?: StringFilter<"Paper"> | string
+    duration?: IntFilter<"Paper"> | number
+    isActive?: BoolFilter<"Paper"> | boolean
+    password?: StringFilter<"Paper"> | string
+    metadata?: StringFilter<"Paper"> | string
+    createdAt?: DateTimeFilter<"Paper"> | Date | string
+    batch?: XOR<BatchScalarRelationFilter, BatchWhereInput>
+    questions?: QuestionListRelationFilter
+  }, "id">
+
+  export type PaperOrderByWithAggregationInput = {
+    id?: SortOrder
+    batchId?: SortOrder
+    name?: SortOrder
+    duration?: SortOrder
+    isActive?: SortOrder
+    password?: SortOrder
+    metadata?: SortOrder
+    createdAt?: SortOrder
+    _count?: PaperCountOrderByAggregateInput
+    _avg?: PaperAvgOrderByAggregateInput
+    _max?: PaperMaxOrderByAggregateInput
+    _min?: PaperMinOrderByAggregateInput
+    _sum?: PaperSumOrderByAggregateInput
+  }
+
+  export type PaperScalarWhereWithAggregatesInput = {
+    AND?: PaperScalarWhereWithAggregatesInput | PaperScalarWhereWithAggregatesInput[]
+    OR?: PaperScalarWhereWithAggregatesInput[]
+    NOT?: PaperScalarWhereWithAggregatesInput | PaperScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Paper"> | number
+    batchId?: IntWithAggregatesFilter<"Paper"> | number
+    name?: StringWithAggregatesFilter<"Paper"> | string
+    duration?: IntWithAggregatesFilter<"Paper"> | number
+    isActive?: BoolWithAggregatesFilter<"Paper"> | boolean
+    password?: StringWithAggregatesFilter<"Paper"> | string
+    metadata?: StringWithAggregatesFilter<"Paper"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Paper"> | Date | string
+  }
+
+  export type QuestionWhereInput = {
+    AND?: QuestionWhereInput | QuestionWhereInput[]
+    OR?: QuestionWhereInput[]
+    NOT?: QuestionWhereInput | QuestionWhereInput[]
+    id?: IntFilter<"Question"> | number
+    paperId?: IntFilter<"Question"> | number
+    type?: StringFilter<"Question"> | string
+    marks?: IntFilter<"Question"> | number
+    content?: StringFilter<"Question"> | string
+    paper?: XOR<PaperScalarRelationFilter, PaperWhereInput>
+  }
+
+  export type QuestionOrderByWithRelationInput = {
+    id?: SortOrder
+    paperId?: SortOrder
+    type?: SortOrder
+    marks?: SortOrder
+    content?: SortOrder
+    paper?: PaperOrderByWithRelationInput
+  }
+
+  export type QuestionWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: QuestionWhereInput | QuestionWhereInput[]
+    OR?: QuestionWhereInput[]
+    NOT?: QuestionWhereInput | QuestionWhereInput[]
+    paperId?: IntFilter<"Question"> | number
+    type?: StringFilter<"Question"> | string
+    marks?: IntFilter<"Question"> | number
+    content?: StringFilter<"Question"> | string
+    paper?: XOR<PaperScalarRelationFilter, PaperWhereInput>
+  }, "id">
+
+  export type QuestionOrderByWithAggregationInput = {
+    id?: SortOrder
+    paperId?: SortOrder
+    type?: SortOrder
+    marks?: SortOrder
+    content?: SortOrder
+    _count?: QuestionCountOrderByAggregateInput
+    _avg?: QuestionAvgOrderByAggregateInput
+    _max?: QuestionMaxOrderByAggregateInput
+    _min?: QuestionMinOrderByAggregateInput
+    _sum?: QuestionSumOrderByAggregateInput
+  }
+
+  export type QuestionScalarWhereWithAggregatesInput = {
+    AND?: QuestionScalarWhereWithAggregatesInput | QuestionScalarWhereWithAggregatesInput[]
+    OR?: QuestionScalarWhereWithAggregatesInput[]
+    NOT?: QuestionScalarWhereWithAggregatesInput | QuestionScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Question"> | number
+    paperId?: IntWithAggregatesFilter<"Question"> | number
+    type?: StringWithAggregatesFilter<"Question"> | string
+    marks?: IntWithAggregatesFilter<"Question"> | number
+    content?: StringWithAggregatesFilter<"Question"> | string
+  }
+
   export type AdminCreateInput = {
     email: string
     name: string
@@ -5856,23 +8542,27 @@ export namespace Prisma {
   export type BatchCreateInput = {
     name: string
     students?: StudentCreateNestedManyWithoutBatchInput
+    papers?: PaperCreateNestedManyWithoutBatchInput
   }
 
   export type BatchUncheckedCreateInput = {
     id?: number
     name: string
     students?: StudentUncheckedCreateNestedManyWithoutBatchInput
+    papers?: PaperUncheckedCreateNestedManyWithoutBatchInput
   }
 
   export type BatchUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     students?: StudentUpdateManyWithoutBatchNestedInput
+    papers?: PaperUpdateManyWithoutBatchNestedInput
   }
 
   export type BatchUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     students?: StudentUncheckedUpdateManyWithoutBatchNestedInput
+    papers?: PaperUncheckedUpdateManyWithoutBatchNestedInput
   }
 
   export type BatchCreateManyInput = {
@@ -5974,6 +8664,135 @@ export namespace Prisma {
   export type UniversityUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PaperCreateInput = {
+    name: string
+    duration: number
+    isActive?: boolean
+    password: string
+    metadata: string
+    createdAt?: Date | string
+    batch: BatchCreateNestedOneWithoutPapersInput
+    questions?: QuestionCreateNestedManyWithoutPaperInput
+  }
+
+  export type PaperUncheckedCreateInput = {
+    id?: number
+    batchId: number
+    name: string
+    duration: number
+    isActive?: boolean
+    password: string
+    metadata: string
+    createdAt?: Date | string
+    questions?: QuestionUncheckedCreateNestedManyWithoutPaperInput
+  }
+
+  export type PaperUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    duration?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    password?: StringFieldUpdateOperationsInput | string
+    metadata?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    batch?: BatchUpdateOneRequiredWithoutPapersNestedInput
+    questions?: QuestionUpdateManyWithoutPaperNestedInput
+  }
+
+  export type PaperUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    batchId?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    duration?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    password?: StringFieldUpdateOperationsInput | string
+    metadata?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    questions?: QuestionUncheckedUpdateManyWithoutPaperNestedInput
+  }
+
+  export type PaperCreateManyInput = {
+    id?: number
+    batchId: number
+    name: string
+    duration: number
+    isActive?: boolean
+    password: string
+    metadata: string
+    createdAt?: Date | string
+  }
+
+  export type PaperUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    duration?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    password?: StringFieldUpdateOperationsInput | string
+    metadata?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PaperUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    batchId?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    duration?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    password?: StringFieldUpdateOperationsInput | string
+    metadata?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuestionCreateInput = {
+    type: string
+    marks: number
+    content: string
+    paper: PaperCreateNestedOneWithoutQuestionsInput
+  }
+
+  export type QuestionUncheckedCreateInput = {
+    id?: number
+    paperId: number
+    type: string
+    marks: number
+    content: string
+  }
+
+  export type QuestionUpdateInput = {
+    type?: StringFieldUpdateOperationsInput | string
+    marks?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    paper?: PaperUpdateOneRequiredWithoutQuestionsNestedInput
+  }
+
+  export type QuestionUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    paperId?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    marks?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type QuestionCreateManyInput = {
+    id?: number
+    paperId: number
+    type: string
+    marks: number
+    content: string
+  }
+
+  export type QuestionUpdateManyMutationInput = {
+    type?: StringFieldUpdateOperationsInput | string
+    marks?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type QuestionUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    paperId?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    marks?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -6099,7 +8918,17 @@ export namespace Prisma {
     none?: StudentWhereInput
   }
 
+  export type PaperListRelationFilter = {
+    every?: PaperWhereInput
+    some?: PaperWhereInput
+    none?: PaperWhereInput
+  }
+
   export type StudentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PaperOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -6195,6 +9024,115 @@ export namespace Prisma {
     id?: SortOrder
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type QuestionListRelationFilter = {
+    every?: QuestionWhereInput
+    some?: QuestionWhereInput
+    none?: QuestionWhereInput
+  }
+
+  export type QuestionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PaperCountOrderByAggregateInput = {
+    id?: SortOrder
+    batchId?: SortOrder
+    name?: SortOrder
+    duration?: SortOrder
+    isActive?: SortOrder
+    password?: SortOrder
+    metadata?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type PaperAvgOrderByAggregateInput = {
+    id?: SortOrder
+    batchId?: SortOrder
+    duration?: SortOrder
+  }
+
+  export type PaperMaxOrderByAggregateInput = {
+    id?: SortOrder
+    batchId?: SortOrder
+    name?: SortOrder
+    duration?: SortOrder
+    isActive?: SortOrder
+    password?: SortOrder
+    metadata?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type PaperMinOrderByAggregateInput = {
+    id?: SortOrder
+    batchId?: SortOrder
+    name?: SortOrder
+    duration?: SortOrder
+    isActive?: SortOrder
+    password?: SortOrder
+    metadata?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type PaperSumOrderByAggregateInput = {
+    id?: SortOrder
+    batchId?: SortOrder
+    duration?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type PaperScalarRelationFilter = {
+    is?: PaperWhereInput
+    isNot?: PaperWhereInput
+  }
+
+  export type QuestionCountOrderByAggregateInput = {
+    id?: SortOrder
+    paperId?: SortOrder
+    type?: SortOrder
+    marks?: SortOrder
+    content?: SortOrder
+  }
+
+  export type QuestionAvgOrderByAggregateInput = {
+    id?: SortOrder
+    paperId?: SortOrder
+    marks?: SortOrder
+  }
+
+  export type QuestionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    paperId?: SortOrder
+    type?: SortOrder
+    marks?: SortOrder
+    content?: SortOrder
+  }
+
+  export type QuestionMinOrderByAggregateInput = {
+    id?: SortOrder
+    paperId?: SortOrder
+    type?: SortOrder
+    marks?: SortOrder
+    content?: SortOrder
+  }
+
+  export type QuestionSumOrderByAggregateInput = {
+    id?: SortOrder
+    paperId?: SortOrder
+    marks?: SortOrder
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -6218,11 +9156,25 @@ export namespace Prisma {
     connect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
   }
 
+  export type PaperCreateNestedManyWithoutBatchInput = {
+    create?: XOR<PaperCreateWithoutBatchInput, PaperUncheckedCreateWithoutBatchInput> | PaperCreateWithoutBatchInput[] | PaperUncheckedCreateWithoutBatchInput[]
+    connectOrCreate?: PaperCreateOrConnectWithoutBatchInput | PaperCreateOrConnectWithoutBatchInput[]
+    createMany?: PaperCreateManyBatchInputEnvelope
+    connect?: PaperWhereUniqueInput | PaperWhereUniqueInput[]
+  }
+
   export type StudentUncheckedCreateNestedManyWithoutBatchInput = {
     create?: XOR<StudentCreateWithoutBatchInput, StudentUncheckedCreateWithoutBatchInput> | StudentCreateWithoutBatchInput[] | StudentUncheckedCreateWithoutBatchInput[]
     connectOrCreate?: StudentCreateOrConnectWithoutBatchInput | StudentCreateOrConnectWithoutBatchInput[]
     createMany?: StudentCreateManyBatchInputEnvelope
     connect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+  }
+
+  export type PaperUncheckedCreateNestedManyWithoutBatchInput = {
+    create?: XOR<PaperCreateWithoutBatchInput, PaperUncheckedCreateWithoutBatchInput> | PaperCreateWithoutBatchInput[] | PaperUncheckedCreateWithoutBatchInput[]
+    connectOrCreate?: PaperCreateOrConnectWithoutBatchInput | PaperCreateOrConnectWithoutBatchInput[]
+    createMany?: PaperCreateManyBatchInputEnvelope
+    connect?: PaperWhereUniqueInput | PaperWhereUniqueInput[]
   }
 
   export type StudentUpdateManyWithoutBatchNestedInput = {
@@ -6239,6 +9191,20 @@ export namespace Prisma {
     deleteMany?: StudentScalarWhereInput | StudentScalarWhereInput[]
   }
 
+  export type PaperUpdateManyWithoutBatchNestedInput = {
+    create?: XOR<PaperCreateWithoutBatchInput, PaperUncheckedCreateWithoutBatchInput> | PaperCreateWithoutBatchInput[] | PaperUncheckedCreateWithoutBatchInput[]
+    connectOrCreate?: PaperCreateOrConnectWithoutBatchInput | PaperCreateOrConnectWithoutBatchInput[]
+    upsert?: PaperUpsertWithWhereUniqueWithoutBatchInput | PaperUpsertWithWhereUniqueWithoutBatchInput[]
+    createMany?: PaperCreateManyBatchInputEnvelope
+    set?: PaperWhereUniqueInput | PaperWhereUniqueInput[]
+    disconnect?: PaperWhereUniqueInput | PaperWhereUniqueInput[]
+    delete?: PaperWhereUniqueInput | PaperWhereUniqueInput[]
+    connect?: PaperWhereUniqueInput | PaperWhereUniqueInput[]
+    update?: PaperUpdateWithWhereUniqueWithoutBatchInput | PaperUpdateWithWhereUniqueWithoutBatchInput[]
+    updateMany?: PaperUpdateManyWithWhereWithoutBatchInput | PaperUpdateManyWithWhereWithoutBatchInput[]
+    deleteMany?: PaperScalarWhereInput | PaperScalarWhereInput[]
+  }
+
   export type StudentUncheckedUpdateManyWithoutBatchNestedInput = {
     create?: XOR<StudentCreateWithoutBatchInput, StudentUncheckedCreateWithoutBatchInput> | StudentCreateWithoutBatchInput[] | StudentUncheckedCreateWithoutBatchInput[]
     connectOrCreate?: StudentCreateOrConnectWithoutBatchInput | StudentCreateOrConnectWithoutBatchInput[]
@@ -6251,6 +9217,20 @@ export namespace Prisma {
     update?: StudentUpdateWithWhereUniqueWithoutBatchInput | StudentUpdateWithWhereUniqueWithoutBatchInput[]
     updateMany?: StudentUpdateManyWithWhereWithoutBatchInput | StudentUpdateManyWithWhereWithoutBatchInput[]
     deleteMany?: StudentScalarWhereInput | StudentScalarWhereInput[]
+  }
+
+  export type PaperUncheckedUpdateManyWithoutBatchNestedInput = {
+    create?: XOR<PaperCreateWithoutBatchInput, PaperUncheckedCreateWithoutBatchInput> | PaperCreateWithoutBatchInput[] | PaperUncheckedCreateWithoutBatchInput[]
+    connectOrCreate?: PaperCreateOrConnectWithoutBatchInput | PaperCreateOrConnectWithoutBatchInput[]
+    upsert?: PaperUpsertWithWhereUniqueWithoutBatchInput | PaperUpsertWithWhereUniqueWithoutBatchInput[]
+    createMany?: PaperCreateManyBatchInputEnvelope
+    set?: PaperWhereUniqueInput | PaperWhereUniqueInput[]
+    disconnect?: PaperWhereUniqueInput | PaperWhereUniqueInput[]
+    delete?: PaperWhereUniqueInput | PaperWhereUniqueInput[]
+    connect?: PaperWhereUniqueInput | PaperWhereUniqueInput[]
+    update?: PaperUpdateWithWhereUniqueWithoutBatchInput | PaperUpdateWithWhereUniqueWithoutBatchInput[]
+    updateMany?: PaperUpdateManyWithWhereWithoutBatchInput | PaperUpdateManyWithWhereWithoutBatchInput[]
+    deleteMany?: PaperScalarWhereInput | PaperScalarWhereInput[]
   }
 
   export type UniversityCreateNestedOneWithoutStudentsInput = {
@@ -6321,6 +9301,80 @@ export namespace Prisma {
     update?: StudentUpdateWithWhereUniqueWithoutUniversityInput | StudentUpdateWithWhereUniqueWithoutUniversityInput[]
     updateMany?: StudentUpdateManyWithWhereWithoutUniversityInput | StudentUpdateManyWithWhereWithoutUniversityInput[]
     deleteMany?: StudentScalarWhereInput | StudentScalarWhereInput[]
+  }
+
+  export type BatchCreateNestedOneWithoutPapersInput = {
+    create?: XOR<BatchCreateWithoutPapersInput, BatchUncheckedCreateWithoutPapersInput>
+    connectOrCreate?: BatchCreateOrConnectWithoutPapersInput
+    connect?: BatchWhereUniqueInput
+  }
+
+  export type QuestionCreateNestedManyWithoutPaperInput = {
+    create?: XOR<QuestionCreateWithoutPaperInput, QuestionUncheckedCreateWithoutPaperInput> | QuestionCreateWithoutPaperInput[] | QuestionUncheckedCreateWithoutPaperInput[]
+    connectOrCreate?: QuestionCreateOrConnectWithoutPaperInput | QuestionCreateOrConnectWithoutPaperInput[]
+    createMany?: QuestionCreateManyPaperInputEnvelope
+    connect?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
+  }
+
+  export type QuestionUncheckedCreateNestedManyWithoutPaperInput = {
+    create?: XOR<QuestionCreateWithoutPaperInput, QuestionUncheckedCreateWithoutPaperInput> | QuestionCreateWithoutPaperInput[] | QuestionUncheckedCreateWithoutPaperInput[]
+    connectOrCreate?: QuestionCreateOrConnectWithoutPaperInput | QuestionCreateOrConnectWithoutPaperInput[]
+    createMany?: QuestionCreateManyPaperInputEnvelope
+    connect?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type BatchUpdateOneRequiredWithoutPapersNestedInput = {
+    create?: XOR<BatchCreateWithoutPapersInput, BatchUncheckedCreateWithoutPapersInput>
+    connectOrCreate?: BatchCreateOrConnectWithoutPapersInput
+    upsert?: BatchUpsertWithoutPapersInput
+    connect?: BatchWhereUniqueInput
+    update?: XOR<XOR<BatchUpdateToOneWithWhereWithoutPapersInput, BatchUpdateWithoutPapersInput>, BatchUncheckedUpdateWithoutPapersInput>
+  }
+
+  export type QuestionUpdateManyWithoutPaperNestedInput = {
+    create?: XOR<QuestionCreateWithoutPaperInput, QuestionUncheckedCreateWithoutPaperInput> | QuestionCreateWithoutPaperInput[] | QuestionUncheckedCreateWithoutPaperInput[]
+    connectOrCreate?: QuestionCreateOrConnectWithoutPaperInput | QuestionCreateOrConnectWithoutPaperInput[]
+    upsert?: QuestionUpsertWithWhereUniqueWithoutPaperInput | QuestionUpsertWithWhereUniqueWithoutPaperInput[]
+    createMany?: QuestionCreateManyPaperInputEnvelope
+    set?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
+    disconnect?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
+    delete?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
+    connect?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
+    update?: QuestionUpdateWithWhereUniqueWithoutPaperInput | QuestionUpdateWithWhereUniqueWithoutPaperInput[]
+    updateMany?: QuestionUpdateManyWithWhereWithoutPaperInput | QuestionUpdateManyWithWhereWithoutPaperInput[]
+    deleteMany?: QuestionScalarWhereInput | QuestionScalarWhereInput[]
+  }
+
+  export type QuestionUncheckedUpdateManyWithoutPaperNestedInput = {
+    create?: XOR<QuestionCreateWithoutPaperInput, QuestionUncheckedCreateWithoutPaperInput> | QuestionCreateWithoutPaperInput[] | QuestionUncheckedCreateWithoutPaperInput[]
+    connectOrCreate?: QuestionCreateOrConnectWithoutPaperInput | QuestionCreateOrConnectWithoutPaperInput[]
+    upsert?: QuestionUpsertWithWhereUniqueWithoutPaperInput | QuestionUpsertWithWhereUniqueWithoutPaperInput[]
+    createMany?: QuestionCreateManyPaperInputEnvelope
+    set?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
+    disconnect?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
+    delete?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
+    connect?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
+    update?: QuestionUpdateWithWhereUniqueWithoutPaperInput | QuestionUpdateWithWhereUniqueWithoutPaperInput[]
+    updateMany?: QuestionUpdateManyWithWhereWithoutPaperInput | QuestionUpdateManyWithWhereWithoutPaperInput[]
+    deleteMany?: QuestionScalarWhereInput | QuestionScalarWhereInput[]
+  }
+
+  export type PaperCreateNestedOneWithoutQuestionsInput = {
+    create?: XOR<PaperCreateWithoutQuestionsInput, PaperUncheckedCreateWithoutQuestionsInput>
+    connectOrCreate?: PaperCreateOrConnectWithoutQuestionsInput
+    connect?: PaperWhereUniqueInput
+  }
+
+  export type PaperUpdateOneRequiredWithoutQuestionsNestedInput = {
+    create?: XOR<PaperCreateWithoutQuestionsInput, PaperUncheckedCreateWithoutQuestionsInput>
+    connectOrCreate?: PaperCreateOrConnectWithoutQuestionsInput
+    upsert?: PaperUpsertWithoutQuestionsInput
+    connect?: PaperWhereUniqueInput
+    update?: XOR<XOR<PaperUpdateToOneWithWhereWithoutQuestionsInput, PaperUpdateWithoutQuestionsInput>, PaperUncheckedUpdateWithoutQuestionsInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -6417,6 +9471,19 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type StudentCreateWithoutBatchInput = {
     studentId: string
     name: string
@@ -6437,6 +9504,37 @@ export namespace Prisma {
 
   export type StudentCreateManyBatchInputEnvelope = {
     data: StudentCreateManyBatchInput | StudentCreateManyBatchInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PaperCreateWithoutBatchInput = {
+    name: string
+    duration: number
+    isActive?: boolean
+    password: string
+    metadata: string
+    createdAt?: Date | string
+    questions?: QuestionCreateNestedManyWithoutPaperInput
+  }
+
+  export type PaperUncheckedCreateWithoutBatchInput = {
+    id?: number
+    name: string
+    duration: number
+    isActive?: boolean
+    password: string
+    metadata: string
+    createdAt?: Date | string
+    questions?: QuestionUncheckedCreateNestedManyWithoutPaperInput
+  }
+
+  export type PaperCreateOrConnectWithoutBatchInput = {
+    where: PaperWhereUniqueInput
+    create: XOR<PaperCreateWithoutBatchInput, PaperUncheckedCreateWithoutBatchInput>
+  }
+
+  export type PaperCreateManyBatchInputEnvelope = {
+    data: PaperCreateManyBatchInput | PaperCreateManyBatchInput[]
     skipDuplicates?: boolean
   }
 
@@ -6467,6 +9565,36 @@ export namespace Prisma {
     name?: StringFilter<"Student"> | string
   }
 
+  export type PaperUpsertWithWhereUniqueWithoutBatchInput = {
+    where: PaperWhereUniqueInput
+    update: XOR<PaperUpdateWithoutBatchInput, PaperUncheckedUpdateWithoutBatchInput>
+    create: XOR<PaperCreateWithoutBatchInput, PaperUncheckedCreateWithoutBatchInput>
+  }
+
+  export type PaperUpdateWithWhereUniqueWithoutBatchInput = {
+    where: PaperWhereUniqueInput
+    data: XOR<PaperUpdateWithoutBatchInput, PaperUncheckedUpdateWithoutBatchInput>
+  }
+
+  export type PaperUpdateManyWithWhereWithoutBatchInput = {
+    where: PaperScalarWhereInput
+    data: XOR<PaperUpdateManyMutationInput, PaperUncheckedUpdateManyWithoutBatchInput>
+  }
+
+  export type PaperScalarWhereInput = {
+    AND?: PaperScalarWhereInput | PaperScalarWhereInput[]
+    OR?: PaperScalarWhereInput[]
+    NOT?: PaperScalarWhereInput | PaperScalarWhereInput[]
+    id?: IntFilter<"Paper"> | number
+    batchId?: IntFilter<"Paper"> | number
+    name?: StringFilter<"Paper"> | string
+    duration?: IntFilter<"Paper"> | number
+    isActive?: BoolFilter<"Paper"> | boolean
+    password?: StringFilter<"Paper"> | string
+    metadata?: StringFilter<"Paper"> | string
+    createdAt?: DateTimeFilter<"Paper"> | Date | string
+  }
+
   export type UniversityCreateWithoutStudentsInput = {
     name: string
   }
@@ -6483,11 +9611,13 @@ export namespace Prisma {
 
   export type BatchCreateWithoutStudentsInput = {
     name: string
+    papers?: PaperCreateNestedManyWithoutBatchInput
   }
 
   export type BatchUncheckedCreateWithoutStudentsInput = {
     id?: number
     name: string
+    papers?: PaperUncheckedCreateNestedManyWithoutBatchInput
   }
 
   export type BatchCreateOrConnectWithoutStudentsInput = {
@@ -6528,11 +9658,13 @@ export namespace Prisma {
 
   export type BatchUpdateWithoutStudentsInput = {
     name?: StringFieldUpdateOperationsInput | string
+    papers?: PaperUpdateManyWithoutBatchNestedInput
   }
 
   export type BatchUncheckedUpdateWithoutStudentsInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    papers?: PaperUncheckedUpdateManyWithoutBatchNestedInput
   }
 
   export type StudentCreateWithoutUniversityInput = {
@@ -6574,11 +9706,167 @@ export namespace Prisma {
     data: XOR<StudentUpdateManyMutationInput, StudentUncheckedUpdateManyWithoutUniversityInput>
   }
 
+  export type BatchCreateWithoutPapersInput = {
+    name: string
+    students?: StudentCreateNestedManyWithoutBatchInput
+  }
+
+  export type BatchUncheckedCreateWithoutPapersInput = {
+    id?: number
+    name: string
+    students?: StudentUncheckedCreateNestedManyWithoutBatchInput
+  }
+
+  export type BatchCreateOrConnectWithoutPapersInput = {
+    where: BatchWhereUniqueInput
+    create: XOR<BatchCreateWithoutPapersInput, BatchUncheckedCreateWithoutPapersInput>
+  }
+
+  export type QuestionCreateWithoutPaperInput = {
+    type: string
+    marks: number
+    content: string
+  }
+
+  export type QuestionUncheckedCreateWithoutPaperInput = {
+    id?: number
+    type: string
+    marks: number
+    content: string
+  }
+
+  export type QuestionCreateOrConnectWithoutPaperInput = {
+    where: QuestionWhereUniqueInput
+    create: XOR<QuestionCreateWithoutPaperInput, QuestionUncheckedCreateWithoutPaperInput>
+  }
+
+  export type QuestionCreateManyPaperInputEnvelope = {
+    data: QuestionCreateManyPaperInput | QuestionCreateManyPaperInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BatchUpsertWithoutPapersInput = {
+    update: XOR<BatchUpdateWithoutPapersInput, BatchUncheckedUpdateWithoutPapersInput>
+    create: XOR<BatchCreateWithoutPapersInput, BatchUncheckedCreateWithoutPapersInput>
+    where?: BatchWhereInput
+  }
+
+  export type BatchUpdateToOneWithWhereWithoutPapersInput = {
+    where?: BatchWhereInput
+    data: XOR<BatchUpdateWithoutPapersInput, BatchUncheckedUpdateWithoutPapersInput>
+  }
+
+  export type BatchUpdateWithoutPapersInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    students?: StudentUpdateManyWithoutBatchNestedInput
+  }
+
+  export type BatchUncheckedUpdateWithoutPapersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    students?: StudentUncheckedUpdateManyWithoutBatchNestedInput
+  }
+
+  export type QuestionUpsertWithWhereUniqueWithoutPaperInput = {
+    where: QuestionWhereUniqueInput
+    update: XOR<QuestionUpdateWithoutPaperInput, QuestionUncheckedUpdateWithoutPaperInput>
+    create: XOR<QuestionCreateWithoutPaperInput, QuestionUncheckedCreateWithoutPaperInput>
+  }
+
+  export type QuestionUpdateWithWhereUniqueWithoutPaperInput = {
+    where: QuestionWhereUniqueInput
+    data: XOR<QuestionUpdateWithoutPaperInput, QuestionUncheckedUpdateWithoutPaperInput>
+  }
+
+  export type QuestionUpdateManyWithWhereWithoutPaperInput = {
+    where: QuestionScalarWhereInput
+    data: XOR<QuestionUpdateManyMutationInput, QuestionUncheckedUpdateManyWithoutPaperInput>
+  }
+
+  export type QuestionScalarWhereInput = {
+    AND?: QuestionScalarWhereInput | QuestionScalarWhereInput[]
+    OR?: QuestionScalarWhereInput[]
+    NOT?: QuestionScalarWhereInput | QuestionScalarWhereInput[]
+    id?: IntFilter<"Question"> | number
+    paperId?: IntFilter<"Question"> | number
+    type?: StringFilter<"Question"> | string
+    marks?: IntFilter<"Question"> | number
+    content?: StringFilter<"Question"> | string
+  }
+
+  export type PaperCreateWithoutQuestionsInput = {
+    name: string
+    duration: number
+    isActive?: boolean
+    password: string
+    metadata: string
+    createdAt?: Date | string
+    batch: BatchCreateNestedOneWithoutPapersInput
+  }
+
+  export type PaperUncheckedCreateWithoutQuestionsInput = {
+    id?: number
+    batchId: number
+    name: string
+    duration: number
+    isActive?: boolean
+    password: string
+    metadata: string
+    createdAt?: Date | string
+  }
+
+  export type PaperCreateOrConnectWithoutQuestionsInput = {
+    where: PaperWhereUniqueInput
+    create: XOR<PaperCreateWithoutQuestionsInput, PaperUncheckedCreateWithoutQuestionsInput>
+  }
+
+  export type PaperUpsertWithoutQuestionsInput = {
+    update: XOR<PaperUpdateWithoutQuestionsInput, PaperUncheckedUpdateWithoutQuestionsInput>
+    create: XOR<PaperCreateWithoutQuestionsInput, PaperUncheckedCreateWithoutQuestionsInput>
+    where?: PaperWhereInput
+  }
+
+  export type PaperUpdateToOneWithWhereWithoutQuestionsInput = {
+    where?: PaperWhereInput
+    data: XOR<PaperUpdateWithoutQuestionsInput, PaperUncheckedUpdateWithoutQuestionsInput>
+  }
+
+  export type PaperUpdateWithoutQuestionsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    duration?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    password?: StringFieldUpdateOperationsInput | string
+    metadata?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    batch?: BatchUpdateOneRequiredWithoutPapersNestedInput
+  }
+
+  export type PaperUncheckedUpdateWithoutQuestionsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    batchId?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    duration?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    password?: StringFieldUpdateOperationsInput | string
+    metadata?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StudentCreateManyBatchInput = {
     id?: number
     studentId: string
     universityId: number
     name: string
+  }
+
+  export type PaperCreateManyBatchInput = {
+    id?: number
+    name: string
+    duration: number
+    isActive?: boolean
+    password: string
+    metadata: string
+    createdAt?: Date | string
   }
 
   export type StudentUpdateWithoutBatchInput = {
@@ -6599,6 +9887,37 @@ export namespace Prisma {
     studentId?: StringFieldUpdateOperationsInput | string
     universityId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PaperUpdateWithoutBatchInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    duration?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    password?: StringFieldUpdateOperationsInput | string
+    metadata?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    questions?: QuestionUpdateManyWithoutPaperNestedInput
+  }
+
+  export type PaperUncheckedUpdateWithoutBatchInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    duration?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    password?: StringFieldUpdateOperationsInput | string
+    metadata?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    questions?: QuestionUncheckedUpdateManyWithoutPaperNestedInput
+  }
+
+  export type PaperUncheckedUpdateManyWithoutBatchInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    duration?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    password?: StringFieldUpdateOperationsInput | string
+    metadata?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StudentCreateManyUniversityInput = {
@@ -6626,6 +9945,33 @@ export namespace Prisma {
     studentId?: StringFieldUpdateOperationsInput | string
     batchId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type QuestionCreateManyPaperInput = {
+    id?: number
+    type: string
+    marks: number
+    content: string
+  }
+
+  export type QuestionUpdateWithoutPaperInput = {
+    type?: StringFieldUpdateOperationsInput | string
+    marks?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type QuestionUncheckedUpdateWithoutPaperInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    marks?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type QuestionUncheckedUpdateManyWithoutPaperInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    marks?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
   }
 
 
