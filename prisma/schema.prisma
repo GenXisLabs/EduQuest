@@ -22,3 +22,23 @@ model Admin {
   createdAt DateTime @default(now())
 }
 
+model Batch {
+  id   Int    @id @default(autoincrement())
+  name String
+  students Student[]
+}
+
+model Student {
+  studentId    Int       @id @default(autoincrement())
+  universityId Int
+  batchId      Int
+  name         String
+  university   University @relation(fields: [universityId], references: [id])
+  batch        Batch      @relation(fields: [batchId], references: [id])
+}
+
+model University {
+  id       Int      @id @default(autoincrement())
+  name     String
+  students Student[]
+}

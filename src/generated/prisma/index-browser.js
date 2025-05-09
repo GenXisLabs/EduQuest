@@ -128,6 +128,23 @@ exports.Prisma.AdminScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.BatchScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.StudentScalarFieldEnum = {
+  studentId: 'studentId',
+  universityId: 'universityId',
+  batchId: 'batchId',
+  name: 'name'
+};
+
+exports.Prisma.UniversityScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -140,7 +157,10 @@ exports.Prisma.QueryMode = {
 
 
 exports.Prisma.ModelName = {
-  Admin: 'Admin'
+  Admin: 'Admin',
+  Batch: 'Batch',
+  Student: 'Student',
+  University: 'University'
 };
 
 /**
