@@ -15,6 +15,8 @@ export async function POST(request) {
             where: { email },
         });
 
+        delete admin.password; // Remove password from the response
+
         if (!admin) {
             return NextResponse.json({ message: "Invalid email or password" }, { status: 401 });
         }
@@ -41,7 +43,7 @@ export async function POST(request) {
 
         return response;
     } catch (error) {
-        // Handle errors
+        console.error('Login error:', error);
         return NextResponse.json({ message: "Login failed" }, { status: 500 });
     } finally {
         await prisma.$disconnect();
