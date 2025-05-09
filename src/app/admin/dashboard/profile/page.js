@@ -1,5 +1,5 @@
-import DashboardLayout from '@/components/Layout/DashboardLayout';
-import UserProfileCard from '@/components/Profile/UserProfileCard';
+import DashboardLayout from '@/components/admin/Layout/DashboardLayout';
+import UserProfileCard from '@/components/admin/Profile/UserProfileCard';
 
 export default function ProfilePage() {
   // In a real app, you'd fetch user data

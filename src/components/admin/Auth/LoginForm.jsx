@@ -14,7 +14,7 @@ export default function LoginForm() {
     if (email === 'admin@example.com' && password === 'password') {
       // In a real app, you'd set a token/session here
       console.log('Login successful');
-      router.push('/dashboard');
+      router.push('/admin/dashboard');
     } else {
       alert('Invalid credentials');
     }

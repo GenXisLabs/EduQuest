@@ -1,5 +1,5 @@
-import DashboardLayout from '@/components/Layout/DashboardLayout';
-import Card from '@/components/UI/Card';
+import DashboardLayout from '@/components/admin/Layout/DashboardLayout';
+import Card from '@/components/admin/UI/Card';
 
 export default function DashboardPage() {
   return (
