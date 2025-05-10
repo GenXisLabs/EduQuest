@@ -51,11 +51,11 @@ async function verifyAttempt(attemptId, paperId) {
             return NextResponse.json({ message: 'Paper is not active' }, { status: 403 });
         }
 
-        delete paper.password; // Remove password from the paper object
-
         if (isDurationExceeded(attempt, paper)) {
             return NextResponse.json({ message: 'Quiz duration exceeded' }, { status: 403 });
         }
+
+        delete paper.password; // Remove password from the paper object
 
         return {
             attempt,
@@ -64,8 +64,8 @@ async function verifyAttempt(attemptId, paperId) {
             remainingTime: clacRemainingTime(attempt, paper),
         };
     } catch (error) {
-        console.error(error);
-        return false;
+        console.error('Error verifying attempt:', error);
+        return NextResponse.json({ message: 'Internal server error' }, { status: 500 });
     } finally {
         await prisma.$disconnect();
     }

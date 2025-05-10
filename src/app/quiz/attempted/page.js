@@ -8,6 +8,8 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'; // Or solid va
 import QuestionNavigator from '@/components/quiz/QuestionNavigator';
 import QuestionContent from '@/components/quiz/QuestionContent';
 
+import Spinner from '@/components/admin/UI/Spinner';
+
 // lib/quizData.js (or directly in your page component)
 const sampleQuestions = [
     {
@@ -132,176 +134,224 @@ const sampleSubmittedAnswers = [
 ];
 
 export default function QuizPage() {
-    const [questions] = useState(sampleQuestions);
+    const [questions, setQuestions] = useState([]);
     const [userAnswers, setUserAnswers] = useState([]);
+
+    const [attempt, setAttempt] = useState(null);
+    const [paper, setPaper] = useState(null);
+
     const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
-  
+    const [attemptedFetching, setAttemptedFetching] = useState(true);
+
     // Refs for scrolling to questions
     const questionRefs = useRef([]);
     useEffect(() => {
-      // Initialize refs array based on questions length
-      questionRefs.current = Array(questions.length).fill(null).map(
-          (_, i) => questionRefs.current[i] || React.createRef()
-      );
+        // Initialize refs array based on questions length
+        questionRefs.current = Array(questions.length).fill(null).map(
+            (_, i) => questionRefs.current[i] || React.createRef()
+        );
     }, [questions.length]);
-  
-  
+
+
     // Load/Save answers from/to localStorage (from previous version)
     useEffect(() => {
-    //   const savedAnswers = localStorage.getItem('quizUserAnswers');
-    //   if (savedAnswers) {
-    //     setUserAnswers(JSON.parse(savedAnswers));
-    //   }
+        //   const savedAnswers = localStorage.getItem('quizUserAnswers');
+        //   if (savedAnswers) {
+        //     setUserAnswers(JSON.parse(savedAnswers));
+        //   }
+        // Fetch questions from API
+        fetchAttempted();
     }, []);
-  
+
     useEffect(() => {
-      if (userAnswers.length > 0 || localStorage.getItem('quizUserAnswers')) { // Avoid clearing on initial empty load if already empty
-          localStorage.setItem('quizUserAnswers', JSON.stringify(userAnswers));
-      }
-    }, [userAnswers]);
-  
-    const attemptedQuestionIds = useMemo(() => {
-      return new Set(userAnswers.map(ans => ans.questionId));
-    }, [userAnswers]);
-  
-    const handleAnswerChange = (questionId, answerDetail) => {
-      setUserAnswers(prevAnswers => {
-        const existingAnswerIndex = prevAnswers.findIndex(ans => ans.questionId === questionId);
-        const newAnswer = { id: Date.now(), questionId, ...answerDetail }; // Ensure unique ID for answer if needed
-  
-        if (existingAnswerIndex > -1) {
-          const updatedAnswers = [...prevAnswers];
-          updatedAnswers[existingAnswerIndex] = { ...updatedAnswers[existingAnswerIndex], ...answerDetail};
-          return updatedAnswers;
-        } else {
-          return [...prevAnswers, newAnswer];
+        if (userAnswers.length > 0 || localStorage.getItem('quizUserAnswers')) { // Avoid clearing on initial empty load if already empty
+            localStorage.setItem('quizUserAnswers', JSON.stringify(userAnswers));
         }
-      });
-    };
-  
-    const handleNavigateToQuestion = (index) => {
-      if (questionRefs.current[index] && questionRefs.current[index].current) {
-        questionRefs.current[index].current.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start', // scroll so the top of the element is at the top of the viewport
+    }, [userAnswers]);
+
+    const fetchAttempted = async () => {
+        try {
+            const response = await fetch('/api/quiz/attempted');
+            if (!response.ok) {
+                alert('Failed to fetch questions. Please try again later.');
+            }
+            const result = await response.json();
+            // convert data.questions.content to JSON 
+            result.data.questions = result.data.questions.map(question => {
+                question.content = JSON.parse(question.content);
+                return question;
+            });
+            setQuestions(result.data.questions);
+            setAttempt(result.data.attempt);
+            setPaper(result.data.paper);
+        } catch (error) {
+            console.error('Error fetching questions:', error);
+        } finally {
+            setAttemptedFetching(false);
+        }
+    }
+
+    const attemptedQuestionIds = useMemo(() => {
+        return new Set(userAnswers.map(ans => ans.questionId));
+    }, [userAnswers]);
+
+    const handleAnswerChange = (questionId, answerDetail) => {
+        setUserAnswers(prevAnswers => {
+            const existingAnswerIndex = prevAnswers.findIndex(ans => ans.questionId === questionId);
+            const newAnswer = { id: Date.now(), questionId, ...answerDetail }; // Ensure unique ID for answer if needed
+
+            if (existingAnswerIndex > -1) {
+                const updatedAnswers = [...prevAnswers];
+                updatedAnswers[existingAnswerIndex] = { ...updatedAnswers[existingAnswerIndex], ...answerDetail };
+                return updatedAnswers;
+            } else {
+                return [...prevAnswers, newAnswer];
+            }
         });
-      }
-      if (isMobileNavOpen) {
-        setIsMobileNavOpen(false); // Close mobile nav after selection
-      }
     };
-  
+
+    const handleNavigateToQuestion = (index) => {
+        if (questionRefs.current[index] && questionRefs.current[index].current) {
+            questionRefs.current[index].current.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start', // scroll so the top of the element is at the top of the viewport
+            });
+        }
+        if (isMobileNavOpen) {
+            setIsMobileNavOpen(false); // Close mobile nav after selection
+        }
+    };
+
     const handleSubmitQuiz = () => {
-      console.log("Quiz Submitted!", userAnswers);
-      alert(`Quiz submitted! Check console for answers. You attempted ${attemptedQuestionIds.size} out of ${questions.length} questions.`);
-      // Optionally clear localStorage:
-      // localStorage.removeItem('quizUserAnswers');
-      // setUserAnswers([]);
+        console.log("Quiz Submitted!", userAnswers);
+        alert(`Quiz submitted! Check console for answers. You attempted ${attemptedQuestionIds.size} out of ${questions.length} questions.`);
+        // Optionally clear localStorage:
+        // localStorage.removeItem('quizUserAnswers');
+        // setUserAnswers([]);
     };
-  
+
+    if (attemptedFetching) {
+        return (
+            <div className="flex items-center justify-center min-h-screen">
+                <Spinner />
+            </div>
+        );
+    }
+
+    if (!paper) {
+        return (
+            <div className="flex items-center justify-center min-h-screen">
+                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                    <strong className="font-bold">Error:</strong>
+                    <span className="block sm:inline"> Unable to load quiz!</span>
+                </div>
+            </div>
+        );
+    }
+
     return (
-      <>  
-        <div className="min-h-screen bg-gray-100 flex flex-col">
-          {/* Sticky Header with Mobile Nav Toggle */}
-          <header className="bg-white shadow-md sticky top-0 z-40">
-            <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="flex items-center justify-between h-16">
-                <div className="flex items-center">
-                  <h1 className="text-2xl font-bold text-indigo-700">Online Quiz</h1>
+        <>
+            <div className="min-h-screen bg-gray-100 flex flex-col">
+                {/* Sticky Header with Mobile Nav Toggle */}
+                <header className="bg-white shadow-md sticky top-0 z-40">
+                    <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="flex items-center justify-between h-16">
+                            <div className="flex items-center">
+                                <h1 className="text-2xl font-bold text-indigo-700">Online Quiz</h1>
+                            </div>
+                            <div className="md:hidden">
+                                <button
+                                    onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
+                                    type="button"
+                                    className="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                                    aria-controls="mobile-menu"
+                                    aria-expanded={isMobileNavOpen}
+                                >
+                                    <span className="sr-only">Open main menu</span>
+                                    {isMobileNavOpen ? (
+                                        <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                                    ) : (
+                                        <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                                    )}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <div className="flex-grow container mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
+                    <div className="md:flex md:gap-x-8">
+                        {/* Desktop Navigator (Sticky) */}
+                        <nav className="hidden md:block md:w-1/4 lg:w-1/5 md:sticky md:top-20 self-start max-h-[calc(100vh-5rem-2rem)] overflow-y-auto bg-white p-4 rounded-lg shadow">
+                            <QuestionNavigator
+                                questions={questions}
+                                onNavigate={handleNavigateToQuestion}
+                                attemptedQuestionIds={attemptedQuestionIds}
+                            />
+                        </nav>
+
+                        {/* Mobile Navigator (Off-canvas Sidebar) */}
+                        {isMobileNavOpen && (
+                            <>
+                                <div // Overlay
+                                    className="fixed inset-0 z-30 bg-black bg-opacity-50 transition-opacity md:hidden"
+                                    onClick={() => setIsMobileNavOpen(false)}
+                                ></div>
+                                <nav // Sidebar
+                                    className="fixed top-0 left-0 h-full w-3/4 max-w-xs bg-gray-100 shadow-xl z-40 p-4 overflow-y-auto transform transition-transform ease-in-out duration-300 md:hidden"
+                                    style={{ transform: isMobileNavOpen ? 'translateX(0)' : 'translateX(-100%)' }}
+                                >
+                                    <div className="flex justify-end mb-2">
+                                        <button onClick={() => setIsMobileNavOpen(false)} className="p-1 text-gray-600 hover:text-gray-800">
+                                            <XMarkIcon className="h-5 w-5" />
+                                        </button>
+                                    </div>
+                                    <QuestionNavigator
+                                        questions={questions}
+                                        onNavigate={handleNavigateToQuestion}
+                                        attemptedQuestionIds={attemptedQuestionIds}
+                                    />
+                                </nav>
+                            </>
+                        )}
+
+
+                        {/* Main Content: Scrollable Questions List */}
+                        <main className="flex-1 mt-6 md:mt-0 space-y-8">
+                            {questions.map((question, index) => {
+                                const currentAttempt = userAnswers.find(
+                                    (ans) => ans.questionId === question.id
+                                );
+                                return (
+                                    <section
+                                        key={question.id}
+                                        ref={questionRefs.current[index]} // Assign ref for scrolling
+                                        id={`question-section-${question.id}`} // ID for direct linking or advanced use
+                                        className="bg-white p-5 sm:p-6 rounded-lg shadow-lg"
+                                    >
+                                        <QuestionContent
+                                            question={question}
+                                            questionNumber={index + 1}
+                                            currentAttempt={currentAttempt}
+                                            onAnswerChange={handleAnswerChange}
+                                        />
+                                    </section>
+                                );
+                            })}
+
+                            {/* Submit Button at the very end */}
+                            <div className="mt-10 pt-6 border-t border-gray-200">
+                                <button
+                                    onClick={handleSubmitQuiz}
+                                    className="w-full sm:w-auto float-right px-8 py-3 bg-green-600 text-white font-semibold rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors"
+                                >
+                                    Submit Quiz
+                                </button>
+                            </div>
+                        </main>
+                    </div>
                 </div>
-                <div className="md:hidden">
-                  <button
-                    onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
-                    type="button"
-                    className="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
-                    aria-controls="mobile-menu"
-                    aria-expanded={isMobileNavOpen}
-                  >
-                    <span className="sr-only">Open main menu</span>
-                    {isMobileNavOpen ? (
-                      <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
-                    ) : (
-                      <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
-                    )}
-                  </button>
-                </div>
-              </div>
             </div>
-          </header>
-  
-          <div className="flex-grow container mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
-            <div className="md:flex md:gap-x-8">
-              {/* Desktop Navigator (Sticky) */}
-              <nav className="hidden md:block md:w-1/4 lg:w-1/5 md:sticky md:top-20 self-start max-h-[calc(100vh-5rem-2rem)] overflow-y-auto bg-white p-4 rounded-lg shadow">
-                  <QuestionNavigator
-                      questions={questions}
-                      onNavigate={handleNavigateToQuestion}
-                      attemptedQuestionIds={attemptedQuestionIds}
-                  />
-              </nav>
-  
-              {/* Mobile Navigator (Off-canvas Sidebar) */}
-              {isMobileNavOpen && (
-                  <>
-                      <div // Overlay
-                          className="fixed inset-0 z-30 bg-black bg-opacity-50 transition-opacity md:hidden"
-                          onClick={() => setIsMobileNavOpen(false)}
-                      ></div>
-                      <nav // Sidebar
-                          className="fixed top-0 left-0 h-full w-3/4 max-w-xs bg-gray-100 shadow-xl z-40 p-4 overflow-y-auto transform transition-transform ease-in-out duration-300 md:hidden"
-                          style={{ transform: isMobileNavOpen ? 'translateX(0)' : 'translateX(-100%)' }}
-                      >
-                           <div className="flex justify-end mb-2">
-                              <button onClick={() => setIsMobileNavOpen(false)} className="p-1 text-gray-600 hover:text-gray-800">
-                                  <XMarkIcon className="h-5 w-5" />
-                              </button>
-                          </div>
-                          <QuestionNavigator
-                              questions={questions}
-                              onNavigate={handleNavigateToQuestion}
-                              attemptedQuestionIds={attemptedQuestionIds}
-                          />
-                      </nav>
-                  </>
-              )}
-  
-  
-              {/* Main Content: Scrollable Questions List */}
-              <main className="flex-1 mt-6 md:mt-0 space-y-8">
-                {questions.map((question, index) => {
-                  const currentAttempt = userAnswers.find(
-                    (ans) => ans.questionId === question.id
-                  );
-                  return (
-                    <section
-                      key={question.id}
-                      ref={questionRefs.current[index]} // Assign ref for scrolling
-                      id={`question-section-${question.id}`} // ID for direct linking or advanced use
-                      className="bg-white p-5 sm:p-6 rounded-lg shadow-lg"
-                    >
-                      <QuestionContent
-                        question={question}
-                        questionNumber={index + 1}
-                        currentAttempt={currentAttempt}
-                        onAnswerChange={handleAnswerChange}
-                      />
-                    </section>
-                  );
-                })}
-  
-                {/* Submit Button at the very end */}
-                <div className="mt-10 pt-6 border-t border-gray-200">
-                  <button
-                    onClick={handleSubmitQuiz}
-                    className="w-full sm:w-auto float-right px-8 py-3 bg-green-600 text-white font-semibold rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors"
-                  >
-                    Submit Quiz
-                  </button>
-                </div>
-              </main>
-            </div>
-          </div>
-        </div>
-      </>
+        </>
     );
-  }
+}
