@@ -79,7 +79,7 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
                         Universities
                     </NavItem>
                     <NavItem href="/admin/dashboard/batches" icon={<DotIcon />}>
-                        Batchs
+                        Batches
                     </NavItem>
                     <NavItem href="/admin/dashboard/admins" icon={<DotIcon />}>
                         Admins
