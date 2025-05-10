@@ -23,3 +23,25 @@ export async function GET(request, { params }) {
     return NextResponse.json({ message: 'Failed to fetch questions' }, { status: 401 });
   }
 }
+
+export async function POST(request, { params }) {
+  const result = await jwtVerify(request);
+  if (result instanceof NextResponse) return result;
+
+  const { id } = await params;
+  const data = await request.json();
+
+  try {
+    const newQuestion = await prisma.question.create({
+      data: {
+        ...data,
+        paperId: parseInt(id),
+      },
+    });
+
+    return NextResponse.json({ message: 'Success', question: newQuestion });
+  } catch (error) {
+    console.error('Error creating question:', error);
+    return NextResponse.json({ message: 'Failed to create question' }, { status: 401 });
+  }
+}
