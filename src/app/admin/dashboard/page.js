@@ -34,25 +34,29 @@ export default function DashboardPage() {
     fetchData();
   }, []);
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
   return (
     <AuthLoading>
       <DashboardLayout>
         <h1 className="text-3xl font-semibold text-gray-800 mb-6">Dashboard Overview</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <Card title="Total Students">
-            <p className="text-4xl font-bold text-blue-600">{data.totalStudents}</p>
-          </Card>
-          <Card title="Total Papers">
-            <p className="text-4xl font-bold text-green-600">{data.totalPapers}</p>
-          </Card>
-          <Card title="Active Papers">
-            <p className="text-4xl font-bold text-yellow-500">{data.activePapers}</p>
-          </Card>
-        </div>
+        {loading ? (
+          <div className="flex min-h-screen">
+            <div className="w-64 h-2 bg-gray-200 rounded-full overflow-hidden">
+              <div className="h-full bg-blue-500 animate-pulse"></div>
+            </div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Card title="Total Students">
+              <p className="text-4xl font-bold text-blue-600">{data.totalStudents}</p>
+            </Card>
+            <Card title="Total Papers">
+              <p className="text-4xl font-bold text-green-600">{data.totalPapers}</p>
+            </Card>
+            <Card title="Active Papers">
+              <p className="text-4xl font-bold text-yellow-500">{data.activePapers}</p>
+            </Card>
+          </div>
+        )}
         <div className="fixed bottom-4 right-4 bg-white p-2 shadow-lg">
           <Image
             src="/genxis.png"
