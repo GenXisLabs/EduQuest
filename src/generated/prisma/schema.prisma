@@ -93,6 +93,6 @@ model SubmittedAnswer {
   earnedMarks  Int         @default(0)
   isMarked     Boolean     @default(false)
   createdAt    DateTime    @default(now())
-  quizAttempt  QuizAttempt @relation(fields: [attemptId], references: [id])
+  quizAttempt  QuizAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
   question     Question    @relation(fields: [questionId], references: [id])
 }
