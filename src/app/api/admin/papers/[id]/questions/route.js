@@ -15,6 +15,9 @@ export async function GET(request, { params }) {
       where: {
         paperId: parseInt(id),
       },
+      orderBy: {
+        id: 'asc',
+      },
     });
 
     return NextResponse.json({ message: 'Success', questions });
