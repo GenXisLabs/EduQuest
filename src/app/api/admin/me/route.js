@@ -20,6 +20,6 @@ export async function GET(req) {
         return NextResponse.json({ message: 'Token is valid', admin: admin });
     } catch (error) {
         console.error('Token validation error:', error);
-        return NextResponse.json({ error: 'Invalid or expired token' }, { status: 401 });
+        return NextResponse.json({ message: 'Invalid or expired token' }, { status: 401 });
     }
 }

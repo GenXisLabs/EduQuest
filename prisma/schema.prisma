@@ -22,3 +22,47 @@ model Admin {
   createdAt DateTime @default(now())
 }
 
+model Batch {
+  id   Int    @id @default(autoincrement())
+  name String
+  students Student[]
+  papers Paper[]
+}
+
+model Student {
+  id    Int       @id @default(autoincrement())
+  studentId    String    @unique
+  universityId Int
+  batchId      Int
+  name         String
+  university   University @relation(fields: [universityId], references: [id])
+  batch        Batch      @relation(fields: [batchId], references: [id])
+}
+
+model University {
+  id       Int      @id @default(autoincrement())
+  name     String
+  students Student[]
+}
+
+model Paper {
+  id       Int    @id @default(autoincrement())
+  batchId  Int
+  name     String
+  duration Int
+  isActive Boolean @default(false)
+  password String
+  metadata String
+  batch    Batch  @relation(fields: [batchId], references: [id])
+  questions Question[]
+  createdAt DateTime @default(now())
+}
+
+model Question {
+  id      Int    @id @default(autoincrement())
+  paperId Int
+  type    String
+  marks   Int
+  content String
+  paper   Paper  @relation(fields: [paperId], references: [id])
+}
