@@ -28,7 +28,7 @@ export async function POST(request) {
         delete admin.password; // Remove password from the response
 
         // Generate a jwt token 
-        const token = jwt.sign(admin, process.env.JWT_SECRET, { expiresIn: '1h' });
+        const token = jwt.sign(admin, process.env.JWT_SECRET, { expiresIn: '24h' });
 
         // Return success response with the session token
         const response = NextResponse.json({ message: "Login successful" }, { status: 200 });
@@ -38,7 +38,7 @@ export async function POST(request) {
             secure: process.env.NODE_ENV === 'production',
             sameSite: 'strict',
             path: '/',
-            maxAge: 3600, // 1 hour
+            maxAge: 86400, // 24 hours
         });
 
         return response;

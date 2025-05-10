@@ -2,6 +2,7 @@ import { PrismaClient } from '@/generated/prisma';
 import jwt from 'jsonwebtoken';
 import { NextResponse } from 'next/server';
 import { v4 as uuidv4 } from 'uuid';
+import { isDurationExceeded } from './durationVerify';
 
 export async function POST(request) {
     const prisma = new PrismaClient();
@@ -43,13 +44,9 @@ export async function POST(request) {
             where: { studentId: student.id, paperId },
         });
 
-        const now = new Date();
-
         if (quizAttempt) {
-            // Check if the attempt is expired
-            const elapsedSeconds = Math.floor((now - quizAttempt.createdAt) / 1000);
-            if (elapsedSeconds > paper.duration) {
-                return NextResponse.json({ message: "Quiz attempt has expired" }, { status: 403 });
+            if (isDurationExceeded(quizAttempt, paper)) {
+                return NextResponse.json({ message: "Quiz duration exceeded" }, { status: 403 });
             }
 
             // Update the attemptUuid for the existing attempt
@@ -75,7 +72,7 @@ export async function POST(request) {
             paperId: paper.id,
             attemptUuid: quizAttempt.attemptUuid,
         };
-        const token = jwt.sign(tokenPayload, process.env.JWT_SECRET, { expiresIn: `${paper.duration + 60}s` });
+        const token = jwt.sign(tokenPayload, process.env.JWT_SECRET, { expiresIn: '24h' }); // 24 hours
 
         // Return success response with the session token
         const response = NextResponse.json({ message: "Quiz attempt successful" }, { status: 200 });
@@ -85,7 +82,7 @@ export async function POST(request) {
             secure: process.env.NODE_ENV === 'production',
             sameSite: 'strict',
             path: '/',
-            maxAge: paper.duration, // Set cookie expiration to match paper duration
+            maxAge: 86400, // 24 hours
         });
 
         return response;

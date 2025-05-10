@@ -2,36 +2,49 @@ import { PrismaClient } from '@/generated/prisma';
 
 const prisma = new PrismaClient();
 
-async function verifyDuration(attempt, paper) {
+function calcElapsedTime(attempt) {
+    const now = new Date();
+    const elapsedSeconds = Math.floor((now - attempt.createdAt) / 1000);
+    return elapsedSeconds;
+}
+
+function clacRemainingTime(attempt, paper) {
+    const elapsedSeconds = calcElapsedTime(attempt);
+    return paper.duration - elapsedSeconds;
+}
+
+function isDurationExceeded(attempt, paper) {
+    const elapsedSeconds = calcElapsedTime(attempt);
+    return elapsedSeconds > paper.duration
+}
+
+async function verifyDuration(attemptId, paperId) {
     try {
         // Fetch the quiz attempt for the user
         const attempt = await prisma.quizAttempt.findFirst({
             where: {
-                quizId: quizId,
-                userId: userId,
+                id: attemptId,
             },
         });
 
-        if (!attempt) {
-            throw new Error('Quiz attempt not found');
+        // Fetch the quiz paper details
+        const paper = await prisma.paper.findUnique({
+            where: {
+                id: paperId,
+            },
+        });
+
+        if (!attempt || !paper) {
+            return false;
         }
 
-        // Check if the attempt is within the allowed duration
-        const now = new Date();
-        const startTime = new Date(attempt.startTime);
-        const durationInMs = attempt.duration * 60 * 1000; // Convert minutes to milliseconds
-
-        if (now - startTime > durationInMs) {
-            return { valid: false, message: 'Quiz duration exceeded' };
-        }
-
-        return { valid: true, message: 'Quiz attempt is within the allowed duration' };
+        return !isDurationExceeded(attempt, paper);
     } catch (error) {
         console.error(error);
-        return { valid: false, message: 'An error occurred while verifying quiz duration' };
+        return false;
     } finally {
         await prisma.$disconnect();
     }
 }
 
-export { verifyQuizDuration };
+export { verifyQuizDuration, calcElapsedTime, clacRemainingTime, isDurationExceeded };
