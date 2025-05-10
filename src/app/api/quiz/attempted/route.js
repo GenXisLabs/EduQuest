@@ -25,6 +25,18 @@ export async function GET(request) {
             },
         });
 
+        const submittedAnswers = await prisma.submittedAnswer.findMany({
+            where: {
+                attemptId: attemptResult.attempt.id,
+            },
+            select: {
+                id: true,
+                questionId: true,
+                choiceNumber: true,
+                essayAnswer: true,
+            },
+        });
+
         // Convert question.content to JSON & remove isAnswer from choices
         const modifiedQuestions = questions.map((question) => {
             try {
@@ -47,6 +59,7 @@ export async function GET(request) {
             paper: attemptResult.paper,
             remainingTime: attemptResult.remainingTime,
             questions: modifiedQuestions,
+            submittedAnswers: submittedAnswers,
         };
 
         return NextResponse.json({ message: 'Success', data: data });

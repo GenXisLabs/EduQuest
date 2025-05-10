@@ -2,7 +2,7 @@ import React from 'react';
 
 const EssayInput = ({ questionId, currentText = '', onAnswerChange }) => {
   const handleChange = (e) => {
-    onAnswerChange(questionId, { text: e.target.value });
+    onAnswerChange(questionId, { essayAnswer: e.target.value });
   };
 
   return (

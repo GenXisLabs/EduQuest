@@ -39,7 +39,7 @@ const QuestionContent = ({ question, questionNumber, currentAttempt, onAnswerCha
       {question.type === 'essay' && (
         <EssayInput
           questionId={question.id}
-          currentText={currentAttempt?.text}
+          currentText={currentAttempt?.essayAnswer}
           onAnswerChange={onAnswerChange}
         />
       )}

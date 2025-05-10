@@ -10,128 +10,127 @@ import QuestionContent from '@/components/quiz/QuestionContent';
 
 import Spinner from '@/components/admin/UI/Spinner';
 
-// lib/quizData.js (or directly in your page component)
-const sampleQuestions = [
-    {
-        id: 0,
-        type: "mcq",
-        marks: 5,
-        content: {
-            html: "<p>What is the capital of France?</p>",
-            choices: [
-                { number: 1, text: "Berlin", isAnswer: false },
-                { number: 2, text: "Madrid", isAnswer: false },
-                { number: 3, text: "Paris", isAnswer: true },
-                { number: 4, text: "Rome", isAnswer: false },
-            ],
-        },
-    },
-    {
-        id: 1,
-        type: "essay",
-        marks: 10,
-        content: {
-            html: "<p>Describe the process of photosynthesis in your own words.</p>",
-        },
-    },
-    {
-        id: 2,
-        type: "mcq",
-        marks: 5,
-        content: {
-            html: "<p>Which planet is known as the Red Planet?</p>",
-            choices: [
-                { number: 1, text: "Earth", isAnswer: false },
-                { number: 2, text: "Mars", isAnswer: true },
-                { number: 3, text: "Jupiter", isAnswer: false },
-                { number: 4, text: "Saturn", isAnswer: false },
-            ],
-        },
-    },
-    {
-        id: 3,
-        type: "mcq",
-        marks: 5,
-        content: {
-            html: "<p>What is 2 + 2?</p>",
-            choices: [
-                { number: 1, text: "3", isAnswer: false },
-                { number: 2, text: "4", isAnswer: true },
-                { number: 3, text: "5", isAnswer: false }
-            ]
-        }
-    },
-    {
-        id: 4,
-        type: "mcq",
-        marks: 5,
-        content: {
-            html: "<p>What is the largest mammal in the world?</p>",
-            choices: [
-                { number: 1, text: "Elephant", isAnswer: false },
-                { number: 2, text: "Blue Whale", isAnswer: true },
-                { number: 3, text: "Giraffe", isAnswer: false },
-                { number: 4, text: "Hippopotamus", isAnswer: false },
-            ],
-        },
-    },
-    {
-        id: 5,
-        type: "mcq",
-        marks: 5,
-        content: {
-            html: "<p>What is the chemical symbol for water?</p>",
-            choices: [
-                { number: 1, text: "H2O", isAnswer: true },
-                { number: 2, text: "O2", isAnswer: false },
-                { number: 3, text: "CO2", isAnswer: false },
-                { number: 4, text: "HO", isAnswer: false },
-            ],
-        },
-    },
-    {
-        id: 6,
-        type: "essay",
-        marks: 10,
-        content: {
-            html: "<p>Explain the significance of the Industrial Revolution.</p>",
-        },
-    },
-    {
-        id: 7,
-        type: "mcq",
-        marks: 5,
-        content: {
-            html: "<p>Which gas do plants primarily use during photosynthesis?</p>",
-            choices: [
-                { number: 1, text: "Oxygen", isAnswer: false },
-                { number: 2, text: "Carbon Dioxide", isAnswer: true },
-                { number: 3, text: "Nitrogen", isAnswer: false },
-                { number: 4, text: "Hydrogen", isAnswer: false },
-            ],
-        },
-    },
-    {
-        id: 8,
-        type: "mcq",
-        marks: 5,
-        content: {
-            html: "<p>What is the square root of 64?</p>",
-            choices: [
-                { number: 1, text: "6", isAnswer: false },
-                { number: 2, text: "7", isAnswer: false },
-                { number: 3, text: "8", isAnswer: true },
-                { number: 4, text: "9", isAnswer: false },
-            ],
-        },
-    },
-];
+// const sampleQuestions = [
+//     {
+//         id: 0,
+//         type: "mcq",
+//         marks: 5,
+//         content: {
+//             html: "<p>What is the capital of France?</p>",
+//             choices: [
+//                 { number: 1, text: "Berlin", isAnswer: false },
+//                 { number: 2, text: "Madrid", isAnswer: false },
+//                 { number: 3, text: "Paris", isAnswer: true },
+//                 { number: 4, text: "Rome", isAnswer: false },
+//             ],
+//         },
+//     },
+//     {
+//         id: 1,
+//         type: "essay",
+//         marks: 10,
+//         content: {
+//             html: "<p>Describe the process of photosynthesis in your own words.</p>",
+//         },
+//     },
+//     {
+//         id: 2,
+//         type: "mcq",
+//         marks: 5,
+//         content: {
+//             html: "<p>Which planet is known as the Red Planet?</p>",
+//             choices: [
+//                 { number: 1, text: "Earth", isAnswer: false },
+//                 { number: 2, text: "Mars", isAnswer: true },
+//                 { number: 3, text: "Jupiter", isAnswer: false },
+//                 { number: 4, text: "Saturn", isAnswer: false },
+//             ],
+//         },
+//     },
+//     {
+//         id: 3,
+//         type: "mcq",
+//         marks: 5,
+//         content: {
+//             html: "<p>What is 2 + 2?</p>",
+//             choices: [
+//                 { number: 1, text: "3", isAnswer: false },
+//                 { number: 2, text: "4", isAnswer: true },
+//                 { number: 3, text: "5", isAnswer: false }
+//             ]
+//         }
+//     },
+//     {
+//         id: 4,
+//         type: "mcq",
+//         marks: 5,
+//         content: {
+//             html: "<p>What is the largest mammal in the world?</p>",
+//             choices: [
+//                 { number: 1, text: "Elephant", isAnswer: false },
+//                 { number: 2, text: "Blue Whale", isAnswer: true },
+//                 { number: 3, text: "Giraffe", isAnswer: false },
+//                 { number: 4, text: "Hippopotamus", isAnswer: false },
+//             ],
+//         },
+//     },
+//     {
+//         id: 5,
+//         type: "mcq",
+//         marks: 5,
+//         content: {
+//             html: "<p>What is the chemical symbol for water?</p>",
+//             choices: [
+//                 { number: 1, text: "H2O", isAnswer: true },
+//                 { number: 2, text: "O2", isAnswer: false },
+//                 { number: 3, text: "CO2", isAnswer: false },
+//                 { number: 4, text: "HO", isAnswer: false },
+//             ],
+//         },
+//     },
+//     {
+//         id: 6,
+//         type: "essay",
+//         marks: 10,
+//         content: {
+//             html: "<p>Explain the significance of the Industrial Revolution.</p>",
+//         },
+//     },
+//     {
+//         id: 7,
+//         type: "mcq",
+//         marks: 5,
+//         content: {
+//             html: "<p>Which gas do plants primarily use during photosynthesis?</p>",
+//             choices: [
+//                 { number: 1, text: "Oxygen", isAnswer: false },
+//                 { number: 2, text: "Carbon Dioxide", isAnswer: true },
+//                 { number: 3, text: "Nitrogen", isAnswer: false },
+//                 { number: 4, text: "Hydrogen", isAnswer: false },
+//             ],
+//         },
+//     },
+//     {
+//         id: 8,
+//         type: "mcq",
+//         marks: 5,
+//         content: {
+//             html: "<p>What is the square root of 64?</p>",
+//             choices: [
+//                 { number: 1, text: "6", isAnswer: false },
+//                 { number: 2, text: "7", isAnswer: false },
+//                 { number: 3, text: "8", isAnswer: true },
+//                 { number: 4, text: "9", isAnswer: false },
+//             ],
+//         },
+//     },
+// ];
 
-const sampleSubmittedAnswers = [
-    { id: 0, questionId: 0, choiceNumber: 3 },
-    { id: 1, questionId: 1, text: "Photosynthesis is a complex process where plants convert light energy into chemical energy, producing glucose and oxygen from carbon dioxide and water. It primarily occurs in the chloroplasts of plant cells." },
-    // Question with id: 2 is not answered
-];
+// const sampleSubmittedAnswers = [
+//     { id: 0, questionId: 0, choiceNumber: 3 },
+//     { id: 1, questionId: 1, text: "Photosynthesis is a complex process where plants convert light energy into chemical energy, producing glucose and oxygen from carbon dioxide and water. It primarily occurs in the chloroplasts of plant cells." },
+//     // Question with id: 2 is not answered
+// ];
 
 export default function QuizPage() {
     const [questions, setQuestions] = useState([]);
@@ -143,6 +142,8 @@ export default function QuizPage() {
 
     const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
     const [attemptedFetching, setAttemptedFetching] = useState(true);
+
+    const [answerChangedQuestionIds, setAnswerChangedQuestionIds] = useState([]);
 
     // Refs for scrolling to questions
     const questionRefs = useRef([]);
@@ -165,6 +166,14 @@ export default function QuizPage() {
     }, []);
 
     useEffect(() => {
+        // Timer for backup answers
+        const backupInterval = setInterval(() => {
+            backupUserAnswers();
+        }, 5000);
+        return () => clearInterval(backupInterval); // Cleanup on unmount
+    }, [answerChangedQuestionIds]);
+
+    useEffect(() => {
         if (userAnswers.length > 0 || localStorage.getItem('quizUserAnswers')) { // Avoid clearing on initial empty load if already empty
             localStorage.setItem('quizUserAnswers', JSON.stringify(userAnswers));
         }
@@ -180,6 +189,30 @@ export default function QuizPage() {
         }
     }, [remainingTime]);
 
+    const backupUserAnswers = async () => {
+        if (answerChangedQuestionIds.length == 0) return;
+
+        const uniqueIds = [...new Set(answerChangedQuestionIds)];
+        const updatedAnswers = userAnswers.filter((ans) => uniqueIds.includes(ans.questionId));
+        
+        try {
+            const response = await fetch('/api/quiz/attempted/saveanswers', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ answers: updatedAnswers, attemptId: attempt.id }),
+            });
+
+            if (response.ok) {
+                setAnswerChangedQuestionIds([]);
+                console.log("Answers backed up successfully");
+            }
+        } catch (error) {
+            console.error('Error backing up answers:', error);
+        }
+    }
+
     const fetchAttempted = async () => {
         try {
             const response = await fetch('/api/quiz/attempted');
@@ -187,12 +220,8 @@ export default function QuizPage() {
                 alert('Failed to fetch questions. Please try again later.');
             }
             const result = await response.json();
-            // convert data.questions.content to JSON 
-            // result.data.questions = result.data.questions.map(question => {
-            //     question.content = JSON.parse(question.content);
-            //     return question;
-            // });
             setQuestions(result.data.questions);
+            setUserAnswers(result.data.submittedAnswers);
             setAttempt(result.data.attempt);
             setPaper(result.data.paper);
             setRemainingTime(result.data.remainingTime);
@@ -220,6 +249,8 @@ export default function QuizPage() {
                 return [...prevAnswers, newAnswer];
             }
         });
+
+        setAnswerChangedQuestionIds(prev => [...prev, questionId]); // Track changed question IDs
     };
 
     const handleNavigateToQuestion = (index) => {
