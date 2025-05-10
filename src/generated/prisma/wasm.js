@@ -165,6 +165,16 @@ exports.Prisma.QuestionScalarFieldEnum = {
   content: 'content'
 };
 
+exports.Prisma.QuizAttemptScalarFieldEnum = {
+  id: 'id',
+  studentId: 'studentId',
+  paperId: 'paperId',
+  attemptUuid: 'attemptUuid',
+  finalMarks: 'finalMarks',
+  isProcessed: 'isProcessed',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -182,7 +192,8 @@ exports.Prisma.ModelName = {
   Student: 'Student',
   University: 'University',
   Paper: 'Paper',
-  Question: 'Question'
+  Question: 'Question',
+  QuizAttempt: 'QuizAttempt'
 };
 
 /**

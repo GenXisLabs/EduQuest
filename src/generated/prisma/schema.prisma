@@ -30,13 +30,14 @@ model Batch {
 }
 
 model Student {
-  id           Int        @id @default(autoincrement())
-  studentId    String     @unique
+  id           Int           @id @default(autoincrement())
+  studentId    String        @unique
   universityId Int
   batchId      Int
   name         String
-  university   University @relation(fields: [universityId], references: [id])
-  batch        Batch      @relation(fields: [batchId], references: [id])
+  university   University    @relation(fields: [universityId], references: [id])
+  batch        Batch         @relation(fields: [batchId], references: [id])
+  quizAttemps  QuizAttempt[]
 }
 
 model University {
@@ -46,16 +47,17 @@ model University {
 }
 
 model Paper {
-  id        Int        @id @default(autoincrement())
-  batchId   Int
-  name      String
-  duration  Int
-  isActive  Boolean    @default(false)
-  password  String
-  metadata  String
-  batch     Batch      @relation(fields: [batchId], references: [id])
-  questions Question[]
-  createdAt DateTime   @default(now())
+  id          Int           @id @default(autoincrement())
+  batchId     Int
+  name        String
+  duration    Int
+  isActive    Boolean       @default(false)
+  password    String
+  metadata    String
+  batch       Batch         @relation(fields: [batchId], references: [id])
+  questions   Question[]
+  quizAttemps QuizAttempt[]
+  createdAt   DateTime      @default(now())
 }
 
 model Question {
@@ -65,4 +67,16 @@ model Question {
   marks   Int
   content String
   paper   Paper  @relation(fields: [paperId], references: [id])
+}
+
+model QuizAttempt {
+  id          Int      @id @default(autoincrement())
+  studentId   Int
+  paperId     Int
+  attemptUuid String   @unique
+  finalMarks  Int
+  isProcessed Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  student     Student  @relation(fields: [studentId], references: [id])
+  paper       Paper    @relation(fields: [paperId], references: [id])
 }
