@@ -139,6 +139,7 @@ export default function QuizPage() {
 
     const [attempt, setAttempt] = useState(null);
     const [paper, setPaper] = useState(null);
+    const [remainingTime, setRemainingTime] = useState(0);
 
     const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
     const [attemptedFetching, setAttemptedFetching] = useState(true);
@@ -169,6 +170,16 @@ export default function QuizPage() {
         }
     }, [userAnswers]);
 
+    useEffect(() => {
+        if (remainingTime > 0) {
+            const timer = setInterval(() => {
+                setRemainingTime((prevTime) => Math.max(prevTime - 1, 0));
+
+            }, 1000);
+            return () => clearInterval(timer); // Cleanup on unmount
+        }
+    }, [remainingTime]);
+
     const fetchAttempted = async () => {
         try {
             const response = await fetch('/api/quiz/attempted');
@@ -184,6 +195,7 @@ export default function QuizPage() {
             setQuestions(result.data.questions);
             setAttempt(result.data.attempt);
             setPaper(result.data.paper);
+            setRemainingTime(result.data.remainingTime);
         } catch (error) {
             console.error('Error fetching questions:', error);
         } finally {
@@ -249,31 +261,41 @@ export default function QuizPage() {
         );
     }
 
+    const countDownHMS = {
+        hours: Math.floor(remainingTime / 3600),
+        minutes: Math.floor((remainingTime % 3600) / 60),
+        seconds: remainingTime % 60,
+    }
+
     return (
         <>
             <div className="min-h-screen bg-gray-100 flex flex-col">
-                {/* Sticky Header with Mobile Nav Toggle */}
                 <header className="bg-white shadow-md sticky top-0 z-40">
                     <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="flex items-center justify-between h-16">
                             <div className="flex items-center">
-                                <h1 className="text-2xl font-bold text-indigo-700">Online Quiz</h1>
+                                <h1 className="text-2xl font-bold text-indigo-700 uppercase">{paper.name}</h1>
                             </div>
-                            <div className="md:hidden">
-                                <button
-                                    onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
-                                    type="button"
-                                    className="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
-                                    aria-controls="mobile-menu"
-                                    aria-expanded={isMobileNavOpen}
-                                >
-                                    <span className="sr-only">Open main menu</span>
-                                    {isMobileNavOpen ? (
-                                        <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
-                                    ) : (
-                                        <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
-                                    )}
-                                </button>
+                            <div className="flex items-center space-x-4">
+                                <div className="md:block text-gray-700 font-medium">
+                                    {countDownHMS.hours}h {countDownHMS.minutes}m {countDownHMS.seconds}s
+                                </div>
+                                <div className="md:hidden">
+                                    <button
+                                        onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
+                                        type="button"
+                                        className="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                                        aria-controls="mobile-menu"
+                                        aria-expanded={isMobileNavOpen}
+                                    >
+                                        <span className="sr-only">Open main menu</span>
+                                        {isMobileNavOpen ? (
+                                            <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                                        ) : (
+                                            <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                                        )}
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>

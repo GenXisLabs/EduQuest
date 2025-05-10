@@ -6,21 +6,26 @@ const QuestionContent = ({ question, questionNumber, currentAttempt, onAnswerCha
   if (!question) return null;
 
   return (
-    // The outer div with bg-white, p-6, rounded-lg, shadow-lg will be in the QuizPage map
     <>
       <div className="mb-4 flex flex-col sm:flex-row justify-between sm:items-center">
         <h3 className="text-xl font-semibold text-gray-800 mb-2 sm:mb-0">
           Question {questionNumber}
         </h3>
-        <span className="text-xs sm:text-sm font-medium text-gray-500">
-          Type: {question.type.toUpperCase()} | Marks: {question.marks}
-        </span>
+        <div className="flex space-x-2">
+          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+            {question.type.toUpperCase()}
+          </span>
+          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+            Marks: {question.marks}
+          </span>
+        </div>
       </div>
 
       <div
-        className="prose prose-sm sm:prose-base max-w-none mb-6" // prose-sm for smaller default on mobile
+        className="prose prose-sm sm:prose-base max-w-none mb-6 bg-blue-50 p-2 rounded" // prose-sm for smaller default on mobile
         dangerouslySetInnerHTML={{ __html: question.content.html }}
       />
+
 
       {question.type === 'mcq' && (
         <McqInput
