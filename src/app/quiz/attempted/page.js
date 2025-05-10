@@ -143,6 +143,8 @@ export default function QuizPage() {
 
     const [attempt, setAttempt] = useState(null);
     const [paper, setPaper] = useState(null);
+
+    const endTimeRef = useRef(null);
     const [remainingTime, setRemainingTime] = useState(0);
 
     const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
@@ -161,7 +163,7 @@ export default function QuizPage() {
     }, [questions.length]);
 
 
-    // Load/Save answers from/to localStorage (from previous version)
+    // Load/Save answers from/to localStorage (from previous version) - not used in this version
     useEffect(() => {
         //   const savedAnswers = localStorage.getItem('quizUserAnswers');
         //   if (savedAnswers) {
@@ -186,14 +188,23 @@ export default function QuizPage() {
     }, [userAnswers]);
 
     useEffect(() => {
-        if (remainingTime > 0) {
-            const timer = setInterval(() => {
-                setRemainingTime((prevTime) => Math.max(prevTime - 1, 0));
+        if (!endTimeRef.current) return;
 
-            }, 1000);
-            return () => clearInterval(timer); // Cleanup on unmount
-        }
-    }, [remainingTime]);
+        const updateRemainingTime = () => {
+            const now = Date.now();
+            const timeLeft = Math.max(Math.floor((endTimeRef.current - now) / 1000), 0);
+            setRemainingTime(timeLeft);
+
+            if (timeLeft > 0) {
+                timeoutRef.current = setTimeout(updateRemainingTime, 250); // Update smoothly
+            }
+        };
+
+        const timeoutRef = { current: null };
+        updateRemainingTime();
+
+        return () => clearTimeout(timeoutRef.current); // Cleanup
+    }, [endTimeRef.current]);
 
     const backupUserAnswers = async () => {
         if (answerChangedQuestionIds.length == 0) return;
@@ -222,15 +233,23 @@ export default function QuizPage() {
     const fetchAttempted = async () => {
         try {
             const response = await fetch('/api/quiz/attempted');
+
             if (!response.ok) {
                 alert('Failed to fetch questions. Please try again later.');
             }
+
             const result = await response.json();
+
             setQuestions(result.data.questions);
             setUserAnswers(result.data.submittedAnswers);
             setAttempt(result.data.attempt);
             setPaper(result.data.paper);
-            setRemainingTime(result.data.remainingTime);
+
+            // Set end time for countdown
+            const remainingSeconds = result.data.remainingTime;
+            const endTime = Date.now() + remainingSeconds * 1000;
+            endTimeRef.current = endTime;
+            setRemainingTime(remainingSeconds);
         } catch (error) {
             console.error('Error fetching questions:', error);
         } finally {
@@ -269,14 +288,6 @@ export default function QuizPage() {
         if (isMobileNavOpen) {
             setIsMobileNavOpen(false); // Close mobile nav after selection
         }
-    };
-
-    const handleSubmitQuiz = () => {
-        console.log("Quiz Submitted!", userAnswers);
-        alert(`Quiz submitted! Check console for answers. You attempted ${attemptedQuestionIds.size} out of ${questions.length} questions.`);
-        // Optionally clear localStorage:
-        // localStorage.removeItem('quizUserAnswers');
-        // setUserAnswers([]);
     };
 
     if (attemptedFetching) {
@@ -425,8 +436,8 @@ export default function QuizPage() {
                                         <button
                                             onClick={() => setSummaryBeforeFinishMode(true)}
                                             className={`w-full sm:w-auto float-right px-8 py-3 font-semibold rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors ${answerChangedQuestionIds.length > 0
-                                                    ? 'bg-gray-400 text-gray-700 cursor-not-allowed'
-                                                    : 'bg-green-600 text-white hover:bg-green-700 focus:ring-green-500'
+                                                ? 'bg-gray-400 text-gray-700 cursor-not-allowed'
+                                                : 'bg-green-600 text-white hover:bg-green-700 focus:ring-green-500'
                                                 }`}
                                             disabled={answerChangedQuestionIds.length > 0}
                                         >
@@ -439,68 +450,68 @@ export default function QuizPage() {
                     }
 
                     {summaryBeforeFinishMode && (
-                    <div className="bg-white p-6 rounded-lg shadow-lg">
-                        <h2 className="text-xl font-bold mb-4">Summary</h2>
-                        <table className="min-w-full border-collapse border border-gray-200">
-                            <thead>
-                                <tr>
-                                    <th className="border border-gray-300 px-4 py-2 text-left">Question #</th>
-                                    <th className="border border-gray-300 px-4 py-2 text-left">Type</th>
-                                    <th className="border border-gray-300 px-4 py-2 text-left">Answered</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {questions.map((question, index) => {
-                                    const isAnswered = userAnswers.some((ans) => {
-                                        if (ans.questionId === question.id) {
-                                            if (question.type === "essay") {
-                                                return ans.essayAnswer && ans.essayAnswer.trim().length > 0;
+                        <div className="bg-white p-6 rounded-lg shadow-lg">
+                            <h2 className="text-xl font-bold mb-4">Summary</h2>
+                            <table className="min-w-full border-collapse border border-gray-200">
+                                <thead>
+                                    <tr>
+                                        <th className="border border-gray-300 px-4 py-2 text-left">Question #</th>
+                                        <th className="border border-gray-300 px-4 py-2 text-left">Type</th>
+                                        <th className="border border-gray-300 px-4 py-2 text-left">Answered</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {questions.map((question, index) => {
+                                        const isAnswered = userAnswers.some((ans) => {
+                                            if (ans.questionId === question.id) {
+                                                if (question.type === "essay") {
+                                                    return ans.essayAnswer && ans.essayAnswer.trim().length > 0;
+                                                }
+                                                return true;
                                             }
-                                            return true;
+                                            return false;
+                                        });
+                                        return (
+                                            <tr key={question.id}>
+                                                <td className="border border-gray-300 px-4 py-2">{index + 1}</td>
+                                                <td className="border border-gray-300 px-4 py-2">{question.type}</td>
+                                                <td className="border border-gray-300 px-4 py-2">
+                                                    {isAnswered ? (
+                                                        <span className="inline-block px-2 py-1 text-xs font-semibold text-green-800 bg-green-200 rounded-full">
+                                                            Answered
+                                                        </span>
+                                                    ) : (
+                                                        <span className="inline-block px-2 py-1 text-xs font-semibold text-red-800 bg-red-200 rounded-full">
+                                                            Not Answered
+                                                        </span>
+                                                    )}
+                                                </td>
+                                            </tr>
+                                        );
+                                    })}
+                                </tbody>
+                            </table>
+                            <div className="mt-6 gap-2 flex">
+                                <button
+                                    onClick={() => setSummaryBeforeFinishMode(false)}
+                                    className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                                >
+                                    Go Back
+                                </button>
+                                <CallBtn
+                                    callback={(success, _) => {
+                                        if (success) {
+                                            router.push(`/quiz/${paper.id}`);
                                         }
-                                        return false;
-                                    });
-                                    return (
-                                        <tr key={question.id}>
-                                            <td className="border border-gray-300 px-4 py-2">{index + 1}</td>
-                                            <td className="border border-gray-300 px-4 py-2">{question.type}</td>
-                                            <td className="border border-gray-300 px-4 py-2">
-                                                {isAnswered ? (
-                                                    <span className="inline-block px-2 py-1 text-xs font-semibold text-green-800 bg-green-200 rounded-full">
-                                                        Answered
-                                                    </span>
-                                                ) : (
-                                                    <span className="inline-block px-2 py-1 text-xs font-semibold text-red-800 bg-red-200 rounded-full">
-                                                        Not Answered
-                                                    </span>
-                                                )}
-                                            </td>
-                                        </tr>
-                                    );
-                                })}
-                            </tbody>
-                        </table>
-                        <div className="mt-6 gap-2 flex">
-                            <button
-                                onClick={() => setSummaryBeforeFinishMode(false)}
-                                className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                            >
-                                Go Back
-                            </button>
-                            <CallBtn 
-                                callback={(success, _) => {
-                                    if (success) {
-                                        router.push(`/quiz/${paper.id}`);
-                                    }
-                                }}
-                                path={`/api/quiz/attempted/finish`}
-                                method="POST"
-                                className="px-6 py-3 bg-red-600 text-white font-semibold rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-                                text="Finish Quiz"
-                                confirmation={true}
-                            />
+                                    }}
+                                    path={`/api/quiz/attempted/finish`}
+                                    method="POST"
+                                    className="px-6 py-3 bg-red-600 text-white font-semibold rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                                    text="Finish Quiz"
+                                    confirmation={true}
+                                />
+                            </div>
                         </div>
-                    </div>
                     )}
                 </div>
             </div>
