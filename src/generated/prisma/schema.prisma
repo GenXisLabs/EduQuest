@@ -75,6 +75,7 @@ model QuizAttempt {
   paperId     Int
   attemptUuid String   @unique
   finalMarks  Int
+  isFinished  Boolean  @default(false)
   isProcessed Boolean  @default(false)
   createdAt   DateTime @default(now())
   student     Student  @relation(fields: [studentId], references: [id])

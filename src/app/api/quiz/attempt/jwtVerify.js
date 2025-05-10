@@ -6,14 +6,14 @@ const secretKey = process.env.JWT_SECRET;
 
 const prisma = new PrismaClient();
 
-async function jwtVerify(req, currentAttemptUuid) {
+async function jwtVerify(req) {
     try {
         // Get cookies from the request
         const cookies = req.cookies;
         const token = cookies.get('quiztoken');
 
         if (!token) {
-            return NextResponse.json({ error: 'Token not found' }, { status: 401 });
+            return NextResponse.json({ message: 'Token not found' }, { status: 401 });
         }
 
         const tokenValue = token.value;
@@ -21,20 +21,20 @@ async function jwtVerify(req, currentAttemptUuid) {
         // Validate the JWT
         const decoded = jwt.verify(tokenValue, secretKey);
 
-        const attempt = await prisma.attempt.findUnique({
+        const attempt = await prisma.quizAttempt.findUnique({
             where: {
                 id: decoded.attemptId,
             },
         });
 
         if (decoded.attemptUuid !== attempt.attemptUuid) {
-            return NextResponse.json({ error: 'Invalid attempt' }, { status: 401 });
+            return NextResponse.json({ message: 'Invalid attempt' }, { status: 401 });
         }
 
         return decoded; 
     } catch (error) {
         console.error('QuizToken validation error:', error);
-        return NextResponse.json({ error: 'Invalid or expired token' }, { status: 401 });
+        return NextResponse.json({ message: 'Invalid or expired token' }, { status: 401 });
     }
 }
 

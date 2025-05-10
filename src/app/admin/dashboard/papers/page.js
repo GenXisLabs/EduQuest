@@ -90,6 +90,7 @@ function View() {
             <table className="min-w-full bg-white border border-gray-200">
                 <thead>
                     <tr>
+                        <th className="px-4 py-2 border-b">ID</th>
                         <th className="px-4 py-2 border-b">Name</th>
                         <th className="px-4 py-2 border-b">Batch</th>
                         <th className="px-4 py-2 border-b">Duration</th>
@@ -100,6 +101,7 @@ function View() {
                 <tbody>
                     {papers.map(paper => (
                         <tr key={paper.id}>
+                            <td className="px-4 py-2 border-b">{paper.id}</td>
                             <td className="px-4 py-2 border-b">{paper.name}</td>
                             <td className="px-4 py-2 border-b">{getBatchName(paper.batchId)}</td>
                             <td className="px-4 py-2 border-b">{paper.duration}</td>

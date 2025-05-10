@@ -2,7 +2,7 @@ import { PrismaClient } from '@/generated/prisma';
 import jwt from 'jsonwebtoken';
 import { NextResponse } from 'next/server';
 import { v4 as uuidv4 } from 'uuid';
-import { isDurationExceeded } from './durationVerify';
+import { isDurationExceeded } from './attemptVerify';
 
 export async function POST(request) {
     const prisma = new PrismaClient();
@@ -35,42 +35,49 @@ export async function POST(request) {
         }
 
         // Verify quiz password
-        if (paper.password !== hashedQuizPassword) {
+        if (paper.password !== quizPassword) {
             return NextResponse.json({ message: "Invalid quiz password" }, { status: 401 });
         }
 
         // Check if the student already has an attempt
-        let quizAttempt = await prisma.quizAttempt.findFirst({
+        let attempt = await prisma.quizAttempt.findFirst({
             where: { studentId: student.id, paperId },
         });
 
-        if (quizAttempt) {
-            if (isDurationExceeded(quizAttempt, paper)) {
+        if (attempt) {
+            // Check if the attempt is already finished
+            if (attempt.isFinished) {
+                return NextResponse.json({ message: 'Attempt already finished' }, { status: 403 });
+            }
+
+            // Check if the attempt is still valid
+            if (isDurationExceeded(attempt, paper)) {
                 return NextResponse.json({ message: "Quiz duration exceeded" }, { status: 403 });
             }
 
             // Update the attemptUuid for the existing attempt
-            quizAttempt = await prisma.quizAttempt.update({
-                where: { id: quizAttempt.id },
+            attempt = await prisma.quizAttempt.update({
+                where: { id: attempt.id },
                 data: { attemptUuid: uuidv4() },
             });
         } else {
             // Create a new attempt
-            quizAttempt = await prisma.quizAttempt.create({
+            attempt = await prisma.quizAttempt.create({
                 data: {
-                    studentId,
-                    paperId,
+                    studentId: student.id,
+                    paperId: paper.id,
                     attemptUuid: uuidv4(),
+                    finalMarks: 0,
                 },
             });
         }
 
         // Generate a JWT token for the attempt
         const tokenPayload = {
-            attemptId: quizAttempt.id,
+            attemptId: attempt.id,
             studentId: student.id,
             paperId: paper.id,
-            attemptUuid: quizAttempt.attemptUuid,
+            attemptUuid: attempt.attemptUuid,
         };
         const token = jwt.sign(tokenPayload, process.env.JWT_SECRET, { expiresIn: '24h' }); // 24 hours
 

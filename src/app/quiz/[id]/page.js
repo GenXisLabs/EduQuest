@@ -3,24 +3,23 @@
 import { useEffect, useState } from "react";
 import CallBtn from "@/components/common/CallBtn";
 import Spinner from "@/components/admin/UI/Spinner";
+import { useRouter } from "next/navigation";
 
-export default function PaperPage({ params }) {
-    const [paperId, setPaperId] = useState(null);
+function PaperNotAttempt({ paperId }) {
+    if (!paperId) {
+        return <div className="text-red-500">Waiting for ID...</div>;
+    }
 
     const [paper, setPaper] = useState(null);
 
     const [studentId, setStudentId] = useState(null); // not the main id, the studentId (uni id)
     const [quizPassword, setQuizPassword] = useState(null); // the quiz password
 
-    const getPaperId = async () => {
-        const { id } = await params;
-        setPaperId(id);
-        getPaper(id);
-    }
+    const router = useRouter();
 
-    const getPaper = async (id) => {
+    const getPaper = async () => {
         try {
-            const response = await fetch(`/api/quiz/paper/${id}`);
+            const response = await fetch(`/api/quiz/paper/${paperId}`);
             const data = await response.json();
             if (!response.ok) {
                 alert(data.message);
@@ -33,7 +32,7 @@ export default function PaperPage({ params }) {
     }
 
     useEffect(() => {
-        getPaperId();
+        getPaper();
     }, []);
 
     return (
@@ -87,14 +86,12 @@ export default function PaperPage({ params }) {
                             <CallBtn
                                 callback={(success, _) => {
                                     if (success) {
-                                        alert("Quiz started successfully");
-                                    } else {
-                                        // alert("Failed to start quiz");
-                                    }
+                                        router.push("/quiz/attempted");
+                                    } 
                                 }}
-                                path={`/api/quiz/paper/${paperId}/start`}
+                                path={`/api/quiz/attempt`}
                                 method="POST"
-                                data={{ studentId, quizPassword }}
+                                data={{ studentId, paperId, quizPassword }}
                                 className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                                 text="Start Quiz"
                                 confirmation={true}
@@ -103,6 +100,67 @@ export default function PaperPage({ params }) {
                     </>
                 )}
             </div>
+        </div>
+    );
+}
+
+export default function PaperPage({ params }) {
+    const [paperId, setPaperId] = useState(null);
+
+    const [checkingAttempt, setCheckingAttempt] = useState(true);
+    const [attemptDetails, setAttemptDetails] = useState(null);
+
+    const checkAttempt = async () => {
+        const { id } = await params;
+        const response = await fetch(`/api/quiz/checkattempt`);
+        const data = await response.json();
+        setCheckingAttempt(false);
+        if (!response.ok) {
+            return;
+        }
+        setAttemptDetails(data.data);
+    }
+
+    const getPaperId = async () => {
+        const { id } = await params;
+        setPaperId(parseInt(id));
+        getPaper(id);
+    }
+
+    useEffect(() => {
+        getPaperId();
+        checkAttempt();
+    }, []);
+
+    if (checkingAttempt) {
+        return (
+            <div className="flex items-center justify-center min-h-screen bg-gray-100">
+                <Spinner />
+            </div>
+        );
+    }
+
+    if (attemptDetails) {
+        const router = useRouter();
+
+        return (
+            <div className="flex items-center justify-center min-h-screen bg-gray-100">
+                <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-8 text-center">
+                    <h1 className="text-2xl font-bold text-gray-800 mb-4">You already have an attempt</h1>
+                    <button
+                        onClick={() => router.push("/quiz/attempted")}
+                        className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                    >
+                        Go to Attempt
+                    </button>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div>
+            <PaperNotAttempt paperId={paperId} />
         </div>
     );
 }

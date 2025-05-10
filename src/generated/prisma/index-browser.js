@@ -171,6 +171,7 @@ exports.Prisma.QuizAttemptScalarFieldEnum = {
   paperId: 'paperId',
   attemptUuid: 'attemptUuid',
   finalMarks: 'finalMarks',
+  isFinished: 'isFinished',
   isProcessed: 'isProcessed',
   createdAt: 'createdAt'
 };

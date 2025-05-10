@@ -21,6 +21,8 @@ export async function GET(request, { params }) {
             return NextResponse.json({ message: 'Paper is not active' }, { status: 403 });
         }
 
+        delete paper.password; // Remove password from the paper object
+
         return NextResponse.json({ message: 'Success', paper });
     } catch (error) {
         console.error('Error fetching paper details:', error);
