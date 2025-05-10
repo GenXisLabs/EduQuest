@@ -417,9 +417,14 @@ export default function QuizPage() {
                             <div className="mt-10 pt-6 border-t border-gray-200">
                                 <button
                                     onClick={handleSubmitQuiz}
-                                    className="w-full sm:w-auto float-right px-8 py-3 bg-green-600 text-white font-semibold rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors"
+                                    className={`w-full sm:w-auto float-right px-8 py-3 font-semibold rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors ${
+                                        answerChangedQuestionIds.length > 0
+                                            ? 'bg-gray-400 text-gray-700 cursor-not-allowed'
+                                            : 'bg-green-600 text-white hover:bg-green-700 focus:ring-green-500'
+                                    }`}
+                                    disabled={answerChangedQuestionIds.length > 0}
                                 >
-                                    Submit Quiz
+                                    {answerChangedQuestionIds.length > 0 ? 'Saving...' : 'Finish'}
                                 </button>
                             </div>
                         </main>
