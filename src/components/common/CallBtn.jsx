@@ -30,6 +30,7 @@ const CallBtn = ({ path, method, data={}, callback, className, text="Submit", co
                 callback(false, null); // Failure callback
             }
         } catch (error) {
+            console.error('Error:', error);
             alert('An error occurred while processing your request.');
             callback(false, null); // Failure callback
         } finally {

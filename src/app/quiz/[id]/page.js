@@ -87,7 +87,7 @@ function PaperNotAttempt({ paperId }) {
                                 callback={(success, _) => {
                                     if (success) {
                                         router.push("/quiz/attempted");
-                                    } 
+                                    }
                                 }}
                                 path={`/api/quiz/attempt`}
                                 method="POST"
@@ -105,6 +105,8 @@ function PaperNotAttempt({ paperId }) {
 }
 
 export default function PaperPage({ params }) {
+    const router = useRouter();
+
     const [paperId, setPaperId] = useState(null);
 
     const [checkingAttempt, setCheckingAttempt] = useState(true);
@@ -141,21 +143,32 @@ export default function PaperPage({ params }) {
     }
 
     if (attemptDetails) {
-        const router = useRouter();
-
-        return (
-            <div className="flex items-center justify-center min-h-screen bg-gray-100">
-                <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-8 text-center">
-                    <h1 className="text-2xl font-bold text-gray-800 mb-4">You already have an attempt</h1>
-                    <button
-                        onClick={() => router.push("/quiz/attempted")}
-                        className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                    >
-                        Go to Attempt
-                    </button>
+        if (attemptDetails.attempt.isFinished && attemptDetails.paper.id === paperId) {
+            return (
+                <div className="flex items-center justify-center min-h-screen bg-gray-100">
+                    <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-8 text-center">
+                        <h1 className="text-xl font-semibold text-gray-700 mb-2">{attemptDetails.paper.name}</h1>
+                        <h1 className="text-2xl font-bold text-gray-800 mb-4">You have already finished the quiz</h1>
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        }
+
+        if (!attemptDetails.attempt.isFinished) {
+            return (
+                <div className="flex items-center justify-center min-h-screen bg-gray-100">
+                    <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-8 text-center">
+                        <h1 className="text-2xl font-bold text-gray-800 mb-4">You already have an attempt</h1>
+                        <button
+                            onClick={() => router.push("/quiz/attempted")}
+                            className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                        >
+                            Go to Attempt
+                        </button>
+                    </div>
+                </div>
+            );
+        }
     }
 
     return (

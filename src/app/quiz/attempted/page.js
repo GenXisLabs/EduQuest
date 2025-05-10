@@ -10,6 +10,8 @@ import QuestionNavigator from '@/components/quiz/QuestionNavigator';
 import QuestionContent from '@/components/quiz/QuestionContent';
 
 import Spinner from '@/components/admin/UI/Spinner';
+import CallBtn from '@/components/common/CallBtn';
+import { useRouter } from 'next/navigation';
 
 // const sampleQuestions = [
 //     {
@@ -134,6 +136,8 @@ import Spinner from '@/components/admin/UI/Spinner';
 // ];
 
 export default function QuizPage() {
+    const router = useRouter();
+
     const [questions, setQuestions] = useState([]);
     const [userAnswers, setUserAnswers] = useState([]);
 
@@ -483,12 +487,18 @@ export default function QuizPage() {
                             >
                                 Go Back
                             </button>
-                            <button
-                                onClick={handleSubmitQuiz}
+                            <CallBtn 
+                                callback={(success, _) => {
+                                    if (success) {
+                                        router.push(`/quiz/${paper.id}`);
+                                    }
+                                }}
+                                path={`/api/quiz/attempted/finish`}
+                                method="POST"
                                 className="px-6 py-3 bg-red-600 text-white font-semibold rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-                            >
-                                Finish Quiz
-                            </button>
+                                text="Finish Quiz"
+                                confirmation={true}
+                            />
                         </div>
                     </div>
                     )}
