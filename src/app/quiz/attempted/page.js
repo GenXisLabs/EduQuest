@@ -3,7 +3,8 @@
 
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import Head from 'next/head';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'; // Or solid variant
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'; 
+import { CheckCircleIcon } from '@heroicons/react/24/outline'; 
 
 import QuestionNavigator from '@/components/quiz/QuestionNavigator';
 import QuestionContent from '@/components/quiz/QuestionContent';
@@ -169,7 +170,7 @@ export default function QuizPage() {
         // Timer for backup answers
         const backupInterval = setInterval(() => {
             backupUserAnswers();
-        }, 5000);
+        }, 2000); // Backup every 2 seconds
         return () => clearInterval(backupInterval); // Cleanup on unmount
     }, [answerChangedQuestionIds]);
 
@@ -194,7 +195,7 @@ export default function QuizPage() {
 
         const uniqueIds = [...new Set(answerChangedQuestionIds)];
         const updatedAnswers = userAnswers.filter((ans) => uniqueIds.includes(ans.questionId));
-        
+
         try {
             const response = await fetch('/api/quiz/attempted/saveanswers', {
                 method: 'POST',
@@ -293,10 +294,10 @@ export default function QuizPage() {
     }
 
     const countDownHMS = {
-        hours: Math.floor(remainingTime / 3600),
-        minutes: Math.floor((remainingTime % 3600) / 60),
-        seconds: remainingTime % 60,
-    }
+        hours: String(Math.floor(remainingTime / 3600)).padStart(2, '0'),
+        minutes: String(Math.floor((remainingTime % 3600) / 60)).padStart(2, '0'),
+        seconds: String(remainingTime % 60).padStart(2, '0'),
+    };
 
     return (
         <>
@@ -308,16 +309,29 @@ export default function QuizPage() {
                                 <h1 className="text-2xl font-bold text-indigo-700 uppercase">{paper.name}</h1>
                             </div>
                             <div className="flex items-center space-x-4">
-                                {remainingTime > 0 && (
-                                    <div className="md:block text-gray-700 font-medium">
-                                        {countDownHMS.hours}h {countDownHMS.minutes}m {countDownHMS.seconds}s
-                                    </div>
-                                )}
-                                {remainingTime <= 0 && (
-                                    <div className="md:block text-red-700 font-medium">
-                                        Time's up!
-                                    </div>
-                                )}
+                                <div className='flex flex-col'>
+                                    {remainingTime > 0 && (
+                                        <>
+                                            <div className="md:block text-gray-700 font-medium" style={{ fontFamily: 'Courier New, Courier, monospace' }}>
+                                                {countDownHMS.hours}h {countDownHMS.minutes}m {countDownHMS.seconds}s
+                                            </div>
+                                            {answerChangedQuestionIds.length > 0 ? (
+                                                <span className="inline-flex items-center rounded-full text-xs font-medium text-yellow-800">
+                                                    Saving...
+                                                </span>
+                                            ) : (
+                                                <span className="inline-flex gap-1 items-center rounded-full text-xs font-medium text-green-800">
+                                                    Saved <CheckCircleIcon className="h-4 w-4 text-green-800" />
+                                                </span>
+                                            )}
+                                        </>
+                                    )}
+                                    {remainingTime <= 0 && (
+                                        <div className="md:block text-red-700 font-medium">
+                                            Time's up!
+                                        </div>
+                                    )}
+                                </div>
                                 <div className="md:hidden">
                                     <button
                                         onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
