@@ -94,6 +94,7 @@ function View() {
                         <th className="px-4 py-2 border-b">Name</th>
                         <th className="px-4 py-2 border-b">Batch</th>
                         <th className="px-4 py-2 border-b">Duration</th>
+                        <th className="px-4 py-2 border-b">Status</th>
                         <th className="px-4 py-2 border-b">Created At</th>
                         <th className="px-4 py-2 border-b">Actions</th>
                     </tr>
@@ -105,6 +106,13 @@ function View() {
                             <td className="px-4 py-2 border-b">{paper.name}</td>
                             <td className="px-4 py-2 border-b">{getBatchName(paper.batchId)}</td>
                             <td className="px-4 py-2 border-b">{paper.duration}</td>
+                            <td className="px-4 py-2 border-b">
+                                {paper.isActive ? (
+                                    <span className="text-green-500 font-semibold">Active</span>
+                                ) : (
+                                    <span className="text-red-500 font-semibold">Inactive</span>
+                                )}
+                            </td>
                             <td className="px-4 py-2 border-b">
                                 <div>
                                     {new Date(paper.createdAt).toLocaleTimeString('en-US', {
@@ -150,6 +158,15 @@ function View() {
                                     className="bg-blue-500 text-white px-4 py-1 rounded"
                                 >
                                     Quiz
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        navigator.clipboard.writeText(`${window.location.origin}/quiz/${paper.id}`);
+                                        alert('Link copied to clipboard!');
+                                    }}
+                                    className="bg-purple-500 text-white px-4 py-1 rounded"
+                                >
+                                    Copy Link
                                 </button>
                             </td>
                         </tr>
