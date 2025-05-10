@@ -8,7 +8,7 @@ export async function GET(request) {
     const jwtResult = await jwtVerify(request);
     if (jwtResult instanceof NextResponse) return jwtResult;
 
-    const attemptResult = await verifyAttempt(jwtResult.attemptId, jwtResult.paperId);
+    const attemptResult = await verifyAttempt(jwtResult.attemptId, jwtResult.paperId, true);
     if (attemptResult instanceof NextResponse) return attemptResult;
 
     return NextResponse.json({ message: 'Success', data: attemptResult });

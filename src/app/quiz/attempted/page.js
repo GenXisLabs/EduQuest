@@ -3,8 +3,8 @@
 
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import Head from 'next/head';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'; 
-import { CheckCircleIcon } from '@heroicons/react/24/outline'; 
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
+import { CheckCircleIcon } from '@heroicons/react/24/outline';
 
 import QuestionNavigator from '@/components/quiz/QuestionNavigator';
 import QuestionContent from '@/components/quiz/QuestionContent';
@@ -143,6 +143,7 @@ export default function QuizPage() {
 
     const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
     const [attemptedFetching, setAttemptedFetching] = useState(true);
+    const [summaryBeforeFinishMode, setSummaryBeforeFinishMode] = useState(false);
 
     const [answerChangedQuestionIds, setAnswerChangedQuestionIds] = useState([]);
 
@@ -354,81 +355,143 @@ export default function QuizPage() {
                 </header>
 
                 <div className="flex-grow container mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
-                    <div className="md:flex md:gap-x-8">
-                        {/* Desktop Navigator (Sticky) */}
-                        <nav className="hidden md:block md:w-1/4 lg:w-1/5 md:sticky md:top-20 self-start max-h-[calc(100vh-5rem-2rem)] overflow-y-auto bg-white p-4 rounded-lg shadow">
-                            <QuestionNavigator
-                                questions={questions}
-                                onNavigate={handleNavigateToQuestion}
-                                attemptedQuestionIds={attemptedQuestionIds}
-                            />
-                        </nav>
-
-                        {/* Mobile Navigator (Off-canvas Sidebar) */}
-                        {isMobileNavOpen && (
-                            <>
-                                <div // Overlay
-                                    className="fixed inset-0 z-30 bg-black bg-opacity-50 transition-opacity md:hidden"
-                                    onClick={() => setIsMobileNavOpen(false)}
-                                ></div>
-                                <nav // Sidebar
-                                    className="fixed top-0 left-0 h-full w-3/4 max-w-xs bg-gray-100 shadow-xl z-40 p-4 overflow-y-auto transform transition-transform ease-in-out duration-300 md:hidden"
-                                    style={{ transform: isMobileNavOpen ? 'translateX(0)' : 'translateX(-100%)' }}
-                                >
-                                    <div className="flex justify-end mb-2">
-                                        <button onClick={() => setIsMobileNavOpen(false)} className="p-1 text-gray-600 hover:text-gray-800">
-                                            <XMarkIcon className="h-5 w-5" />
-                                        </button>
-                                    </div>
+                    {
+                        !summaryBeforeFinishMode && (
+                            <div className="md:flex md:gap-x-8">
+                                {/* Desktop Navigator (Sticky) */}
+                                <nav className="hidden md:block md:w-1/4 lg:w-1/5 md:sticky md:top-20 self-start max-h-[calc(100vh-5rem-2rem)] overflow-y-auto bg-white p-4 rounded-lg shadow">
                                     <QuestionNavigator
                                         questions={questions}
                                         onNavigate={handleNavigateToQuestion}
                                         attemptedQuestionIds={attemptedQuestionIds}
                                     />
                                 </nav>
-                            </>
-                        )}
+
+                                {/* Mobile Navigator (Off-canvas Sidebar) */}
+                                {isMobileNavOpen && (
+                                    <>
+                                        <div // Overlay
+                                            className="fixed inset-0 z-30 bg-black bg-opacity-50 transition-opacity md:hidden"
+                                            onClick={() => setIsMobileNavOpen(false)}
+                                        ></div>
+                                        <nav // Sidebar
+                                            className="fixed top-0 left-0 h-full w-3/4 max-w-xs bg-gray-100 shadow-xl z-40 p-4 overflow-y-auto transform transition-transform ease-in-out duration-300 md:hidden"
+                                            style={{ transform: isMobileNavOpen ? 'translateX(0)' : 'translateX(-100%)' }}
+                                        >
+                                            <div className="flex justify-end mb-2">
+                                                <button onClick={() => setIsMobileNavOpen(false)} className="p-1 text-gray-600 hover:text-gray-800">
+                                                    <XMarkIcon className="h-5 w-5" />
+                                                </button>
+                                            </div>
+                                            <QuestionNavigator
+                                                questions={questions}
+                                                onNavigate={handleNavigateToQuestion}
+                                                attemptedQuestionIds={attemptedQuestionIds}
+                                            />
+                                        </nav>
+                                    </>
+                                )}
 
 
-                        {/* Main Content: Scrollable Questions List */}
-                        <main className="flex-1 mt-6 md:mt-0 space-y-8">
-                            {questions.map((question, index) => {
-                                const currentAttempt = userAnswers.find(
-                                    (ans) => ans.questionId === question.id
-                                );
-                                return (
-                                    <section
-                                        key={question.id}
-                                        ref={questionRefs.current[index]} // Assign ref for scrolling
-                                        id={`question-section-${question.id}`} // ID for direct linking or advanced use
-                                        className="bg-white p-5 sm:p-6 rounded-lg shadow-lg"
-                                    >
-                                        <QuestionContent
-                                            question={question}
-                                            questionNumber={index + 1}
-                                            currentAttempt={currentAttempt}
-                                            onAnswerChange={handleAnswerChange}
-                                        />
-                                    </section>
-                                );
-                            })}
+                                {/* Main Content: Scrollable Questions List */}
+                                <main className="flex-1 mt-6 md:mt-0 space-y-8">
+                                    {questions.map((question, index) => {
+                                        const currentAttempt = userAnswers.find(
+                                            (ans) => ans.questionId === question.id
+                                        );
+                                        return (
+                                            <section
+                                                key={question.id}
+                                                ref={questionRefs.current[index]} // Assign ref for scrolling
+                                                id={`question-section-${question.id}`} // ID for direct linking or advanced use
+                                                className="bg-white p-5 sm:p-6 rounded-lg shadow-lg"
+                                            >
+                                                <QuestionContent
+                                                    question={question}
+                                                    questionNumber={index + 1}
+                                                    currentAttempt={currentAttempt}
+                                                    onAnswerChange={handleAnswerChange}
+                                                />
+                                            </section>
+                                        );
+                                    })}
 
-                            {/* Submit Button at the very end */}
-                            <div className="mt-10 pt-6 border-t border-gray-200">
-                                <button
-                                    onClick={handleSubmitQuiz}
-                                    className={`w-full sm:w-auto float-right px-8 py-3 font-semibold rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors ${
-                                        answerChangedQuestionIds.length > 0
-                                            ? 'bg-gray-400 text-gray-700 cursor-not-allowed'
-                                            : 'bg-green-600 text-white hover:bg-green-700 focus:ring-green-500'
-                                    }`}
-                                    disabled={answerChangedQuestionIds.length > 0}
-                                >
-                                    {answerChangedQuestionIds.length > 0 ? 'Saving...' : 'Finish'}
-                                </button>
+                                    {/* Submit Button at the very end */}
+                                    <div className="mt-10 pt-6 border-t border-gray-200">
+                                        <button
+                                            onClick={() => setSummaryBeforeFinishMode(true)}
+                                            className={`w-full sm:w-auto float-right px-8 py-3 font-semibold rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors ${answerChangedQuestionIds.length > 0
+                                                    ? 'bg-gray-400 text-gray-700 cursor-not-allowed'
+                                                    : 'bg-green-600 text-white hover:bg-green-700 focus:ring-green-500'
+                                                }`}
+                                            disabled={answerChangedQuestionIds.length > 0}
+                                        >
+                                            {answerChangedQuestionIds.length > 0 ? 'Saving...' : 'Finish'}
+                                        </button>
+                                    </div>
+                                </main>
                             </div>
-                        </main>
+                        )
+                    }
+
+                    {summaryBeforeFinishMode && (
+                    <div className="bg-white p-6 rounded-lg shadow-lg">
+                        <h2 className="text-xl font-bold mb-4">Summary</h2>
+                        <table className="min-w-full border-collapse border border-gray-200">
+                            <thead>
+                                <tr>
+                                    <th className="border border-gray-300 px-4 py-2 text-left">Question #</th>
+                                    <th className="border border-gray-300 px-4 py-2 text-left">Type</th>
+                                    <th className="border border-gray-300 px-4 py-2 text-left">Answered</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {questions.map((question, index) => {
+                                    const isAnswered = userAnswers.some((ans) => {
+                                        if (ans.questionId === question.id) {
+                                            if (question.type === "essay") {
+                                                return ans.essayAnswer && ans.essayAnswer.trim().length > 0;
+                                            }
+                                            return true;
+                                        }
+                                        return false;
+                                    });
+                                    return (
+                                        <tr key={question.id}>
+                                            <td className="border border-gray-300 px-4 py-2">{index + 1}</td>
+                                            <td className="border border-gray-300 px-4 py-2">{question.type}</td>
+                                            <td className="border border-gray-300 px-4 py-2">
+                                                {isAnswered ? (
+                                                    <span className="inline-block px-2 py-1 text-xs font-semibold text-green-800 bg-green-200 rounded-full">
+                                                        Answered
+                                                    </span>
+                                                ) : (
+                                                    <span className="inline-block px-2 py-1 text-xs font-semibold text-red-800 bg-red-200 rounded-full">
+                                                        Not Answered
+                                                    </span>
+                                                )}
+                                            </td>
+                                        </tr>
+                                    );
+                                })}
+                            </tbody>
+                        </table>
+                        <div className="mt-6 gap-2 flex">
+                            <button
+                                onClick={() => setSummaryBeforeFinishMode(false)}
+                                className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                            >
+                                Go Back
+                            </button>
+                            <button
+                                onClick={handleSubmitQuiz}
+                                className="px-6 py-3 bg-red-600 text-white font-semibold rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                            >
+                                Finish Quiz
+                            </button>
+                        </div>
                     </div>
+                    )}
                 </div>
             </div>
         </>

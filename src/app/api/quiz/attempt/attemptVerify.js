@@ -19,7 +19,7 @@ function isDurationExceeded(attempt, paper) {
     return elapsedSeconds > paper.duration
 }
 
-async function verifyAttempt(attemptId, paperId) {
+async function verifyAttempt(attemptId, paperId, ignoreFinished = false) {
     try {
         // Fetch the quiz attempt for the user
         const attempt = await prisma.quizAttempt.findFirst({
@@ -32,7 +32,8 @@ async function verifyAttempt(attemptId, paperId) {
             return NextResponse.json({ message: 'Attempt not found' }, { status: 401 });
         }
 
-        if (attempt.isFinished) {
+        // Check if the attempt is already finished (if ignoreFinished is false)
+        if (!ignoreFinished && attempt.isFinished) {
             return NextResponse.json({ message: 'Attempt already finished' }, { status: 403 });
         }
 
