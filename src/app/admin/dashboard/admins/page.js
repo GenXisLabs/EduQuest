@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import DashboardLayout from '@/components/admin/Layout/DashboardLayout';
-import { AuthLoading } from '@/components/admin/Auth/AuthLoading';
+import { AuthLoading, useAdmin } from '@/components/admin/Auth/AuthLoading';
 import CallBtn from '@/components/common/CallBtn';
 
 function View() {
@@ -12,6 +12,8 @@ function View() {
         name: '',
         email: '',
     });
+
+    const admin = useAdmin();
 
     const loadAdmins = () => {
         fetch('/api/admin/admins')
@@ -80,21 +82,27 @@ function View() {
                     </tr>
                 </thead>
                 <tbody>
-                    {admins.map(admin => (
-                        <tr key={admin.id}>
-                            <td className="px-4 py-2 border-b">{admin.name}</td>
-                            <td className="px-4 py-2 border-b">{admin.email}</td>
+                    {admins.map(a => (
+                        <tr key={a.id}>
+                            <td className="px-4 py-2 border-b">{a.name}</td>
+                            <td className="px-4 py-2 border-b">{a.email}</td>
                             <td className="px-4 py-2 border-b">
-                                <CallBtn
-                                    callback={(success, _) => {
-                                        loadAdmins();
-                                    }}
-                                    path={`/api/admin/admins/${admin.id}`}
-                                    method="DELETE"
-                                    className="bg-red-300 text-black px-4 py-1 rounded"
-                                    text='Delete'
-                                    confirmation={true}
-                                />
+                                {
+                                    a.id === admin.id ? (
+                                        <span className="bg-gray-200 text-gray-800 px-2 py-1 rounded">You</span>
+                                    ) : (
+                                        <CallBtn
+                                            callback={(success, _) => {
+                                                loadAdmins();
+                                            }}
+                                            path={`/api/admin/admins/${a.id}`}
+                                            method="DELETE"
+                                            className="bg-red-300 text-black px-4 py-1 rounded"
+                                            text='Delete'
+                                            confirmation={true}
+                                        />
+                                    )
+                                }
                             </td>
                         </tr>
                     ))}

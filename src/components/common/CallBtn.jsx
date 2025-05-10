@@ -26,7 +26,7 @@ const CallBtn = ({ path, method, data={}, callback, className, text="Submit", co
             if (response.ok) {
                 callback(true, result); // Success callback
             } else {
-
+                alert(result.message || 'An error occurred. Please try again.');
                 callback(false, null); // Failure callback
             }
         } catch (error) {

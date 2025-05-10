@@ -10,6 +10,11 @@ export async function DELETE(request, { params }) {
 
   const { id } = await params;
 
+  // Check if the id is equal to the admin's id
+  if (parseInt(id) === result.id) {
+    return NextResponse.json({ message: 'Cannot delete yourself' }, { status: 401 });
+  }
+
   try {
     await prisma.admin.delete({
       where: {
