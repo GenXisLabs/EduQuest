@@ -28,5 +28,7 @@ export async function GET(request) {
     } catch (error) {
         console.error('Error fetching dashboard overview:', error);
         return NextResponse.json({ message: 'Failed to fetch dashboard overview' }, { status: 401 });
+    } finally {
+        await prisma.$disconnect();
     }
 }

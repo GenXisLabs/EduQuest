@@ -21,5 +21,7 @@ export async function GET(req) {
     } catch (error) {
         console.error('Token validation error:', error);
         return NextResponse.json({ message: 'Invalid or expired token' }, { status: 401 });
+    } finally {
+        await prisma.$disconnect();
     }
 }

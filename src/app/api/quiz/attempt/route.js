@@ -55,7 +55,7 @@ export async function POST(request) {
             // Update the attemptUuid for the existing attempt
             quizAttempt = await prisma.quizAttempt.update({
                 where: { id: quizAttempt.id },
-                data: { attemptUuid: uuidv4(), createdAt: now },
+                data: { attemptUuid: uuidv4() },
             });
         } else {
             // Create a new attempt
@@ -64,7 +64,6 @@ export async function POST(request) {
                     studentId,
                     paperId,
                     attemptUuid: uuidv4(),
-                    createdAt: now,
                 },
             });
         }

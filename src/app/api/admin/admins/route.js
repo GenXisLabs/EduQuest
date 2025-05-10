@@ -15,6 +15,8 @@ export async function GET(request) {
     } catch (error) {
         console.error('Error fetching admins:', error);
         return NextResponse.json({ message: 'Failed to fetch' }, { status: 401 });
+    } finally {
+        await prisma.$disconnect();
     }
 }
 
@@ -40,5 +42,7 @@ export async function POST(request) {
     } catch (error) {
         console.error('Error creating admin:', error);
         return NextResponse.json({ message: 'Invalid data' }, { status: 400 });
+    } finally {
+        await prisma.$disconnect();
     }
 }
