@@ -128,6 +128,43 @@ exports.Prisma.AdminScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.BatchScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.StudentScalarFieldEnum = {
+  id: 'id',
+  studentId: 'studentId',
+  universityId: 'universityId',
+  batchId: 'batchId',
+  name: 'name'
+};
+
+exports.Prisma.UniversityScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.PaperScalarFieldEnum = {
+  id: 'id',
+  batchId: 'batchId',
+  name: 'name',
+  duration: 'duration',
+  isActive: 'isActive',
+  password: 'password',
+  metadata: 'metadata',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.QuestionScalarFieldEnum = {
+  id: 'id',
+  paperId: 'paperId',
+  type: 'type',
+  marks: 'marks',
+  content: 'content'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -140,7 +177,12 @@ exports.Prisma.QueryMode = {
 
 
 exports.Prisma.ModelName = {
-  Admin: 'Admin'
+  Admin: 'Admin',
+  Batch: 'Batch',
+  Student: 'Student',
+  University: 'University',
+  Paper: 'Paper',
+  Question: 'Question'
 };
 
 /**

@@ -41,7 +41,7 @@ export default function LoginForm() {
 
   return (
     <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-xl shadow-lg">
-      <h2 className="text-3xl font-bold text-center text-gray-800">Admin Login</h2>
+      <h2 className="text-3xl font-bold text-center text-gray-800">EduQuest Login</h2>
       {error && <p className="text-red-500 text-sm">{error}</p>}
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
