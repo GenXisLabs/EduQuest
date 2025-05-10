@@ -25,11 +25,28 @@ export async function GET(request) {
             },
         });
 
+        // Convert question.content to JSON & remove isAnswer from choices
+        const modifiedQuestions = questions.map((question) => {
+            try {
+                question.content = JSON.parse(question.content);
+                if (question.content.choices) {
+                    question.content.choices = question.content.choices.map((choice) => {
+                        delete choice.isAnswer;
+                        return choice;
+                    });
+                }
+                return question;
+            } catch (error) {
+                console.error('Error parsing question content:', error);
+                throw new Error('Failed to parse question content');
+            }
+        });
+
         const data = {
             attempt: attemptResult.attempt,
             paper: attemptResult.paper,
             remainingTime: attemptResult.remainingTime,
-            questions: questions,
+            questions: modifiedQuestions,
         };
 
         return NextResponse.json({ message: 'Success', data: data });

@@ -188,10 +188,10 @@ export default function QuizPage() {
             }
             const result = await response.json();
             // convert data.questions.content to JSON 
-            result.data.questions = result.data.questions.map(question => {
-                question.content = JSON.parse(question.content);
-                return question;
-            });
+            // result.data.questions = result.data.questions.map(question => {
+            //     question.content = JSON.parse(question.content);
+            //     return question;
+            // });
             setQuestions(result.data.questions);
             setAttempt(result.data.attempt);
             setPaper(result.data.paper);
@@ -277,9 +277,16 @@ export default function QuizPage() {
                                 <h1 className="text-2xl font-bold text-indigo-700 uppercase">{paper.name}</h1>
                             </div>
                             <div className="flex items-center space-x-4">
-                                <div className="md:block text-gray-700 font-medium">
-                                    {countDownHMS.hours}h {countDownHMS.minutes}m {countDownHMS.seconds}s
-                                </div>
+                                {remainingTime > 0 && (
+                                    <div className="md:block text-gray-700 font-medium">
+                                        {countDownHMS.hours}h {countDownHMS.minutes}m {countDownHMS.seconds}s
+                                    </div>
+                                )}
+                                {remainingTime <= 0 && (
+                                    <div className="md:block text-red-700 font-medium">
+                                        Time's up!
+                                    </div>
+                                )}
                                 <div className="md:hidden">
                                     <button
                                         onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
