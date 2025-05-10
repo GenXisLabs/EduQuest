@@ -134,7 +134,16 @@ function View() {
                 </div>
                 <CallBtn
                     callback={(success, _) => {
-                        loadStudents();
+                        if (success) {
+                            loadStudents();
+                            // Reset the form
+                            setNewStudent({
+                                studentId: '',
+                                universityId: -1,
+                                batchId: -1,
+                                name: '',
+                            });
+                        }
                     }}
                     path={"/api/admin/students"}
                     method="POST"

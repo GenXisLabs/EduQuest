@@ -23,6 +23,8 @@ export async function PUT(request, { params }) {
     } catch (error) {
         console.error('Error updating question:', error);
         return NextResponse.json({ message: 'Error updating question', error: error.message }, { status: 500 });
+    } finally {
+        await prisma.$disconnect();
     }
 }
 
@@ -43,5 +45,7 @@ export async function DELETE(request, { params }) {
     } catch (error) {
         console.error('Error deleting question:', error);
         return NextResponse.json({ message: 'Error deleting question', error: error.message }, { status: 500 });
+    } finally {
+        await prisma.$disconnect();
     }
 }

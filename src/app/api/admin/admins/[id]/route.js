@@ -26,5 +26,7 @@ export async function DELETE(request, { params }) {
   } catch (error) {
     console.error('Error deleting admin:', error);
     return NextResponse.json({ message: 'Failed to delete' }, { status: 401 });
+  } finally {
+    await prisma.$disconnect();
   }
 }
