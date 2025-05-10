@@ -61,23 +61,38 @@ model Paper {
 }
 
 model Question {
-  id      Int    @id @default(autoincrement())
-  paperId Int
-  type    String
-  marks   Int
-  content String
-  paper   Paper  @relation(fields: [paperId], references: [id])
+  id               Int               @id @default(autoincrement())
+  paperId          Int
+  type             String
+  marks            Int
+  content          String
+  paper            Paper             @relation(fields: [paperId], references: [id])
+  submittedAnswers SubmittedAnswer[]
 }
 
 model QuizAttempt {
-  id          Int      @id @default(autoincrement())
-  studentId   Int
-  paperId     Int
-  attemptUuid String   @unique
-  finalMarks  Int
-  isFinished  Boolean  @default(false)
-  isProcessed Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  student     Student  @relation(fields: [studentId], references: [id])
-  paper       Paper    @relation(fields: [paperId], references: [id])
+  id               Int               @id @default(autoincrement())
+  studentId        Int
+  paperId          Int
+  attemptUuid      String            @unique
+  finalMarks       Int
+  isFinished       Boolean           @default(false)
+  isProcessed      Boolean           @default(false)
+  createdAt        DateTime          @default(now())
+  student          Student           @relation(fields: [studentId], references: [id])
+  paper            Paper             @relation(fields: [paperId], references: [id])
+  submittedAnswers SubmittedAnswer[]
+}
+
+model SubmittedAnswer {
+  id           Int         @id @default(autoincrement())
+  attemptId    Int
+  questionId   Int
+  choiceNumber Int         @default(-1)
+  essayAnswer  String      @default("")
+  earnedMarks  Int         @default(0)
+  isMarked     Boolean     @default(false)
+  createdAt    DateTime    @default(now())
+  quizAttempt  QuizAttempt @relation(fields: [attemptId], references: [id])
+  question     Question    @relation(fields: [questionId], references: [id])
 }

@@ -200,12 +200,7 @@ export default function QuizPage() {
     };
   
     return (
-      <>
-        <Head>
-          <title>Quiz Time!</title>
-          <meta name="description" content="Answer the quiz questions" />
-        </Head>
-  
+      <>  
         <div className="min-h-screen bg-gray-100 flex flex-col">
           {/* Sticky Header with Mobile Nav Toggle */}
           <header className="bg-white shadow-md sticky top-0 z-40">

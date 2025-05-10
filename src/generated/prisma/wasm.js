@@ -176,6 +176,17 @@ exports.Prisma.QuizAttemptScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.SubmittedAnswerScalarFieldEnum = {
+  id: 'id',
+  attemptId: 'attemptId',
+  questionId: 'questionId',
+  choiceNumber: 'choiceNumber',
+  essayAnswer: 'essayAnswer',
+  earnedMarks: 'earnedMarks',
+  isMarked: 'isMarked',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -194,7 +205,8 @@ exports.Prisma.ModelName = {
   University: 'University',
   Paper: 'Paper',
   Question: 'Question',
-  QuizAttempt: 'QuizAttempt'
+  QuizAttempt: 'QuizAttempt',
+  SubmittedAnswer: 'SubmittedAnswer'
 };
 
 /**
