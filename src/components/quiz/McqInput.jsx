@@ -13,7 +13,7 @@ const McqInput = ({ questionId, choices, currentSelection, onAnswerChange }) => 
           <button
             key={choice.number}
             onClick={() => handleSelect(choice.number)}
-            className={`block w-full text-left p-3 rounded-md border transition-colors
+            className={`block w-full text-left p-2 rounded-md border transition-colors
                         ${
                           isSelected
                             ? 'bg-blue-100 border-blue-500 ring-2 ring-blue-400 text-blue-700 font-semibold'
