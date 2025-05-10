@@ -63,7 +63,7 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
                     lg:translate-x-0 lg:static lg:inset-0 lg:flex lg:flex-col`}
             >
                 <div className="flex items-center justify-center h-20 border-b border-gray-700">
-                    <span className="text-2xl font-semibold text-white">Admin</span>
+                    <span className="text-2xl font-semibold text-white">EduQuest</span>
                 </div>
                 <nav className="flex-1 px-2 py-4 space-y-2">
                     <NavItem  href="/admin/dashboard" icon={<HomeIcon />}>
