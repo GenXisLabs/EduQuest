@@ -80,6 +80,9 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
                     <NavItem href="/admin/dashboard/papermarking" icon={<PaperIcon />}>
                         Paper Marking
                     </NavItem>
+                    <NavItem href="/admin/dashboard/marksheets" icon={<PaperIcon />}>
+                        Mark Sheets
+                    </NavItem>
                     <div className="border-t border-gray-700 my-2"></div>
                     <NavItem href="/admin/dashboard/universities" icon={<DotIcon />}>
                         Universities

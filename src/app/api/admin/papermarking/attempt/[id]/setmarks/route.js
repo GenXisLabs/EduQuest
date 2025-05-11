@@ -17,6 +17,13 @@ export async function POST(request, { params }) {
             where: {
                 id: answerId,
             },
+            include: {
+                quizAttempt: {
+                    select: {
+                        id: true,
+                    }
+                },
+            }
         });
 
         if (!answer) {
@@ -30,6 +37,16 @@ export async function POST(request, { params }) {
             data: {
                 isMarked: true,
                 earnedMarks: parseInt(marks),
+            },
+        });
+
+        // Update the attempt isProcessed field
+        await prisma.quizAttempt.update({
+            where: {
+                id: answer.quizAttempt.id,
+            },
+            data: {
+                isProcessed: false,
             },
         });
 
