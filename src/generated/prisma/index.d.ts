@@ -1609,12 +1609,12 @@ export namespace Prisma {
 
   export type PaperCountOutputType = {
     questions: number
-    quizAttemps: number
+    quizAttempts: number
   }
 
   export type PaperCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     questions?: boolean | PaperCountOutputTypeCountQuestionsArgs
-    quizAttemps?: boolean | PaperCountOutputTypeCountQuizAttempsArgs
+    quizAttempts?: boolean | PaperCountOutputTypeCountQuizAttemptsArgs
   }
 
   // Custom InputTypes
@@ -1638,7 +1638,7 @@ export namespace Prisma {
   /**
    * PaperCountOutputType without action
    */
-  export type PaperCountOutputTypeCountQuizAttempsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PaperCountOutputTypeCountQuizAttemptsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: QuizAttemptWhereInput
   }
 
@@ -6266,7 +6266,7 @@ export namespace Prisma {
     createdAt?: boolean
     batch?: boolean | BatchDefaultArgs<ExtArgs>
     questions?: boolean | Paper$questionsArgs<ExtArgs>
-    quizAttemps?: boolean | Paper$quizAttempsArgs<ExtArgs>
+    quizAttempts?: boolean | Paper$quizAttemptsArgs<ExtArgs>
     _count?: boolean | PaperCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["paper"]>
 
@@ -6309,7 +6309,7 @@ export namespace Prisma {
   export type PaperInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     batch?: boolean | BatchDefaultArgs<ExtArgs>
     questions?: boolean | Paper$questionsArgs<ExtArgs>
-    quizAttemps?: boolean | Paper$quizAttempsArgs<ExtArgs>
+    quizAttempts?: boolean | Paper$quizAttemptsArgs<ExtArgs>
     _count?: boolean | PaperCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type PaperIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6324,7 +6324,7 @@ export namespace Prisma {
     objects: {
       batch: Prisma.$BatchPayload<ExtArgs>
       questions: Prisma.$QuestionPayload<ExtArgs>[]
-      quizAttemps: Prisma.$QuizAttemptPayload<ExtArgs>[]
+      quizAttempts: Prisma.$QuizAttemptPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -6731,7 +6731,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     batch<T extends BatchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BatchDefaultArgs<ExtArgs>>): Prisma__BatchClient<$Result.GetResult<Prisma.$BatchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     questions<T extends Paper$questionsArgs<ExtArgs> = {}>(args?: Subset<T, Paper$questionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    quizAttemps<T extends Paper$quizAttempsArgs<ExtArgs> = {}>(args?: Subset<T, Paper$quizAttempsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuizAttemptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    quizAttempts<T extends Paper$quizAttemptsArgs<ExtArgs> = {}>(args?: Subset<T, Paper$quizAttemptsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuizAttemptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7189,9 +7189,9 @@ export namespace Prisma {
   }
 
   /**
-   * Paper.quizAttemps
+   * Paper.quizAttempts
    */
-  export type Paper$quizAttempsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Paper$quizAttemptsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the QuizAttempt
      */
@@ -11107,7 +11107,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Paper"> | Date | string
     batch?: XOR<BatchScalarRelationFilter, BatchWhereInput>
     questions?: QuestionListRelationFilter
-    quizAttemps?: QuizAttemptListRelationFilter
+    quizAttempts?: QuizAttemptListRelationFilter
   }
 
   export type PaperOrderByWithRelationInput = {
@@ -11121,7 +11121,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     batch?: BatchOrderByWithRelationInput
     questions?: QuestionOrderByRelationAggregateInput
-    quizAttemps?: QuizAttemptOrderByRelationAggregateInput
+    quizAttempts?: QuizAttemptOrderByRelationAggregateInput
   }
 
   export type PaperWhereUniqueInput = Prisma.AtLeast<{
@@ -11138,7 +11138,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Paper"> | Date | string
     batch?: XOR<BatchScalarRelationFilter, BatchWhereInput>
     questions?: QuestionListRelationFilter
-    quizAttemps?: QuizAttemptListRelationFilter
+    quizAttempts?: QuizAttemptListRelationFilter
   }, "id">
 
   export type PaperOrderByWithAggregationInput = {
@@ -11577,7 +11577,7 @@ export namespace Prisma {
     createdAt?: Date | string
     batch: BatchCreateNestedOneWithoutPapersInput
     questions?: QuestionCreateNestedManyWithoutPaperInput
-    quizAttemps?: QuizAttemptCreateNestedManyWithoutPaperInput
+    quizAttempts?: QuizAttemptCreateNestedManyWithoutPaperInput
   }
 
   export type PaperUncheckedCreateInput = {
@@ -11590,7 +11590,7 @@ export namespace Prisma {
     metadata: string
     createdAt?: Date | string
     questions?: QuestionUncheckedCreateNestedManyWithoutPaperInput
-    quizAttemps?: QuizAttemptUncheckedCreateNestedManyWithoutPaperInput
+    quizAttempts?: QuizAttemptUncheckedCreateNestedManyWithoutPaperInput
   }
 
   export type PaperUpdateInput = {
@@ -11602,7 +11602,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     batch?: BatchUpdateOneRequiredWithoutPapersNestedInput
     questions?: QuestionUpdateManyWithoutPaperNestedInput
-    quizAttemps?: QuizAttemptUpdateManyWithoutPaperNestedInput
+    quizAttempts?: QuizAttemptUpdateManyWithoutPaperNestedInput
   }
 
   export type PaperUncheckedUpdateInput = {
@@ -11615,7 +11615,7 @@ export namespace Prisma {
     metadata?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     questions?: QuestionUncheckedUpdateManyWithoutPaperNestedInput
-    quizAttemps?: QuizAttemptUncheckedUpdateManyWithoutPaperNestedInput
+    quizAttempts?: QuizAttemptUncheckedUpdateManyWithoutPaperNestedInput
   }
 
   export type PaperCreateManyInput = {
@@ -11712,7 +11712,7 @@ export namespace Prisma {
     isProcessed?: boolean
     createdAt?: Date | string
     student: StudentCreateNestedOneWithoutQuizAttempsInput
-    paper: PaperCreateNestedOneWithoutQuizAttempsInput
+    paper: PaperCreateNestedOneWithoutQuizAttemptsInput
     submittedAnswers?: SubmittedAnswerCreateNestedManyWithoutQuizAttemptInput
   }
 
@@ -11735,7 +11735,7 @@ export namespace Prisma {
     isProcessed?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     student?: StudentUpdateOneRequiredWithoutQuizAttempsNestedInput
-    paper?: PaperUpdateOneRequiredWithoutQuizAttempsNestedInput
+    paper?: PaperUpdateOneRequiredWithoutQuizAttemptsNestedInput
     submittedAnswers?: SubmittedAnswerUpdateManyWithoutQuizAttemptNestedInput
   }
 
@@ -12698,9 +12698,9 @@ export namespace Prisma {
     connect?: StudentWhereUniqueInput
   }
 
-  export type PaperCreateNestedOneWithoutQuizAttempsInput = {
-    create?: XOR<PaperCreateWithoutQuizAttempsInput, PaperUncheckedCreateWithoutQuizAttempsInput>
-    connectOrCreate?: PaperCreateOrConnectWithoutQuizAttempsInput
+  export type PaperCreateNestedOneWithoutQuizAttemptsInput = {
+    create?: XOR<PaperCreateWithoutQuizAttemptsInput, PaperUncheckedCreateWithoutQuizAttemptsInput>
+    connectOrCreate?: PaperCreateOrConnectWithoutQuizAttemptsInput
     connect?: PaperWhereUniqueInput
   }
 
@@ -12726,12 +12726,12 @@ export namespace Prisma {
     update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutQuizAttempsInput, StudentUpdateWithoutQuizAttempsInput>, StudentUncheckedUpdateWithoutQuizAttempsInput>
   }
 
-  export type PaperUpdateOneRequiredWithoutQuizAttempsNestedInput = {
-    create?: XOR<PaperCreateWithoutQuizAttempsInput, PaperUncheckedCreateWithoutQuizAttempsInput>
-    connectOrCreate?: PaperCreateOrConnectWithoutQuizAttempsInput
-    upsert?: PaperUpsertWithoutQuizAttempsInput
+  export type PaperUpdateOneRequiredWithoutQuizAttemptsNestedInput = {
+    create?: XOR<PaperCreateWithoutQuizAttemptsInput, PaperUncheckedCreateWithoutQuizAttemptsInput>
+    connectOrCreate?: PaperCreateOrConnectWithoutQuizAttemptsInput
+    upsert?: PaperUpsertWithoutQuizAttemptsInput
     connect?: PaperWhereUniqueInput
-    update?: XOR<XOR<PaperUpdateToOneWithWhereWithoutQuizAttempsInput, PaperUpdateWithoutQuizAttempsInput>, PaperUncheckedUpdateWithoutQuizAttempsInput>
+    update?: XOR<XOR<PaperUpdateToOneWithWhereWithoutQuizAttemptsInput, PaperUpdateWithoutQuizAttemptsInput>, PaperUncheckedUpdateWithoutQuizAttemptsInput>
   }
 
   export type SubmittedAnswerUpdateManyWithoutQuizAttemptNestedInput = {
@@ -12930,7 +12930,7 @@ export namespace Prisma {
     metadata: string
     createdAt?: Date | string
     questions?: QuestionCreateNestedManyWithoutPaperInput
-    quizAttemps?: QuizAttemptCreateNestedManyWithoutPaperInput
+    quizAttempts?: QuizAttemptCreateNestedManyWithoutPaperInput
   }
 
   export type PaperUncheckedCreateWithoutBatchInput = {
@@ -12942,7 +12942,7 @@ export namespace Prisma {
     metadata: string
     createdAt?: Date | string
     questions?: QuestionUncheckedCreateNestedManyWithoutPaperInput
-    quizAttemps?: QuizAttemptUncheckedCreateNestedManyWithoutPaperInput
+    quizAttempts?: QuizAttemptUncheckedCreateNestedManyWithoutPaperInput
   }
 
   export type PaperCreateOrConnectWithoutBatchInput = {
@@ -13048,7 +13048,7 @@ export namespace Prisma {
     isFinished?: boolean
     isProcessed?: boolean
     createdAt?: Date | string
-    paper: PaperCreateNestedOneWithoutQuizAttempsInput
+    paper: PaperCreateNestedOneWithoutQuizAttemptsInput
     submittedAnswers?: SubmittedAnswerCreateNestedManyWithoutQuizAttemptInput
   }
 
@@ -13331,7 +13331,7 @@ export namespace Prisma {
     metadata: string
     createdAt?: Date | string
     batch: BatchCreateNestedOneWithoutPapersInput
-    quizAttemps?: QuizAttemptCreateNestedManyWithoutPaperInput
+    quizAttempts?: QuizAttemptCreateNestedManyWithoutPaperInput
   }
 
   export type PaperUncheckedCreateWithoutQuestionsInput = {
@@ -13343,7 +13343,7 @@ export namespace Prisma {
     password: string
     metadata: string
     createdAt?: Date | string
-    quizAttemps?: QuizAttemptUncheckedCreateNestedManyWithoutPaperInput
+    quizAttempts?: QuizAttemptUncheckedCreateNestedManyWithoutPaperInput
   }
 
   export type PaperCreateOrConnectWithoutQuestionsInput = {
@@ -13399,7 +13399,7 @@ export namespace Prisma {
     metadata?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     batch?: BatchUpdateOneRequiredWithoutPapersNestedInput
-    quizAttemps?: QuizAttemptUpdateManyWithoutPaperNestedInput
+    quizAttempts?: QuizAttemptUpdateManyWithoutPaperNestedInput
   }
 
   export type PaperUncheckedUpdateWithoutQuestionsInput = {
@@ -13411,7 +13411,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     metadata?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    quizAttemps?: QuizAttemptUncheckedUpdateManyWithoutPaperNestedInput
+    quizAttempts?: QuizAttemptUncheckedUpdateManyWithoutPaperNestedInput
   }
 
   export type SubmittedAnswerUpsertWithWhereUniqueWithoutQuestionInput = {
@@ -13464,7 +13464,7 @@ export namespace Prisma {
     create: XOR<StudentCreateWithoutQuizAttempsInput, StudentUncheckedCreateWithoutQuizAttempsInput>
   }
 
-  export type PaperCreateWithoutQuizAttempsInput = {
+  export type PaperCreateWithoutQuizAttemptsInput = {
     name: string
     duration: number
     isActive?: boolean
@@ -13475,7 +13475,7 @@ export namespace Prisma {
     questions?: QuestionCreateNestedManyWithoutPaperInput
   }
 
-  export type PaperUncheckedCreateWithoutQuizAttempsInput = {
+  export type PaperUncheckedCreateWithoutQuizAttemptsInput = {
     id?: number
     batchId: number
     name: string
@@ -13487,9 +13487,9 @@ export namespace Prisma {
     questions?: QuestionUncheckedCreateNestedManyWithoutPaperInput
   }
 
-  export type PaperCreateOrConnectWithoutQuizAttempsInput = {
+  export type PaperCreateOrConnectWithoutQuizAttemptsInput = {
     where: PaperWhereUniqueInput
-    create: XOR<PaperCreateWithoutQuizAttempsInput, PaperUncheckedCreateWithoutQuizAttempsInput>
+    create: XOR<PaperCreateWithoutQuizAttemptsInput, PaperUncheckedCreateWithoutQuizAttemptsInput>
   }
 
   export type SubmittedAnswerCreateWithoutQuizAttemptInput = {
@@ -13547,18 +13547,18 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
   }
 
-  export type PaperUpsertWithoutQuizAttempsInput = {
-    update: XOR<PaperUpdateWithoutQuizAttempsInput, PaperUncheckedUpdateWithoutQuizAttempsInput>
-    create: XOR<PaperCreateWithoutQuizAttempsInput, PaperUncheckedCreateWithoutQuizAttempsInput>
+  export type PaperUpsertWithoutQuizAttemptsInput = {
+    update: XOR<PaperUpdateWithoutQuizAttemptsInput, PaperUncheckedUpdateWithoutQuizAttemptsInput>
+    create: XOR<PaperCreateWithoutQuizAttemptsInput, PaperUncheckedCreateWithoutQuizAttemptsInput>
     where?: PaperWhereInput
   }
 
-  export type PaperUpdateToOneWithWhereWithoutQuizAttempsInput = {
+  export type PaperUpdateToOneWithWhereWithoutQuizAttemptsInput = {
     where?: PaperWhereInput
-    data: XOR<PaperUpdateWithoutQuizAttempsInput, PaperUncheckedUpdateWithoutQuizAttempsInput>
+    data: XOR<PaperUpdateWithoutQuizAttemptsInput, PaperUncheckedUpdateWithoutQuizAttemptsInput>
   }
 
-  export type PaperUpdateWithoutQuizAttempsInput = {
+  export type PaperUpdateWithoutQuizAttemptsInput = {
     name?: StringFieldUpdateOperationsInput | string
     duration?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
@@ -13569,7 +13569,7 @@ export namespace Prisma {
     questions?: QuestionUpdateManyWithoutPaperNestedInput
   }
 
-  export type PaperUncheckedUpdateWithoutQuizAttempsInput = {
+  export type PaperUncheckedUpdateWithoutQuizAttemptsInput = {
     id?: IntFieldUpdateOperationsInput | number
     batchId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
@@ -13604,7 +13604,7 @@ export namespace Prisma {
     isProcessed?: boolean
     createdAt?: Date | string
     student: StudentCreateNestedOneWithoutQuizAttempsInput
-    paper: PaperCreateNestedOneWithoutQuizAttempsInput
+    paper: PaperCreateNestedOneWithoutQuizAttemptsInput
   }
 
   export type QuizAttemptUncheckedCreateWithoutSubmittedAnswersInput = {
@@ -13661,7 +13661,7 @@ export namespace Prisma {
     isProcessed?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     student?: StudentUpdateOneRequiredWithoutQuizAttempsNestedInput
-    paper?: PaperUpdateOneRequiredWithoutQuizAttempsNestedInput
+    paper?: PaperUpdateOneRequiredWithoutQuizAttemptsNestedInput
   }
 
   export type QuizAttemptUncheckedUpdateWithoutSubmittedAnswersInput = {
@@ -13748,7 +13748,7 @@ export namespace Prisma {
     metadata?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     questions?: QuestionUpdateManyWithoutPaperNestedInput
-    quizAttemps?: QuizAttemptUpdateManyWithoutPaperNestedInput
+    quizAttempts?: QuizAttemptUpdateManyWithoutPaperNestedInput
   }
 
   export type PaperUncheckedUpdateWithoutBatchInput = {
@@ -13760,7 +13760,7 @@ export namespace Prisma {
     metadata?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     questions?: QuestionUncheckedUpdateManyWithoutPaperNestedInput
-    quizAttemps?: QuizAttemptUncheckedUpdateManyWithoutPaperNestedInput
+    quizAttempts?: QuizAttemptUncheckedUpdateManyWithoutPaperNestedInput
   }
 
   export type PaperUncheckedUpdateManyWithoutBatchInput = {
@@ -13789,7 +13789,7 @@ export namespace Prisma {
     isFinished?: BoolFieldUpdateOperationsInput | boolean
     isProcessed?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    paper?: PaperUpdateOneRequiredWithoutQuizAttempsNestedInput
+    paper?: PaperUpdateOneRequiredWithoutQuizAttemptsNestedInput
     submittedAnswers?: SubmittedAnswerUpdateManyWithoutQuizAttemptNestedInput
   }
 

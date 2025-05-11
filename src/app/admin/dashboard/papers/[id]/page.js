@@ -168,10 +168,9 @@ function View({ id }) {
     return (
         <div className="p-4">
             <h1 className="text-xl font-semibold text-gray-800 mb-6">Paper Details</h1>
-            <div className="mb-6">
-                <h2 className="text-lg font-semibold text-gray-800 mb-2">
-                    {paperDetails ? paperDetails.name : 'Loading...'}
-                </h2>
+            <div className="mb-6 flex flex-col p-4 border rounded-lg shadow-sm bg-white">
+                <span className="text-sm text-gray-600">Name: {paperDetails ? paperDetails.name : 'Loading...'}</span>
+                <span className="text-sm text-gray-600">Batch: {paperDetails ? paperDetails.batch.name : 'Loading...'}</span>
                 {/* Add more details about the paper here */}
             </div>
 
@@ -367,7 +366,7 @@ export default function PaperPage({ params }) {
     return (
         <AuthLoading>
             <DashboardLayout>
-                <h1 className="text-3xl font-semibold text-gray-800 mb-6">Papers</h1>
+                <h1 className="text-3xl font-semibold text-gray-800 mb-6">Manage Questions</h1>
                 <View id={paperId} />
             </DashboardLayout>
         </AuthLoading>

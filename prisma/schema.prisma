@@ -56,7 +56,7 @@ model Paper {
   metadata String
   batch    Batch  @relation(fields: [batchId], references: [id])
   questions Question[]
-  quizAttemps QuizAttempt[]
+  quizAttempts QuizAttempt[]
   createdAt DateTime @default(now())
 }
 
