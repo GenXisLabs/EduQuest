@@ -53,28 +53,44 @@ function View() {
                                 )}
                             </td>
                             <td className="px-4 py-2 border-b">
-                                {marksheet.isProcessed ? (
-                                    <button
-                                        onClick={() => router.push(`/admin/dashboard/marksheets/${marksheet.id}`)}
-                                        className="bg-blue-500 text-white px-4 py-1 rounded"
-                                    >
-                                        View
-                                    </button>
-                                ) : (
-                                    <CallBtn
-                                        callback={(success, _) => {
-                                            if (success) {
-                                                loadMarksheets();
-                                            }
-                                        }}
-                                        path={`/api/admin/marksheets/startprocess`}
-                                        method={"POST"}
-                                        data={{
-                                            paperId: marksheet.id,
-                                        }}
-                                        className="text-sm font-medium px-2 py-2 rounded bg-yellow-500 text-white hover:bg-yellow-600"
-                                        text={'Process'}
-                                    />
+                                {marksheet.bgWorkerStatus === 'running' && (
+                                    <div className='flex flex-col'>
+                                        <span className="text-sm font-medium px-2 py-1 rounded bg-yellow-200 text-yellow-800">
+                                            Processing...
+                                        </span>
+                                        <small className="text-gray-500">Refresh in a few minutes</small>
+                                    </div>
+                                )}
+
+                                {marksheet.bgWorkerStatus !== 'running' && (
+                                    <div className='flex flex-row gap-2'>
+                                        <button
+                                            onClick={() => router.push(`/admin/dashboard/marksheets/${marksheet.id}`)}
+                                            className="bg-blue-500 text-white px-4 py-1 rounded"
+                                        >
+                                            View
+                                        </button>
+                                        <CallBtn
+                                            callback={(success, _) => {
+                                                if (success) {
+                                                    loadMarksheets();
+                                                }
+                                            }}
+                                            path={`/api/admin/marksheets/startprocess`}
+                                            method={"POST"}
+                                            data={{
+                                                paperId: marksheet.id,
+                                            }}
+                                            className="text-sm font-medium px-2 py-2 rounded bg-yellow-500 text-white hover:bg-yellow-600"
+                                            text={marksheet.isProcessed ? 'Reprocess' : 'Process'}
+                                        />
+                                    </div>
+                                )}
+
+                                {marksheet.bgWorkerStatus === 'failed' && (
+                                    <span className="text-sm font-medium px-2 py-1 rounded bg-red-200 text-red-800">
+                                        Last Processing Failed. Try again.
+                                    </span>
                                 )}
                             </td>
                         </tr>

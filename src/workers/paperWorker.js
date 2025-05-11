@@ -88,8 +88,8 @@ const getTotalMarksForPaper = async (paperId) => {
                     id: attempt.id,
                 },
                 data: {
-                    finalMarks: totalMarks,
-                    finalPercentage: percentage,
+                    finalMarks: totalMarks || 0,
+                    finalPercentage: percentage || 0,
                     isProcessed: true,
                 },
             });
