@@ -83,6 +83,8 @@ function View() {
                                             }}
                                             className="text-sm font-medium px-2 py-2 rounded bg-yellow-500 text-white hover:bg-yellow-600"
                                             text={marksheet.isProcessed ? 'Reprocess' : 'Process'}
+                                            confirmation={true}
+                                            confirmationText='Before process marks, Make sure all the essay questions are marked.'
                                         />
                                     </div>
                                 )}
