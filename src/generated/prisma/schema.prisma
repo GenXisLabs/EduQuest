@@ -77,7 +77,8 @@ model QuizAttempt {
   studentId        Int
   paperId          Int
   attemptUuid      String            @unique
-  finalMarks       Int
+  finalMarks       Int               @default(0)
+  finalPercentage  Int               @default(0)
   isFinished       Boolean           @default(false)
   isProcessed      Boolean           @default(false)
   createdAt        DateTime          @default(now())

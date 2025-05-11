@@ -8391,6 +8391,7 @@ export namespace Prisma {
     studentId: number | null
     paperId: number | null
     finalMarks: number | null
+    finalPercentage: number | null
   }
 
   export type QuizAttemptSumAggregateOutputType = {
@@ -8398,6 +8399,7 @@ export namespace Prisma {
     studentId: number | null
     paperId: number | null
     finalMarks: number | null
+    finalPercentage: number | null
   }
 
   export type QuizAttemptMinAggregateOutputType = {
@@ -8406,6 +8408,7 @@ export namespace Prisma {
     paperId: number | null
     attemptUuid: string | null
     finalMarks: number | null
+    finalPercentage: number | null
     isFinished: boolean | null
     isProcessed: boolean | null
     createdAt: Date | null
@@ -8417,6 +8420,7 @@ export namespace Prisma {
     paperId: number | null
     attemptUuid: string | null
     finalMarks: number | null
+    finalPercentage: number | null
     isFinished: boolean | null
     isProcessed: boolean | null
     createdAt: Date | null
@@ -8428,6 +8432,7 @@ export namespace Prisma {
     paperId: number
     attemptUuid: number
     finalMarks: number
+    finalPercentage: number
     isFinished: number
     isProcessed: number
     createdAt: number
@@ -8440,6 +8445,7 @@ export namespace Prisma {
     studentId?: true
     paperId?: true
     finalMarks?: true
+    finalPercentage?: true
   }
 
   export type QuizAttemptSumAggregateInputType = {
@@ -8447,6 +8453,7 @@ export namespace Prisma {
     studentId?: true
     paperId?: true
     finalMarks?: true
+    finalPercentage?: true
   }
 
   export type QuizAttemptMinAggregateInputType = {
@@ -8455,6 +8462,7 @@ export namespace Prisma {
     paperId?: true
     attemptUuid?: true
     finalMarks?: true
+    finalPercentage?: true
     isFinished?: true
     isProcessed?: true
     createdAt?: true
@@ -8466,6 +8474,7 @@ export namespace Prisma {
     paperId?: true
     attemptUuid?: true
     finalMarks?: true
+    finalPercentage?: true
     isFinished?: true
     isProcessed?: true
     createdAt?: true
@@ -8477,6 +8486,7 @@ export namespace Prisma {
     paperId?: true
     attemptUuid?: true
     finalMarks?: true
+    finalPercentage?: true
     isFinished?: true
     isProcessed?: true
     createdAt?: true
@@ -8575,6 +8585,7 @@ export namespace Prisma {
     paperId: number
     attemptUuid: string
     finalMarks: number
+    finalPercentage: number
     isFinished: boolean
     isProcessed: boolean
     createdAt: Date
@@ -8605,6 +8616,7 @@ export namespace Prisma {
     paperId?: boolean
     attemptUuid?: boolean
     finalMarks?: boolean
+    finalPercentage?: boolean
     isFinished?: boolean
     isProcessed?: boolean
     createdAt?: boolean
@@ -8620,6 +8632,7 @@ export namespace Prisma {
     paperId?: boolean
     attemptUuid?: boolean
     finalMarks?: boolean
+    finalPercentage?: boolean
     isFinished?: boolean
     isProcessed?: boolean
     createdAt?: boolean
@@ -8633,6 +8646,7 @@ export namespace Prisma {
     paperId?: boolean
     attemptUuid?: boolean
     finalMarks?: boolean
+    finalPercentage?: boolean
     isFinished?: boolean
     isProcessed?: boolean
     createdAt?: boolean
@@ -8646,12 +8660,13 @@ export namespace Prisma {
     paperId?: boolean
     attemptUuid?: boolean
     finalMarks?: boolean
+    finalPercentage?: boolean
     isFinished?: boolean
     isProcessed?: boolean
     createdAt?: boolean
   }
 
-  export type QuizAttemptOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "studentId" | "paperId" | "attemptUuid" | "finalMarks" | "isFinished" | "isProcessed" | "createdAt", ExtArgs["result"]["quizAttempt"]>
+  export type QuizAttemptOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "studentId" | "paperId" | "attemptUuid" | "finalMarks" | "finalPercentage" | "isFinished" | "isProcessed" | "createdAt", ExtArgs["result"]["quizAttempt"]>
   export type QuizAttemptInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     student?: boolean | StudentDefaultArgs<ExtArgs>
     paper?: boolean | PaperDefaultArgs<ExtArgs>
@@ -8680,6 +8695,7 @@ export namespace Prisma {
       paperId: number
       attemptUuid: string
       finalMarks: number
+      finalPercentage: number
       isFinished: boolean
       isProcessed: boolean
       createdAt: Date
@@ -9114,6 +9130,7 @@ export namespace Prisma {
     readonly paperId: FieldRef<"QuizAttempt", 'Int'>
     readonly attemptUuid: FieldRef<"QuizAttempt", 'String'>
     readonly finalMarks: FieldRef<"QuizAttempt", 'Int'>
+    readonly finalPercentage: FieldRef<"QuizAttempt", 'Int'>
     readonly isFinished: FieldRef<"QuizAttempt", 'Boolean'>
     readonly isProcessed: FieldRef<"QuizAttempt", 'Boolean'>
     readonly createdAt: FieldRef<"QuizAttempt", 'DateTime'>
@@ -10794,6 +10811,7 @@ export namespace Prisma {
     paperId: 'paperId',
     attemptUuid: 'attemptUuid',
     finalMarks: 'finalMarks',
+    finalPercentage: 'finalPercentage',
     isFinished: 'isFinished',
     isProcessed: 'isProcessed',
     createdAt: 'createdAt'
@@ -11259,6 +11277,7 @@ export namespace Prisma {
     paperId?: IntFilter<"QuizAttempt"> | number
     attemptUuid?: StringFilter<"QuizAttempt"> | string
     finalMarks?: IntFilter<"QuizAttempt"> | number
+    finalPercentage?: IntFilter<"QuizAttempt"> | number
     isFinished?: BoolFilter<"QuizAttempt"> | boolean
     isProcessed?: BoolFilter<"QuizAttempt"> | boolean
     createdAt?: DateTimeFilter<"QuizAttempt"> | Date | string
@@ -11273,6 +11292,7 @@ export namespace Prisma {
     paperId?: SortOrder
     attemptUuid?: SortOrder
     finalMarks?: SortOrder
+    finalPercentage?: SortOrder
     isFinished?: SortOrder
     isProcessed?: SortOrder
     createdAt?: SortOrder
@@ -11290,6 +11310,7 @@ export namespace Prisma {
     studentId?: IntFilter<"QuizAttempt"> | number
     paperId?: IntFilter<"QuizAttempt"> | number
     finalMarks?: IntFilter<"QuizAttempt"> | number
+    finalPercentage?: IntFilter<"QuizAttempt"> | number
     isFinished?: BoolFilter<"QuizAttempt"> | boolean
     isProcessed?: BoolFilter<"QuizAttempt"> | boolean
     createdAt?: DateTimeFilter<"QuizAttempt"> | Date | string
@@ -11304,6 +11325,7 @@ export namespace Prisma {
     paperId?: SortOrder
     attemptUuid?: SortOrder
     finalMarks?: SortOrder
+    finalPercentage?: SortOrder
     isFinished?: SortOrder
     isProcessed?: SortOrder
     createdAt?: SortOrder
@@ -11323,6 +11345,7 @@ export namespace Prisma {
     paperId?: IntWithAggregatesFilter<"QuizAttempt"> | number
     attemptUuid?: StringWithAggregatesFilter<"QuizAttempt"> | string
     finalMarks?: IntWithAggregatesFilter<"QuizAttempt"> | number
+    finalPercentage?: IntWithAggregatesFilter<"QuizAttempt"> | number
     isFinished?: BoolWithAggregatesFilter<"QuizAttempt"> | boolean
     isProcessed?: BoolWithAggregatesFilter<"QuizAttempt"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"QuizAttempt"> | Date | string
@@ -11733,7 +11756,8 @@ export namespace Prisma {
 
   export type QuizAttemptCreateInput = {
     attemptUuid: string
-    finalMarks: number
+    finalMarks?: number
+    finalPercentage?: number
     isFinished?: boolean
     isProcessed?: boolean
     createdAt?: Date | string
@@ -11747,7 +11771,8 @@ export namespace Prisma {
     studentId: number
     paperId: number
     attemptUuid: string
-    finalMarks: number
+    finalMarks?: number
+    finalPercentage?: number
     isFinished?: boolean
     isProcessed?: boolean
     createdAt?: Date | string
@@ -11757,6 +11782,7 @@ export namespace Prisma {
   export type QuizAttemptUpdateInput = {
     attemptUuid?: StringFieldUpdateOperationsInput | string
     finalMarks?: IntFieldUpdateOperationsInput | number
+    finalPercentage?: IntFieldUpdateOperationsInput | number
     isFinished?: BoolFieldUpdateOperationsInput | boolean
     isProcessed?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11771,6 +11797,7 @@ export namespace Prisma {
     paperId?: IntFieldUpdateOperationsInput | number
     attemptUuid?: StringFieldUpdateOperationsInput | string
     finalMarks?: IntFieldUpdateOperationsInput | number
+    finalPercentage?: IntFieldUpdateOperationsInput | number
     isFinished?: BoolFieldUpdateOperationsInput | boolean
     isProcessed?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11782,7 +11809,8 @@ export namespace Prisma {
     studentId: number
     paperId: number
     attemptUuid: string
-    finalMarks: number
+    finalMarks?: number
+    finalPercentage?: number
     isFinished?: boolean
     isProcessed?: boolean
     createdAt?: Date | string
@@ -11791,6 +11819,7 @@ export namespace Prisma {
   export type QuizAttemptUpdateManyMutationInput = {
     attemptUuid?: StringFieldUpdateOperationsInput | string
     finalMarks?: IntFieldUpdateOperationsInput | number
+    finalPercentage?: IntFieldUpdateOperationsInput | number
     isFinished?: BoolFieldUpdateOperationsInput | boolean
     isProcessed?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11802,6 +11831,7 @@ export namespace Prisma {
     paperId?: IntFieldUpdateOperationsInput | number
     attemptUuid?: StringFieldUpdateOperationsInput | string
     finalMarks?: IntFieldUpdateOperationsInput | number
+    finalPercentage?: IntFieldUpdateOperationsInput | number
     isFinished?: BoolFieldUpdateOperationsInput | boolean
     isProcessed?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12251,6 +12281,7 @@ export namespace Prisma {
     paperId?: SortOrder
     attemptUuid?: SortOrder
     finalMarks?: SortOrder
+    finalPercentage?: SortOrder
     isFinished?: SortOrder
     isProcessed?: SortOrder
     createdAt?: SortOrder
@@ -12261,6 +12292,7 @@ export namespace Prisma {
     studentId?: SortOrder
     paperId?: SortOrder
     finalMarks?: SortOrder
+    finalPercentage?: SortOrder
   }
 
   export type QuizAttemptMaxOrderByAggregateInput = {
@@ -12269,6 +12301,7 @@ export namespace Prisma {
     paperId?: SortOrder
     attemptUuid?: SortOrder
     finalMarks?: SortOrder
+    finalPercentage?: SortOrder
     isFinished?: SortOrder
     isProcessed?: SortOrder
     createdAt?: SortOrder
@@ -12280,6 +12313,7 @@ export namespace Prisma {
     paperId?: SortOrder
     attemptUuid?: SortOrder
     finalMarks?: SortOrder
+    finalPercentage?: SortOrder
     isFinished?: SortOrder
     isProcessed?: SortOrder
     createdAt?: SortOrder
@@ -12290,6 +12324,7 @@ export namespace Prisma {
     studentId?: SortOrder
     paperId?: SortOrder
     finalMarks?: SortOrder
+    finalPercentage?: SortOrder
   }
 
   export type QuizAttemptScalarRelationFilter = {
@@ -13076,7 +13111,8 @@ export namespace Prisma {
 
   export type QuizAttemptCreateWithoutStudentInput = {
     attemptUuid: string
-    finalMarks: number
+    finalMarks?: number
+    finalPercentage?: number
     isFinished?: boolean
     isProcessed?: boolean
     createdAt?: Date | string
@@ -13088,7 +13124,8 @@ export namespace Prisma {
     id?: number
     paperId: number
     attemptUuid: string
-    finalMarks: number
+    finalMarks?: number
+    finalPercentage?: number
     isFinished?: boolean
     isProcessed?: boolean
     createdAt?: Date | string
@@ -13172,6 +13209,7 @@ export namespace Prisma {
     paperId?: IntFilter<"QuizAttempt"> | number
     attemptUuid?: StringFilter<"QuizAttempt"> | string
     finalMarks?: IntFilter<"QuizAttempt"> | number
+    finalPercentage?: IntFilter<"QuizAttempt"> | number
     isFinished?: BoolFilter<"QuizAttempt"> | boolean
     isProcessed?: BoolFilter<"QuizAttempt"> | boolean
     createdAt?: DateTimeFilter<"QuizAttempt"> | Date | string
@@ -13261,7 +13299,8 @@ export namespace Prisma {
 
   export type QuizAttemptCreateWithoutPaperInput = {
     attemptUuid: string
-    finalMarks: number
+    finalMarks?: number
+    finalPercentage?: number
     isFinished?: boolean
     isProcessed?: boolean
     createdAt?: Date | string
@@ -13273,7 +13312,8 @@ export namespace Prisma {
     id?: number
     studentId: number
     attemptUuid: string
-    finalMarks: number
+    finalMarks?: number
+    finalPercentage?: number
     isFinished?: boolean
     isProcessed?: boolean
     createdAt?: Date | string
@@ -13639,7 +13679,8 @@ export namespace Prisma {
 
   export type QuizAttemptCreateWithoutSubmittedAnswersInput = {
     attemptUuid: string
-    finalMarks: number
+    finalMarks?: number
+    finalPercentage?: number
     isFinished?: boolean
     isProcessed?: boolean
     createdAt?: Date | string
@@ -13652,7 +13693,8 @@ export namespace Prisma {
     studentId: number
     paperId: number
     attemptUuid: string
-    finalMarks: number
+    finalMarks?: number
+    finalPercentage?: number
     isFinished?: boolean
     isProcessed?: boolean
     createdAt?: Date | string
@@ -13697,6 +13739,7 @@ export namespace Prisma {
   export type QuizAttemptUpdateWithoutSubmittedAnswersInput = {
     attemptUuid?: StringFieldUpdateOperationsInput | string
     finalMarks?: IntFieldUpdateOperationsInput | number
+    finalPercentage?: IntFieldUpdateOperationsInput | number
     isFinished?: BoolFieldUpdateOperationsInput | boolean
     isProcessed?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13710,6 +13753,7 @@ export namespace Prisma {
     paperId?: IntFieldUpdateOperationsInput | number
     attemptUuid?: StringFieldUpdateOperationsInput | string
     finalMarks?: IntFieldUpdateOperationsInput | number
+    finalPercentage?: IntFieldUpdateOperationsInput | number
     isFinished?: BoolFieldUpdateOperationsInput | boolean
     isProcessed?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13821,7 +13865,8 @@ export namespace Prisma {
     id?: number
     paperId: number
     attemptUuid: string
-    finalMarks: number
+    finalMarks?: number
+    finalPercentage?: number
     isFinished?: boolean
     isProcessed?: boolean
     createdAt?: Date | string
@@ -13830,6 +13875,7 @@ export namespace Prisma {
   export type QuizAttemptUpdateWithoutStudentInput = {
     attemptUuid?: StringFieldUpdateOperationsInput | string
     finalMarks?: IntFieldUpdateOperationsInput | number
+    finalPercentage?: IntFieldUpdateOperationsInput | number
     isFinished?: BoolFieldUpdateOperationsInput | boolean
     isProcessed?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13842,6 +13888,7 @@ export namespace Prisma {
     paperId?: IntFieldUpdateOperationsInput | number
     attemptUuid?: StringFieldUpdateOperationsInput | string
     finalMarks?: IntFieldUpdateOperationsInput | number
+    finalPercentage?: IntFieldUpdateOperationsInput | number
     isFinished?: BoolFieldUpdateOperationsInput | boolean
     isProcessed?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13853,6 +13900,7 @@ export namespace Prisma {
     paperId?: IntFieldUpdateOperationsInput | number
     attemptUuid?: StringFieldUpdateOperationsInput | string
     finalMarks?: IntFieldUpdateOperationsInput | number
+    finalPercentage?: IntFieldUpdateOperationsInput | number
     isFinished?: BoolFieldUpdateOperationsInput | boolean
     isProcessed?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13898,7 +13946,8 @@ export namespace Prisma {
     id?: number
     studentId: number
     attemptUuid: string
-    finalMarks: number
+    finalMarks?: number
+    finalPercentage?: number
     isFinished?: boolean
     isProcessed?: boolean
     createdAt?: Date | string
@@ -13929,6 +13978,7 @@ export namespace Prisma {
   export type QuizAttemptUpdateWithoutPaperInput = {
     attemptUuid?: StringFieldUpdateOperationsInput | string
     finalMarks?: IntFieldUpdateOperationsInput | number
+    finalPercentage?: IntFieldUpdateOperationsInput | number
     isFinished?: BoolFieldUpdateOperationsInput | boolean
     isProcessed?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13941,6 +13991,7 @@ export namespace Prisma {
     studentId?: IntFieldUpdateOperationsInput | number
     attemptUuid?: StringFieldUpdateOperationsInput | string
     finalMarks?: IntFieldUpdateOperationsInput | number
+    finalPercentage?: IntFieldUpdateOperationsInput | number
     isFinished?: BoolFieldUpdateOperationsInput | boolean
     isProcessed?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13952,6 +14003,7 @@ export namespace Prisma {
     studentId?: IntFieldUpdateOperationsInput | number
     attemptUuid?: StringFieldUpdateOperationsInput | string
     finalMarks?: IntFieldUpdateOperationsInput | number
+    finalPercentage?: IntFieldUpdateOperationsInput | number
     isFinished?: BoolFieldUpdateOperationsInput | boolean
     isProcessed?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
