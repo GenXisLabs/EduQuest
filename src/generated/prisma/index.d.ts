@@ -6066,6 +6066,7 @@ export namespace Prisma {
     isActive: boolean | null
     password: string | null
     metadata: string | null
+    bgWorkerStatus: string | null
     createdAt: Date | null
   }
 
@@ -6077,6 +6078,7 @@ export namespace Prisma {
     isActive: boolean | null
     password: string | null
     metadata: string | null
+    bgWorkerStatus: string | null
     createdAt: Date | null
   }
 
@@ -6088,6 +6090,7 @@ export namespace Prisma {
     isActive: number
     password: number
     metadata: number
+    bgWorkerStatus: number
     createdAt: number
     _all: number
   }
@@ -6113,6 +6116,7 @@ export namespace Prisma {
     isActive?: true
     password?: true
     metadata?: true
+    bgWorkerStatus?: true
     createdAt?: true
   }
 
@@ -6124,6 +6128,7 @@ export namespace Prisma {
     isActive?: true
     password?: true
     metadata?: true
+    bgWorkerStatus?: true
     createdAt?: true
   }
 
@@ -6135,6 +6140,7 @@ export namespace Prisma {
     isActive?: true
     password?: true
     metadata?: true
+    bgWorkerStatus?: true
     createdAt?: true
     _all?: true
   }
@@ -6233,6 +6239,7 @@ export namespace Prisma {
     isActive: boolean
     password: string
     metadata: string
+    bgWorkerStatus: string
     createdAt: Date
     _count: PaperCountAggregateOutputType | null
     _avg: PaperAvgAggregateOutputType | null
@@ -6263,6 +6270,7 @@ export namespace Prisma {
     isActive?: boolean
     password?: boolean
     metadata?: boolean
+    bgWorkerStatus?: boolean
     createdAt?: boolean
     batch?: boolean | BatchDefaultArgs<ExtArgs>
     questions?: boolean | Paper$questionsArgs<ExtArgs>
@@ -6278,6 +6286,7 @@ export namespace Prisma {
     isActive?: boolean
     password?: boolean
     metadata?: boolean
+    bgWorkerStatus?: boolean
     createdAt?: boolean
     batch?: boolean | BatchDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["paper"]>
@@ -6290,6 +6299,7 @@ export namespace Prisma {
     isActive?: boolean
     password?: boolean
     metadata?: boolean
+    bgWorkerStatus?: boolean
     createdAt?: boolean
     batch?: boolean | BatchDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["paper"]>
@@ -6302,10 +6312,11 @@ export namespace Prisma {
     isActive?: boolean
     password?: boolean
     metadata?: boolean
+    bgWorkerStatus?: boolean
     createdAt?: boolean
   }
 
-  export type PaperOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "batchId" | "name" | "duration" | "isActive" | "password" | "metadata" | "createdAt", ExtArgs["result"]["paper"]>
+  export type PaperOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "batchId" | "name" | "duration" | "isActive" | "password" | "metadata" | "bgWorkerStatus" | "createdAt", ExtArgs["result"]["paper"]>
   export type PaperInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     batch?: boolean | BatchDefaultArgs<ExtArgs>
     questions?: boolean | Paper$questionsArgs<ExtArgs>
@@ -6334,6 +6345,7 @@ export namespace Prisma {
       isActive: boolean
       password: string
       metadata: string
+      bgWorkerStatus: string
       createdAt: Date
     }, ExtArgs["result"]["paper"]>
     composites: {}
@@ -6768,6 +6780,7 @@ export namespace Prisma {
     readonly isActive: FieldRef<"Paper", 'Boolean'>
     readonly password: FieldRef<"Paper", 'String'>
     readonly metadata: FieldRef<"Paper", 'String'>
+    readonly bgWorkerStatus: FieldRef<"Paper", 'String'>
     readonly createdAt: FieldRef<"Paper", 'DateTime'>
   }
     
@@ -10757,6 +10770,7 @@ export namespace Prisma {
     isActive: 'isActive',
     password: 'password',
     metadata: 'metadata',
+    bgWorkerStatus: 'bgWorkerStatus',
     createdAt: 'createdAt'
   };
 
@@ -11104,6 +11118,7 @@ export namespace Prisma {
     isActive?: BoolFilter<"Paper"> | boolean
     password?: StringFilter<"Paper"> | string
     metadata?: StringFilter<"Paper"> | string
+    bgWorkerStatus?: StringFilter<"Paper"> | string
     createdAt?: DateTimeFilter<"Paper"> | Date | string
     batch?: XOR<BatchScalarRelationFilter, BatchWhereInput>
     questions?: QuestionListRelationFilter
@@ -11118,6 +11133,7 @@ export namespace Prisma {
     isActive?: SortOrder
     password?: SortOrder
     metadata?: SortOrder
+    bgWorkerStatus?: SortOrder
     createdAt?: SortOrder
     batch?: BatchOrderByWithRelationInput
     questions?: QuestionOrderByRelationAggregateInput
@@ -11135,6 +11151,7 @@ export namespace Prisma {
     isActive?: BoolFilter<"Paper"> | boolean
     password?: StringFilter<"Paper"> | string
     metadata?: StringFilter<"Paper"> | string
+    bgWorkerStatus?: StringFilter<"Paper"> | string
     createdAt?: DateTimeFilter<"Paper"> | Date | string
     batch?: XOR<BatchScalarRelationFilter, BatchWhereInput>
     questions?: QuestionListRelationFilter
@@ -11149,6 +11166,7 @@ export namespace Prisma {
     isActive?: SortOrder
     password?: SortOrder
     metadata?: SortOrder
+    bgWorkerStatus?: SortOrder
     createdAt?: SortOrder
     _count?: PaperCountOrderByAggregateInput
     _avg?: PaperAvgOrderByAggregateInput
@@ -11168,6 +11186,7 @@ export namespace Prisma {
     isActive?: BoolWithAggregatesFilter<"Paper"> | boolean
     password?: StringWithAggregatesFilter<"Paper"> | string
     metadata?: StringWithAggregatesFilter<"Paper"> | string
+    bgWorkerStatus?: StringWithAggregatesFilter<"Paper"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Paper"> | Date | string
   }
 
@@ -11574,6 +11593,7 @@ export namespace Prisma {
     isActive?: boolean
     password: string
     metadata: string
+    bgWorkerStatus?: string
     createdAt?: Date | string
     batch: BatchCreateNestedOneWithoutPapersInput
     questions?: QuestionCreateNestedManyWithoutPaperInput
@@ -11588,6 +11608,7 @@ export namespace Prisma {
     isActive?: boolean
     password: string
     metadata: string
+    bgWorkerStatus?: string
     createdAt?: Date | string
     questions?: QuestionUncheckedCreateNestedManyWithoutPaperInput
     quizAttempts?: QuizAttemptUncheckedCreateNestedManyWithoutPaperInput
@@ -11599,6 +11620,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     password?: StringFieldUpdateOperationsInput | string
     metadata?: StringFieldUpdateOperationsInput | string
+    bgWorkerStatus?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     batch?: BatchUpdateOneRequiredWithoutPapersNestedInput
     questions?: QuestionUpdateManyWithoutPaperNestedInput
@@ -11613,6 +11635,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     password?: StringFieldUpdateOperationsInput | string
     metadata?: StringFieldUpdateOperationsInput | string
+    bgWorkerStatus?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     questions?: QuestionUncheckedUpdateManyWithoutPaperNestedInput
     quizAttempts?: QuizAttemptUncheckedUpdateManyWithoutPaperNestedInput
@@ -11626,6 +11649,7 @@ export namespace Prisma {
     isActive?: boolean
     password: string
     metadata: string
+    bgWorkerStatus?: string
     createdAt?: Date | string
   }
 
@@ -11635,6 +11659,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     password?: StringFieldUpdateOperationsInput | string
     metadata?: StringFieldUpdateOperationsInput | string
+    bgWorkerStatus?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -11646,6 +11671,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     password?: StringFieldUpdateOperationsInput | string
     metadata?: StringFieldUpdateOperationsInput | string
+    bgWorkerStatus?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -12115,6 +12141,7 @@ export namespace Prisma {
     isActive?: SortOrder
     password?: SortOrder
     metadata?: SortOrder
+    bgWorkerStatus?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -12132,6 +12159,7 @@ export namespace Prisma {
     isActive?: SortOrder
     password?: SortOrder
     metadata?: SortOrder
+    bgWorkerStatus?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -12143,6 +12171,7 @@ export namespace Prisma {
     isActive?: SortOrder
     password?: SortOrder
     metadata?: SortOrder
+    bgWorkerStatus?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -12928,6 +12957,7 @@ export namespace Prisma {
     isActive?: boolean
     password: string
     metadata: string
+    bgWorkerStatus?: string
     createdAt?: Date | string
     questions?: QuestionCreateNestedManyWithoutPaperInput
     quizAttempts?: QuizAttemptCreateNestedManyWithoutPaperInput
@@ -12940,6 +12970,7 @@ export namespace Prisma {
     isActive?: boolean
     password: string
     metadata: string
+    bgWorkerStatus?: string
     createdAt?: Date | string
     questions?: QuestionUncheckedCreateNestedManyWithoutPaperInput
     quizAttempts?: QuizAttemptUncheckedCreateNestedManyWithoutPaperInput
@@ -13009,6 +13040,7 @@ export namespace Prisma {
     isActive?: BoolFilter<"Paper"> | boolean
     password?: StringFilter<"Paper"> | string
     metadata?: StringFilter<"Paper"> | string
+    bgWorkerStatus?: StringFilter<"Paper"> | string
     createdAt?: DateTimeFilter<"Paper"> | Date | string
   }
 
@@ -13329,6 +13361,7 @@ export namespace Prisma {
     isActive?: boolean
     password: string
     metadata: string
+    bgWorkerStatus?: string
     createdAt?: Date | string
     batch: BatchCreateNestedOneWithoutPapersInput
     quizAttempts?: QuizAttemptCreateNestedManyWithoutPaperInput
@@ -13342,6 +13375,7 @@ export namespace Prisma {
     isActive?: boolean
     password: string
     metadata: string
+    bgWorkerStatus?: string
     createdAt?: Date | string
     quizAttempts?: QuizAttemptUncheckedCreateNestedManyWithoutPaperInput
   }
@@ -13397,6 +13431,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     password?: StringFieldUpdateOperationsInput | string
     metadata?: StringFieldUpdateOperationsInput | string
+    bgWorkerStatus?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     batch?: BatchUpdateOneRequiredWithoutPapersNestedInput
     quizAttempts?: QuizAttemptUpdateManyWithoutPaperNestedInput
@@ -13410,6 +13445,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     password?: StringFieldUpdateOperationsInput | string
     metadata?: StringFieldUpdateOperationsInput | string
+    bgWorkerStatus?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     quizAttempts?: QuizAttemptUncheckedUpdateManyWithoutPaperNestedInput
   }
@@ -13470,6 +13506,7 @@ export namespace Prisma {
     isActive?: boolean
     password: string
     metadata: string
+    bgWorkerStatus?: string
     createdAt?: Date | string
     batch: BatchCreateNestedOneWithoutPapersInput
     questions?: QuestionCreateNestedManyWithoutPaperInput
@@ -13483,6 +13520,7 @@ export namespace Prisma {
     isActive?: boolean
     password: string
     metadata: string
+    bgWorkerStatus?: string
     createdAt?: Date | string
     questions?: QuestionUncheckedCreateNestedManyWithoutPaperInput
   }
@@ -13564,6 +13602,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     password?: StringFieldUpdateOperationsInput | string
     metadata?: StringFieldUpdateOperationsInput | string
+    bgWorkerStatus?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     batch?: BatchUpdateOneRequiredWithoutPapersNestedInput
     questions?: QuestionUpdateManyWithoutPaperNestedInput
@@ -13577,6 +13616,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     password?: StringFieldUpdateOperationsInput | string
     metadata?: StringFieldUpdateOperationsInput | string
+    bgWorkerStatus?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     questions?: QuestionUncheckedUpdateManyWithoutPaperNestedInput
   }
@@ -13715,6 +13755,7 @@ export namespace Prisma {
     isActive?: boolean
     password: string
     metadata: string
+    bgWorkerStatus?: string
     createdAt?: Date | string
   }
 
@@ -13746,6 +13787,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     password?: StringFieldUpdateOperationsInput | string
     metadata?: StringFieldUpdateOperationsInput | string
+    bgWorkerStatus?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     questions?: QuestionUpdateManyWithoutPaperNestedInput
     quizAttempts?: QuizAttemptUpdateManyWithoutPaperNestedInput
@@ -13758,6 +13800,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     password?: StringFieldUpdateOperationsInput | string
     metadata?: StringFieldUpdateOperationsInput | string
+    bgWorkerStatus?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     questions?: QuestionUncheckedUpdateManyWithoutPaperNestedInput
     quizAttempts?: QuizAttemptUncheckedUpdateManyWithoutPaperNestedInput
@@ -13770,6 +13813,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     password?: StringFieldUpdateOperationsInput | string
     metadata?: StringFieldUpdateOperationsInput | string
+    bgWorkerStatus?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

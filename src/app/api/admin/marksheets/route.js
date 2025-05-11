@@ -30,14 +30,17 @@ export async function GET(request) {
             },
         });
 
-        // Check if any quiz attempts are not processed
-        const unprocessedPapers = papers.filter(paper => {
-            return paper.quizAttempts.some(attempt => !attempt.isProcessed);
+        // Add new field to indicate if paper is need to be processed (also remove quizAttempts)
+        const modifiedPapers = papers.map(paper => {
+            const isProcessed = paper.quizAttempts.every(attempt => attempt.isProcessed);
+            const { quizAttempts, ...rest } = paper;
+            return {
+                ...rest,
+                isProcessed,
+            };
         });
 
-        
-
-        return NextResponse.json({ message: "Success", data: papers });
+        return NextResponse.json({ message: "Success", data: modifiedPapers });
     } catch (error) {
         console.error('Error fetching papers:', error);
         return NextResponse.json({ message: 'Failed to fetch' }, { status: 401 });

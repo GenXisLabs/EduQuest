@@ -154,6 +154,7 @@ exports.Prisma.PaperScalarFieldEnum = {
   isActive: 'isActive',
   password: 'password',
   metadata: 'metadata',
+  bgWorkerStatus: 'bgWorkerStatus',
   createdAt: 'createdAt'
 };
 

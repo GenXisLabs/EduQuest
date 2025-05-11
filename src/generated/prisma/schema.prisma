@@ -46,18 +46,20 @@ model University {
   students Student[]
 }
 
+// bgWorkerStatus: running, failed, success
 model Paper {
-  id           Int           @id @default(autoincrement())
-  batchId      Int
-  name         String
-  duration     Int
-  isActive     Boolean       @default(false)
-  password     String
-  metadata     String
-  batch        Batch         @relation(fields: [batchId], references: [id])
-  questions    Question[]
-  quizAttempts QuizAttempt[]
-  createdAt    DateTime      @default(now())
+  id             Int           @id @default(autoincrement())
+  batchId        Int
+  name           String
+  duration       Int
+  isActive       Boolean       @default(false)
+  password       String
+  metadata       String
+  bgWorkerStatus String        @default("")
+  batch          Batch         @relation(fields: [batchId], references: [id])
+  questions      Question[]
+  quizAttempts   QuizAttempt[]
+  createdAt      DateTime      @default(now())
 }
 
 model Question {
