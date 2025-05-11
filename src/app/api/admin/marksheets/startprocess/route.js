@@ -37,6 +37,16 @@ export async function POST(request) {
             return NextResponse.json({ message: 'Paper is already active' }, { status: 400 });
         }
 
+        // Set isProcessed to false for every quiz attempts related to the paper
+        await prisma.quizAttempt.updateMany({
+            where: {
+                paperId: paperId,
+            },
+            data: {
+                isProcessed: false,
+            }
+        });
+
         // Update the bgWorkerStatus to running
         await prisma.paper.update({
             where: {
