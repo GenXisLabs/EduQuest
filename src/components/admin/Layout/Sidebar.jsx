@@ -8,6 +8,7 @@ const HomeIcon = () => <svg className="w-6 h-6" fill="none" stroke="currentColor
 const DotIcon = () => <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"></path></svg>;
 const ProfileIcon = () => <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>;
 const LogoutIcon = () => <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>;
+const PaperIcon = () => <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 8h10M7 12h10m-5 4h5m-5-8h5m-5 4h5m-5 4h5"></path></svg>;
 
 
 const NavItem = ({ href, icon, children }) => {
@@ -72,18 +73,27 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
                     <NavItem href="/admin/dashboard/students" icon={<DotIcon />}>
                         Students
                     </NavItem>
+                    <div className="border-t border-gray-700 my-2"></div>
                     <NavItem href="/admin/dashboard/papers" icon={<DotIcon />}>
                         Papers
                     </NavItem>
+                    <NavItem href="/admin/dashboard/papermarking" icon={<PaperIcon />}>
+                        Paper Marking
+                    </NavItem>
+                    <NavItem href="/admin/dashboard/marksheets" icon={<PaperIcon />}>
+                        Mark Sheets
+                    </NavItem>
+                    <div className="border-t border-gray-700 my-2"></div>
                     <NavItem href="/admin/dashboard/universities" icon={<DotIcon />}>
                         Universities
                     </NavItem>
                     <NavItem href="/admin/dashboard/batches" icon={<DotIcon />}>
-                        Batchs
+                        Batches
                     </NavItem>
                     <NavItem href="/admin/dashboard/admins" icon={<DotIcon />}>
                         Admins
                     </NavItem>
+                    <div className="border-t border-gray-700 my-2"></div>
                     <NavItem href="/admin/dashboard/profile" icon={<ProfileIcon />}>
                         Profile
                     </NavItem>

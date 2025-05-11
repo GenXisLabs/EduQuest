@@ -15,6 +15,13 @@ export async function GET(request, { params }) {
       where: {
         id: parseInt(id),
       },
+      include: {
+        batch: {
+          select: {
+            name: true,
+          },
+        },
+      }
     });
 
     if (!paper) {

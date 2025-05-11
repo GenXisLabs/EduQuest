@@ -154,6 +154,7 @@ exports.Prisma.PaperScalarFieldEnum = {
   isActive: 'isActive',
   password: 'password',
   metadata: 'metadata',
+  bgWorkerStatus: 'bgWorkerStatus',
   createdAt: 'createdAt'
 };
 
@@ -171,6 +172,7 @@ exports.Prisma.QuizAttemptScalarFieldEnum = {
   paperId: 'paperId',
   attemptUuid: 'attemptUuid',
   finalMarks: 'finalMarks',
+  finalPercentage: 'finalPercentage',
   isFinished: 'isFinished',
   isProcessed: 'isProcessed',
   createdAt: 'createdAt'

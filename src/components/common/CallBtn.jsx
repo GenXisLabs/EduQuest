@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-const CallBtn = ({ path, method, data={}, callback, className, text="Submit", confirmation=false }) => {
+const CallBtn = ({ path, method, data={}, callback, className, text="Submit", confirmation=false, confirmationText='Are you sure you want to proceed?' }) => {
     const [isLoading, setIsLoading] = useState(false);
 
     const handleClick = async () => {
         if (confirmation) {
-            const userConfirmed = window.confirm('Are you sure you want to proceed?');
+            const userConfirmed = window.confirm(confirmationText);
             if (!userConfirmed) {
                 return;
             }
