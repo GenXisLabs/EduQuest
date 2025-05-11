@@ -36,6 +36,9 @@ export async function GET(request, { params }) {
             },
         });
 
+        // Order by submittedAnswers.questionId (ascending)
+        attempt.submittedAnswers.sort((a, b) => a.questionId - b.questionId);
+
         // Filter submitted answers to only include essay questions
         const essayAnswers = attempt.submittedAnswers.filter(
             (answer) => answer.question.type === 'essay'
