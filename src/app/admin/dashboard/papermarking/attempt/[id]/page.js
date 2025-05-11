@@ -10,80 +10,63 @@ function View({ attemptId }) {
         return <div className="text-red-500">Waiting for ID...</div>;
     }
 
-    const [attempts, setAttempts] = useState([]);
+    const [attempt, setAttempt] = useState(null);
     const router = useRouter();
 
-    const loadAttempts = () => {
+    const loadAttempt = () => {
         fetch(`/api/admin/papermarking/attempt/${attemptId}`)
             .then(response => response.json())
-            .then(data => setAttempts(data.attempts))
-            .catch(error => console.error('Error fetching attempts:', error));
+            .then(data => setAttempt(data.attempt))
+            .catch(error => console.error('Error fetching attempt:', error));
     };
 
     useEffect(() => {
         if (attemptId) {
-            loadAttempts();
+            loadAttempt();
         }
     }, [attemptId]);
 
+    if (!attempt) {
+        return <div className="text-gray-500">Loading attempt data...</div>;
+    }
+
     return (
         <div className="p-4">
-            <h1 className="text-xl font-semibold text-gray-800 mb-6">Attempts for Paper {attemptId}</h1>
-            <table className="min-w-full bg-white border border-gray-200">
-                <thead>
-                    <tr>
-                        <th className="px-4 py-2 border-b">Student ID</th>
-                        <th className="px-4 py-2 border-b">Markes Processed</th>
-                        <th className="px-4 py-2 border-b">#Unmarked Essays</th>
-                        <th className="px-4 py-2 border-b">Actions</th>
-                    </tr>
-                </thead>
+            <h2 className="text-lg font-semibold text-gray-800 mb-4">Attempt Details</h2>
+            <table className="table-auto border-collapse border border-gray-200 w-full mb-4">
                 <tbody>
-                    {attempts.length > 0 ? (
-                        attempts.map(attempt => (
-                            <tr key={attempt.id}>
-                                <td className="px-4 py-2 border-b">{attempt.student.studentId}</td>
-                                <td className="px-4 py-2 border-b">
-                                    {attempt.isProcessed ? (
-                                        <span className="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded">
-                                            Yes
-                                        </span>
-                                    ) : (
-                                        <span className="bg-red-100 text-red-800 text-xs font-semibold px-2.5 py-0.5 rounded">
-                                            No
-                                        </span>
-                                    )}
-                                </td>
-                                <td className="px-4 py-2 border-b">
-                                    {attempt.unmarkedEssayCount > 0 ? (
-                                        <span className="bg-red-100 text-red-800 text-xs font-semibold px-2.5 py-0.5 rounded">
-                                            {attempt.unmarkedEssayCount}
-                                        </span>
-                                    ) : (
-                                        <span className="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded">
-                                            0
-                                        </span>
-                                    )}
-                                </td>
-                                <td className="px-4 py-2 border-b">
-                                    <button
-                                        onClick={() => router.push(`/admin/dashboard/papermarking/attempt/${attempt.id}`)}
-                                        className="bg-blue-500 text-white px-4 py-1 rounded"
-                                    >
-                                        View Essays
-                                    </button>
-                                </td>
-                            </tr>
-                        ))
-                    ) : (
-                        <tr>
-                            <td colSpan="4" className="px-4 py-2 text-center text-gray-500">
-                                No attempts found.
-                            </td>
-                        </tr>
-                    )}
+                    <tr>
+                        <td className="border border-gray-200 px-4 py-2 font-semibold">Paper:</td>
+                        <td className="border border-gray-200 px-4 py-2">{attempt.paper.name}</td>
+                    </tr>
+                    <tr>
+                        <td className="border border-gray-200 px-4 py-2 font-semibold">Student ID:</td>
+                        <td className="border border-gray-200 px-4 py-2">{attempt.student.studentId}</td>
+                    </tr>
                 </tbody>
             </table>
+
+            <h2 className="text-lg font-semibold text-gray-800 mb-4">Essay Answers</h2>
+            {attempt.essayAnswers.length > 0 ? (
+                <div className="space-y-4">
+                    {attempt.essayAnswers.map((answer, index) => (
+                        <div key={index} className="p-4 border border-gray-200 rounded">
+                            <h3 className="text-md font-semibold text-gray-700 mb-2">
+                                Question {index + 1}
+                            </h3>
+                            <div className="mb-2 bg-blue-200 p-2 rounded">
+                                <div dangerouslySetInnerHTML={{ __html: JSON.parse(answer.question.content).html }}></div>
+                            </div>
+                            <h4 className="text-sm font-semibold text-gray-600">Student Answer:</h4>
+                            <div className="bg-yellow-100 p-2 rounded">
+                                <p className="text-gray-800">{answer.essayAnswer}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            ) : (
+                <p className="text-gray-500">No essay answers found.</p>
+            )}
         </div>
     );
 }
@@ -91,9 +74,9 @@ function View({ attemptId }) {
 export default function PaperAttemptEssaysPage({ params }) {
     const [attemptId, setAttemptId] = useState(null);
     const getAttemptId = async () => {
-        const { id, sid } = await params;
+        const { id } = await params;
         setAttemptId(id);
-    }
+    };
 
     useEffect(() => {
         getAttemptId();

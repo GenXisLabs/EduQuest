@@ -22,6 +22,12 @@ export async function GET(request, { params }) {
                         studentId: true,
                     },
                 },
+                paper: {
+                    select: {
+                        id: true,
+                        name: true,
+                    },
+                },
                 submittedAnswers: {
                     include: {
                         question: true,
