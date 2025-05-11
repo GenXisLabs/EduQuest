@@ -65,7 +65,7 @@ function View() {
                                 {marksheet.bgWorkerStatus !== 'running' && (
                                     <div className='flex flex-row gap-2'>
                                         <button
-                                            onClick={() => router.push(`/admin/dashboard/marksheets/${marksheet.id}`)}
+                                            onClick={() => window.open(`/api/admin/marksheets/view?paperId=${marksheet.id}`, '_blank')}
                                             className="bg-blue-500 text-white px-4 py-1 rounded"
                                         >
                                             View
