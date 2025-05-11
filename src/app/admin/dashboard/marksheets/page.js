@@ -67,8 +67,11 @@ function View() {
                                                 loadMarksheets();
                                             }
                                         }}
-                                        path={`/api/admin/marksheets/startprocess/${marksheet.id}`}
+                                        path={`/api/admin/marksheets/startprocess`}
                                         method={"POST"}
+                                        data={{
+                                            paperId: marksheet.id,
+                                        }}
                                         className="text-sm font-medium px-2 py-2 rounded bg-yellow-500 text-white hover:bg-yellow-600"
                                         text={'Process'}
                                     />
