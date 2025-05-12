@@ -89,7 +89,7 @@ model QuizAttempt {
   submittedAnswers SubmittedAnswer[]
 }
 
-// cldPublicId: cloudinary public_id of the uploded file
+// cldPublicId: cloudinary public_id of the uploded file (but in this version secure_url from <CldUploadBtn/> used. Because after upload the answer we need to show its preview.)
 model SubmittedAnswer {
   id           Int      @id @default(autoincrement())
   attemptId    Int
