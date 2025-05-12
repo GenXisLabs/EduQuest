@@ -228,6 +228,13 @@ function View({ id }) {
                                             </ul>
                                         </div>
                                     )}
+                                    {question.type === 'essay' && question.fileUpload && (
+                                        <div className="mt-3">
+                                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                                                File Upload Allowed
+                                            </span>
+                                        </div>
+                                    )}
                                 </div>
                             );
                         })}
