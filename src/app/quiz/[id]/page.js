@@ -39,7 +39,7 @@ function PaperNotAttempt({ paperId }) {
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-4xl bg-white shadow-lg rounded-lg p-8">
-                <div className="flex flex-col items-center justify-center border border-gray-200 rounded-lg">
+                <div className="flex flex-col items-center justify-center">
                     <Image
                         src="/mepa.png"
                         alt="Logo"
@@ -47,7 +47,7 @@ function PaperNotAttempt({ paperId }) {
                         height={50}
                     />
                 </div>
-                <div className="col-span-2">
+                <div className="col-span-2 border border-gray-200 rounded-lg p-4">
                     {!paper ? (
                         <div className="flex items-center justify-center">
                             <Spinner />
@@ -111,7 +111,7 @@ function PaperNotAttempt({ paperId }) {
                     )}
                 </div>
             </div>
-            <div className="flex flex-col items-center mt-8">
+            <div className="flex flex-col items-center mt-8 mb-4">
                 <Image
                     src="/genxis.png"
                     alt="Logo"
