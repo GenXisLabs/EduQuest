@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import CallBtn from "@/components/common/CallBtn";
 import Spinner from "@/components/admin/UI/Spinner";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 function PaperNotAttempt({ paperId }) {
     if (!paperId) {
@@ -36,69 +37,88 @@ function PaperNotAttempt({ paperId }) {
     }, []);
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
-            <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-8">
-                {!paper ? (
-                    <div className="flex items-center justify-center">
-                        <Spinner />
-                    </div>
-                ) : (
-                    <>
-                        <div className="mb-8 text-center">
-                            <h1 className="text-2xl font-bold text-gray-800">{paper.name}</h1>
-                            <p className="text-sm text-gray-500 mt-2">
-                                Duration: {new Date(paper.duration * 1000).toISOString().substr(11, 8)}
-                            </p>
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-4xl bg-white shadow-lg rounded-lg p-8">
+                <div className="flex flex-col items-center justify-center border border-gray-200 rounded-lg">
+                    <Image
+                        src="/mepa.png"
+                        alt="Logo"
+                        width={300}
+                        height={50}
+                    />
+                </div>
+                <div className="col-span-2">
+                    {!paper ? (
+                        <div className="flex items-center justify-center">
+                            <Spinner />
                         </div>
-                        <div className="mb-6">
-                            <label
-                                className="block text-sm font-medium text-gray-700 mb-2"
-                                htmlFor="studentId"
-                            >
-                                Student ID
-                            </label>
-                            <input
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
-                                id="studentId"
-                                type="text"
-                                placeholder="Enter your Student ID"
-                                value={studentId || ""}
-                                onChange={(e) => setStudentId(e.target.value)}
-                            />
-                        </div>
-                        <div className="mb-6">
-                            <label
-                                className="block text-sm font-medium text-gray-700 mb-2"
-                                htmlFor="quizPassword"
-                            >
-                                Quiz Password
-                            </label>
-                            <input
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
-                                id="quizPassword"
-                                type="password"
-                                placeholder="Enter the Quiz Password"
-                                value={quizPassword || ""}
-                                onChange={(e) => setQuizPassword(e.target.value)}
-                            />
-                        </div>
-                        <div className="flex justify-center">
-                            <CallBtn
-                                callback={(success, _) => {
-                                    if (success) {
-                                        router.push("/quiz/attempted");
-                                    }
-                                }}
-                                path={`/api/quiz/attempt`}
-                                method="POST"
-                                data={{ studentId, paperId, quizPassword }}
-                                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                                text="Start Quiz"
-                                confirmation={true}
-                            />
-                        </div>
-                    </>
-                )}
+                    ) : (
+                        <>
+                            <div className="mb-8 text-center">
+                                <h1 className="text-2xl font-bold text-gray-800">{paper.name}</h1>
+                                <p className="text-sm text-gray-500 mt-2">
+                                    Duration: {new Date(paper.duration * 1000).toISOString().substr(11, 8)}
+                                </p>
+                            </div>
+                            <div className="mb-6">
+                                <label
+                                    className="block text-sm font-medium text-gray-700 mb-2"
+                                    htmlFor="studentId"
+                                >
+                                    Student ID
+                                </label>
+                                <input
+                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                                    id="studentId"
+                                    type="text"
+                                    placeholder="Enter your Student ID"
+                                    value={studentId || ""}
+                                    onChange={(e) => setStudentId(e.target.value)}
+                                />
+                            </div>
+                            <div className="mb-6">
+                                <label
+                                    className="block text-sm font-medium text-gray-700 mb-2"
+                                    htmlFor="quizPassword"
+                                >
+                                    Quiz Password
+                                </label>
+                                <input
+                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                                    id="quizPassword"
+                                    type="password"
+                                    placeholder="Enter the Quiz Password"
+                                    value={quizPassword || ""}
+                                    onChange={(e) => setQuizPassword(e.target.value)}
+                                />
+                            </div>
+                            <div className="flex justify-center">
+                                <CallBtn
+                                    callback={(success, _) => {
+                                        if (success) {
+                                            router.push("/quiz/attempted");
+                                        }
+                                    }}
+                                    path={`/api/quiz/attempt`}
+                                    method="POST"
+                                    data={{ studentId, paperId, quizPassword }}
+                                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                    text="Start Quiz"
+                                    confirmation={true}
+                                />
+                            </div>
+                        </>
+                    )}
+                </div>
+            </div>
+            <div className="flex flex-col items-center mt-8">
+                <Image
+                    src="/genxis.png"
+                    alt="Logo"
+                    width={60}
+                    height={30}
+                />
+                <p className="text-xs text-gray-500">Powered by GenXis Labs © 2025</p>
             </div>
         </div>
     );
@@ -126,7 +146,6 @@ export default function PaperPage({ params }) {
     const getPaperId = async () => {
         const { id } = await params;
         setPaperId(parseInt(id));
-        getPaper(id);
     }
 
     useEffect(() => {
