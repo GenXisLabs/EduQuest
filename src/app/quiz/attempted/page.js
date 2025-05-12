@@ -505,7 +505,7 @@ export default function QuizPage() {
                                         const isAnswered = userAnswers.some((ans) => {
                                             if (ans.questionId === question.id) {
                                                 if (question.type === "essay") {
-                                                    return ans.essayAnswer && ans.essayAnswer.trim().length > 0;
+                                                    return (ans.essayAnswer && ans.essayAnswer.trim().length > 0) || (question.fileUpload && ans.cldPublicId.length > 0);
                                                 }
                                                 return true;
                                             }
