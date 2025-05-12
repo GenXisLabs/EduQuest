@@ -63,13 +63,11 @@ model Paper {
 }
 
 // fileUpload: weather the question needs upload a file
-// cldPublicId: cloudinary public_id of the uploded file
 model Question {
   id      Int    @id @default(autoincrement())
   paperId Int
   type    String
   fileUpload Boolean  @default(false)
-  cldPublicId String @default("")  
   marks   Int
   content String
   paper   Paper  @relation(fields: [paperId], references: [id])
@@ -91,12 +89,14 @@ model QuizAttempt {
   submittedAnswers SubmittedAnswer[]
 }
 
+// cldPublicId: cloudinary public_id of the uploded file
 model SubmittedAnswer {
   id           Int      @id @default(autoincrement())
   attemptId    Int
   questionId   Int
   choiceNumber Int      @default(-1)
   essayAnswer  String   @default("")
+  cldPublicId  String   @default("")  
   earnedMarks  Int      @default(0)
   isMarked     Boolean  @default(false)
   createdAt    DateTime @default(now())

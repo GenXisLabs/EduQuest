@@ -25,6 +25,7 @@ export async function GET(request) {
                 type: true,
                 marks: true,
                 content: true,
+                fileUpload: true,
             },
         });
 

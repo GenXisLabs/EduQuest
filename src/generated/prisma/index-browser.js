@@ -163,7 +163,6 @@ exports.Prisma.QuestionScalarFieldEnum = {
   paperId: 'paperId',
   type: 'type',
   fileUpload: 'fileUpload',
-  cldPublicId: 'cldPublicId',
   marks: 'marks',
   content: 'content'
 };
@@ -186,6 +185,7 @@ exports.Prisma.SubmittedAnswerScalarFieldEnum = {
   questionId: 'questionId',
   choiceNumber: 'choiceNumber',
   essayAnswer: 'essayAnswer',
+  cldPublicId: 'cldPublicId',
   earnedMarks: 'earnedMarks',
   isMarked: 'isMarked',
   createdAt: 'createdAt'
