@@ -39,6 +39,7 @@ export async function POST(request) {
                     data: {
                         choiceNumber: answer.choiceNumber || -1,
                         essayAnswer: answer.essayAnswer || '',
+                        cldPublicId: answer.cldPublicId || '',
                     },
                 });
                 continue;
@@ -50,6 +51,7 @@ export async function POST(request) {
                     questionId: questionId,
                     choiceNumber: answer.choiceNumber || -1,
                     essayAnswer: answer.essayAnswer || '',
+                    cldPublicId: answer.cldPublicId || '',
                 },
             });
         }

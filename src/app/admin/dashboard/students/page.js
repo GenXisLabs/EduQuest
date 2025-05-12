@@ -138,9 +138,8 @@ function View() {
                             loadStudents();
                             // Reset the form
                             setNewStudent({
+                                ...newStudent,
                                 studentId: '',
-                                universityId: -1,
-                                batchId: -1,
                                 name: '',
                             });
                         }

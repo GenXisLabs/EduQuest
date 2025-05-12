@@ -150,8 +150,9 @@ export default function QuizPage() {
     const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
     const [attemptedFetching, setAttemptedFetching] = useState(true);
     const [summaryBeforeFinishMode, setSummaryBeforeFinishMode] = useState(false);
-
     const [answerChangedQuestionIds, setAnswerChangedQuestionIds] = useState([]);
+
+    const [autoFinished, setAutoFinished] = useState(false);
 
     // Refs for scrolling to questions
     const questionRefs = useRef([]);
@@ -195,6 +196,13 @@ export default function QuizPage() {
             const timeLeft = Math.max(Math.floor((endTimeRef.current - now) / 1000), 0);
             setRemainingTime(timeLeft);
 
+            // If time is up, finish the quiz
+            if (timeLeft <= 0) {
+                clearTimeout(timeoutRef.current);
+                finishQuiz();
+                return;
+            }
+
             if (timeLeft > 0) {
                 timeoutRef.current = setTimeout(updateRemainingTime, 250); // Update smoothly
             }
@@ -206,8 +214,28 @@ export default function QuizPage() {
         return () => clearTimeout(timeoutRef.current); // Cleanup
     }, [endTimeRef.current]);
 
+    const finishQuiz = async () => {
+        try {
+            const response = await fetch('/api/quiz/attempted/finish', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ attemptId: attempt.id }),
+            });
+
+            if (!response.ok) {
+                console.log("Error finishing quiz");
+            }
+        } catch (error) {
+            console.error('Error finishing quiz:', error);
+        }
+
+        setAutoFinished(true);
+    }
+
     const backupUserAnswers = async () => {
-        if (answerChangedQuestionIds.length == 0) return;
+        if (answerChangedQuestionIds.length == 0 || autoFinished) return;
 
         const uniqueIds = [...new Set(answerChangedQuestionIds)];
         const updatedAnswers = userAnswers.filter((ans) => uniqueIds.includes(ans.questionId));
@@ -309,6 +337,16 @@ export default function QuizPage() {
         );
     }
 
+    if (autoFinished) {
+        return (
+            <div className="flex items-center justify-center min-h-screen bg-gray-100">
+                <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-8 text-center">
+                    <h1 className="text-2xl font-bold text-gray-800 mb-4">The quiz has been auto-finished!</h1>
+                </div>
+            </div>
+        );
+    }
+
     const countDownHMS = {
         hours: String(Math.floor(remainingTime / 3600)).padStart(2, '0'),
         minutes: String(Math.floor((remainingTime % 3600) / 60)).padStart(2, '0'),
@@ -344,7 +382,7 @@ export default function QuizPage() {
                                     )}
                                     {remainingTime <= 0 && (
                                         <div className="md:block text-red-700 font-medium">
-                                            Time's up!
+                                            Time's up! Finishing...
                                         </div>
                                     )}
                                 </div>

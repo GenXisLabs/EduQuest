@@ -40,6 +40,8 @@ const QuestionContent = ({ question, questionNumber, currentAttempt, onAnswerCha
         <EssayInput
           questionId={question.id}
           currentText={currentAttempt?.essayAnswer}
+          fileUpload={question.fileUpload}
+          cldPublicId={currentAttempt?.cldPublicId}
           onAnswerChange={onAnswerChange}
         />
       )}

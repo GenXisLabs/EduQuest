@@ -7272,6 +7272,7 @@ export namespace Prisma {
     id: number | null
     paperId: number | null
     type: string | null
+    fileUpload: boolean | null
     marks: number | null
     content: string | null
   }
@@ -7280,6 +7281,7 @@ export namespace Prisma {
     id: number | null
     paperId: number | null
     type: string | null
+    fileUpload: boolean | null
     marks: number | null
     content: string | null
   }
@@ -7288,6 +7290,7 @@ export namespace Prisma {
     id: number
     paperId: number
     type: number
+    fileUpload: number
     marks: number
     content: number
     _all: number
@@ -7310,6 +7313,7 @@ export namespace Prisma {
     id?: true
     paperId?: true
     type?: true
+    fileUpload?: true
     marks?: true
     content?: true
   }
@@ -7318,6 +7322,7 @@ export namespace Prisma {
     id?: true
     paperId?: true
     type?: true
+    fileUpload?: true
     marks?: true
     content?: true
   }
@@ -7326,6 +7331,7 @@ export namespace Prisma {
     id?: true
     paperId?: true
     type?: true
+    fileUpload?: true
     marks?: true
     content?: true
     _all?: true
@@ -7421,6 +7427,7 @@ export namespace Prisma {
     id: number
     paperId: number
     type: string
+    fileUpload: boolean
     marks: number
     content: string
     _count: QuestionCountAggregateOutputType | null
@@ -7448,6 +7455,7 @@ export namespace Prisma {
     id?: boolean
     paperId?: boolean
     type?: boolean
+    fileUpload?: boolean
     marks?: boolean
     content?: boolean
     paper?: boolean | PaperDefaultArgs<ExtArgs>
@@ -7459,6 +7467,7 @@ export namespace Prisma {
     id?: boolean
     paperId?: boolean
     type?: boolean
+    fileUpload?: boolean
     marks?: boolean
     content?: boolean
     paper?: boolean | PaperDefaultArgs<ExtArgs>
@@ -7468,6 +7477,7 @@ export namespace Prisma {
     id?: boolean
     paperId?: boolean
     type?: boolean
+    fileUpload?: boolean
     marks?: boolean
     content?: boolean
     paper?: boolean | PaperDefaultArgs<ExtArgs>
@@ -7477,11 +7487,12 @@ export namespace Prisma {
     id?: boolean
     paperId?: boolean
     type?: boolean
+    fileUpload?: boolean
     marks?: boolean
     content?: boolean
   }
 
-  export type QuestionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "paperId" | "type" | "marks" | "content", ExtArgs["result"]["question"]>
+  export type QuestionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "paperId" | "type" | "fileUpload" | "marks" | "content", ExtArgs["result"]["question"]>
   export type QuestionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     paper?: boolean | PaperDefaultArgs<ExtArgs>
     submittedAnswers?: boolean | Question$submittedAnswersArgs<ExtArgs>
@@ -7504,6 +7515,7 @@ export namespace Prisma {
       id: number
       paperId: number
       type: string
+      fileUpload: boolean
       marks: number
       content: string
     }, ExtArgs["result"]["question"]>
@@ -7934,6 +7946,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Question", 'Int'>
     readonly paperId: FieldRef<"Question", 'Int'>
     readonly type: FieldRef<"Question", 'String'>
+    readonly fileUpload: FieldRef<"Question", 'Boolean'>
     readonly marks: FieldRef<"Question", 'Int'>
     readonly content: FieldRef<"Question", 'String'>
   }
@@ -9606,6 +9619,7 @@ export namespace Prisma {
     questionId: number | null
     choiceNumber: number | null
     essayAnswer: string | null
+    cldPublicId: string | null
     earnedMarks: number | null
     isMarked: boolean | null
     createdAt: Date | null
@@ -9617,6 +9631,7 @@ export namespace Prisma {
     questionId: number | null
     choiceNumber: number | null
     essayAnswer: string | null
+    cldPublicId: string | null
     earnedMarks: number | null
     isMarked: boolean | null
     createdAt: Date | null
@@ -9628,6 +9643,7 @@ export namespace Prisma {
     questionId: number
     choiceNumber: number
     essayAnswer: number
+    cldPublicId: number
     earnedMarks: number
     isMarked: number
     createdAt: number
@@ -9657,6 +9673,7 @@ export namespace Prisma {
     questionId?: true
     choiceNumber?: true
     essayAnswer?: true
+    cldPublicId?: true
     earnedMarks?: true
     isMarked?: true
     createdAt?: true
@@ -9668,6 +9685,7 @@ export namespace Prisma {
     questionId?: true
     choiceNumber?: true
     essayAnswer?: true
+    cldPublicId?: true
     earnedMarks?: true
     isMarked?: true
     createdAt?: true
@@ -9679,6 +9697,7 @@ export namespace Prisma {
     questionId?: true
     choiceNumber?: true
     essayAnswer?: true
+    cldPublicId?: true
     earnedMarks?: true
     isMarked?: true
     createdAt?: true
@@ -9777,6 +9796,7 @@ export namespace Prisma {
     questionId: number
     choiceNumber: number
     essayAnswer: string
+    cldPublicId: string
     earnedMarks: number
     isMarked: boolean
     createdAt: Date
@@ -9807,6 +9827,7 @@ export namespace Prisma {
     questionId?: boolean
     choiceNumber?: boolean
     essayAnswer?: boolean
+    cldPublicId?: boolean
     earnedMarks?: boolean
     isMarked?: boolean
     createdAt?: boolean
@@ -9820,6 +9841,7 @@ export namespace Prisma {
     questionId?: boolean
     choiceNumber?: boolean
     essayAnswer?: boolean
+    cldPublicId?: boolean
     earnedMarks?: boolean
     isMarked?: boolean
     createdAt?: boolean
@@ -9833,6 +9855,7 @@ export namespace Prisma {
     questionId?: boolean
     choiceNumber?: boolean
     essayAnswer?: boolean
+    cldPublicId?: boolean
     earnedMarks?: boolean
     isMarked?: boolean
     createdAt?: boolean
@@ -9846,12 +9869,13 @@ export namespace Prisma {
     questionId?: boolean
     choiceNumber?: boolean
     essayAnswer?: boolean
+    cldPublicId?: boolean
     earnedMarks?: boolean
     isMarked?: boolean
     createdAt?: boolean
   }
 
-  export type SubmittedAnswerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "attemptId" | "questionId" | "choiceNumber" | "essayAnswer" | "earnedMarks" | "isMarked" | "createdAt", ExtArgs["result"]["submittedAnswer"]>
+  export type SubmittedAnswerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "attemptId" | "questionId" | "choiceNumber" | "essayAnswer" | "cldPublicId" | "earnedMarks" | "isMarked" | "createdAt", ExtArgs["result"]["submittedAnswer"]>
   export type SubmittedAnswerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     quizAttempt?: boolean | QuizAttemptDefaultArgs<ExtArgs>
     question?: boolean | QuestionDefaultArgs<ExtArgs>
@@ -9877,6 +9901,7 @@ export namespace Prisma {
       questionId: number
       choiceNumber: number
       essayAnswer: string
+      cldPublicId: string
       earnedMarks: number
       isMarked: boolean
       createdAt: Date
@@ -10310,6 +10335,7 @@ export namespace Prisma {
     readonly questionId: FieldRef<"SubmittedAnswer", 'Int'>
     readonly choiceNumber: FieldRef<"SubmittedAnswer", 'Int'>
     readonly essayAnswer: FieldRef<"SubmittedAnswer", 'String'>
+    readonly cldPublicId: FieldRef<"SubmittedAnswer", 'String'>
     readonly earnedMarks: FieldRef<"SubmittedAnswer", 'Int'>
     readonly isMarked: FieldRef<"SubmittedAnswer", 'Boolean'>
     readonly createdAt: FieldRef<"SubmittedAnswer", 'DateTime'>
@@ -10798,6 +10824,7 @@ export namespace Prisma {
     id: 'id',
     paperId: 'paperId',
     type: 'type',
+    fileUpload: 'fileUpload',
     marks: 'marks',
     content: 'content'
   };
@@ -10826,6 +10853,7 @@ export namespace Prisma {
     questionId: 'questionId',
     choiceNumber: 'choiceNumber',
     essayAnswer: 'essayAnswer',
+    cldPublicId: 'cldPublicId',
     earnedMarks: 'earnedMarks',
     isMarked: 'isMarked',
     createdAt: 'createdAt'
@@ -11215,6 +11243,7 @@ export namespace Prisma {
     id?: IntFilter<"Question"> | number
     paperId?: IntFilter<"Question"> | number
     type?: StringFilter<"Question"> | string
+    fileUpload?: BoolFilter<"Question"> | boolean
     marks?: IntFilter<"Question"> | number
     content?: StringFilter<"Question"> | string
     paper?: XOR<PaperScalarRelationFilter, PaperWhereInput>
@@ -11225,6 +11254,7 @@ export namespace Prisma {
     id?: SortOrder
     paperId?: SortOrder
     type?: SortOrder
+    fileUpload?: SortOrder
     marks?: SortOrder
     content?: SortOrder
     paper?: PaperOrderByWithRelationInput
@@ -11238,6 +11268,7 @@ export namespace Prisma {
     NOT?: QuestionWhereInput | QuestionWhereInput[]
     paperId?: IntFilter<"Question"> | number
     type?: StringFilter<"Question"> | string
+    fileUpload?: BoolFilter<"Question"> | boolean
     marks?: IntFilter<"Question"> | number
     content?: StringFilter<"Question"> | string
     paper?: XOR<PaperScalarRelationFilter, PaperWhereInput>
@@ -11248,6 +11279,7 @@ export namespace Prisma {
     id?: SortOrder
     paperId?: SortOrder
     type?: SortOrder
+    fileUpload?: SortOrder
     marks?: SortOrder
     content?: SortOrder
     _count?: QuestionCountOrderByAggregateInput
@@ -11264,6 +11296,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Question"> | number
     paperId?: IntWithAggregatesFilter<"Question"> | number
     type?: StringWithAggregatesFilter<"Question"> | string
+    fileUpload?: BoolWithAggregatesFilter<"Question"> | boolean
     marks?: IntWithAggregatesFilter<"Question"> | number
     content?: StringWithAggregatesFilter<"Question"> | string
   }
@@ -11360,6 +11393,7 @@ export namespace Prisma {
     questionId?: IntFilter<"SubmittedAnswer"> | number
     choiceNumber?: IntFilter<"SubmittedAnswer"> | number
     essayAnswer?: StringFilter<"SubmittedAnswer"> | string
+    cldPublicId?: StringFilter<"SubmittedAnswer"> | string
     earnedMarks?: IntFilter<"SubmittedAnswer"> | number
     isMarked?: BoolFilter<"SubmittedAnswer"> | boolean
     createdAt?: DateTimeFilter<"SubmittedAnswer"> | Date | string
@@ -11373,6 +11407,7 @@ export namespace Prisma {
     questionId?: SortOrder
     choiceNumber?: SortOrder
     essayAnswer?: SortOrder
+    cldPublicId?: SortOrder
     earnedMarks?: SortOrder
     isMarked?: SortOrder
     createdAt?: SortOrder
@@ -11389,6 +11424,7 @@ export namespace Prisma {
     questionId?: IntFilter<"SubmittedAnswer"> | number
     choiceNumber?: IntFilter<"SubmittedAnswer"> | number
     essayAnswer?: StringFilter<"SubmittedAnswer"> | string
+    cldPublicId?: StringFilter<"SubmittedAnswer"> | string
     earnedMarks?: IntFilter<"SubmittedAnswer"> | number
     isMarked?: BoolFilter<"SubmittedAnswer"> | boolean
     createdAt?: DateTimeFilter<"SubmittedAnswer"> | Date | string
@@ -11402,6 +11438,7 @@ export namespace Prisma {
     questionId?: SortOrder
     choiceNumber?: SortOrder
     essayAnswer?: SortOrder
+    cldPublicId?: SortOrder
     earnedMarks?: SortOrder
     isMarked?: SortOrder
     createdAt?: SortOrder
@@ -11421,6 +11458,7 @@ export namespace Prisma {
     questionId?: IntWithAggregatesFilter<"SubmittedAnswer"> | number
     choiceNumber?: IntWithAggregatesFilter<"SubmittedAnswer"> | number
     essayAnswer?: StringWithAggregatesFilter<"SubmittedAnswer"> | string
+    cldPublicId?: StringWithAggregatesFilter<"SubmittedAnswer"> | string
     earnedMarks?: IntWithAggregatesFilter<"SubmittedAnswer"> | number
     isMarked?: BoolWithAggregatesFilter<"SubmittedAnswer"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"SubmittedAnswer"> | Date | string
@@ -11700,6 +11738,7 @@ export namespace Prisma {
 
   export type QuestionCreateInput = {
     type: string
+    fileUpload?: boolean
     marks: number
     content: string
     paper: PaperCreateNestedOneWithoutQuestionsInput
@@ -11710,6 +11749,7 @@ export namespace Prisma {
     id?: number
     paperId: number
     type: string
+    fileUpload?: boolean
     marks: number
     content: string
     submittedAnswers?: SubmittedAnswerUncheckedCreateNestedManyWithoutQuestionInput
@@ -11717,6 +11757,7 @@ export namespace Prisma {
 
   export type QuestionUpdateInput = {
     type?: StringFieldUpdateOperationsInput | string
+    fileUpload?: BoolFieldUpdateOperationsInput | boolean
     marks?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
     paper?: PaperUpdateOneRequiredWithoutQuestionsNestedInput
@@ -11727,6 +11768,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     paperId?: IntFieldUpdateOperationsInput | number
     type?: StringFieldUpdateOperationsInput | string
+    fileUpload?: BoolFieldUpdateOperationsInput | boolean
     marks?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
     submittedAnswers?: SubmittedAnswerUncheckedUpdateManyWithoutQuestionNestedInput
@@ -11736,12 +11778,14 @@ export namespace Prisma {
     id?: number
     paperId: number
     type: string
+    fileUpload?: boolean
     marks: number
     content: string
   }
 
   export type QuestionUpdateManyMutationInput = {
     type?: StringFieldUpdateOperationsInput | string
+    fileUpload?: BoolFieldUpdateOperationsInput | boolean
     marks?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
   }
@@ -11750,6 +11794,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     paperId?: IntFieldUpdateOperationsInput | number
     type?: StringFieldUpdateOperationsInput | string
+    fileUpload?: BoolFieldUpdateOperationsInput | boolean
     marks?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
   }
@@ -11840,6 +11885,7 @@ export namespace Prisma {
   export type SubmittedAnswerCreateInput = {
     choiceNumber?: number
     essayAnswer?: string
+    cldPublicId?: string
     earnedMarks?: number
     isMarked?: boolean
     createdAt?: Date | string
@@ -11853,6 +11899,7 @@ export namespace Prisma {
     questionId: number
     choiceNumber?: number
     essayAnswer?: string
+    cldPublicId?: string
     earnedMarks?: number
     isMarked?: boolean
     createdAt?: Date | string
@@ -11861,6 +11908,7 @@ export namespace Prisma {
   export type SubmittedAnswerUpdateInput = {
     choiceNumber?: IntFieldUpdateOperationsInput | number
     essayAnswer?: StringFieldUpdateOperationsInput | string
+    cldPublicId?: StringFieldUpdateOperationsInput | string
     earnedMarks?: IntFieldUpdateOperationsInput | number
     isMarked?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11874,6 +11922,7 @@ export namespace Prisma {
     questionId?: IntFieldUpdateOperationsInput | number
     choiceNumber?: IntFieldUpdateOperationsInput | number
     essayAnswer?: StringFieldUpdateOperationsInput | string
+    cldPublicId?: StringFieldUpdateOperationsInput | string
     earnedMarks?: IntFieldUpdateOperationsInput | number
     isMarked?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11885,6 +11934,7 @@ export namespace Prisma {
     questionId: number
     choiceNumber?: number
     essayAnswer?: string
+    cldPublicId?: string
     earnedMarks?: number
     isMarked?: boolean
     createdAt?: Date | string
@@ -11893,6 +11943,7 @@ export namespace Prisma {
   export type SubmittedAnswerUpdateManyMutationInput = {
     choiceNumber?: IntFieldUpdateOperationsInput | number
     essayAnswer?: StringFieldUpdateOperationsInput | string
+    cldPublicId?: StringFieldUpdateOperationsInput | string
     earnedMarks?: IntFieldUpdateOperationsInput | number
     isMarked?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11904,6 +11955,7 @@ export namespace Prisma {
     questionId?: IntFieldUpdateOperationsInput | number
     choiceNumber?: IntFieldUpdateOperationsInput | number
     essayAnswer?: StringFieldUpdateOperationsInput | string
+    cldPublicId?: StringFieldUpdateOperationsInput | string
     earnedMarks?: IntFieldUpdateOperationsInput | number
     isMarked?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12238,6 +12290,7 @@ export namespace Prisma {
     id?: SortOrder
     paperId?: SortOrder
     type?: SortOrder
+    fileUpload?: SortOrder
     marks?: SortOrder
     content?: SortOrder
   }
@@ -12252,6 +12305,7 @@ export namespace Prisma {
     id?: SortOrder
     paperId?: SortOrder
     type?: SortOrder
+    fileUpload?: SortOrder
     marks?: SortOrder
     content?: SortOrder
   }
@@ -12260,6 +12314,7 @@ export namespace Prisma {
     id?: SortOrder
     paperId?: SortOrder
     type?: SortOrder
+    fileUpload?: SortOrder
     marks?: SortOrder
     content?: SortOrder
   }
@@ -12343,6 +12398,7 @@ export namespace Prisma {
     questionId?: SortOrder
     choiceNumber?: SortOrder
     essayAnswer?: SortOrder
+    cldPublicId?: SortOrder
     earnedMarks?: SortOrder
     isMarked?: SortOrder
     createdAt?: SortOrder
@@ -12362,6 +12418,7 @@ export namespace Prisma {
     questionId?: SortOrder
     choiceNumber?: SortOrder
     essayAnswer?: SortOrder
+    cldPublicId?: SortOrder
     earnedMarks?: SortOrder
     isMarked?: SortOrder
     createdAt?: SortOrder
@@ -12373,6 +12430,7 @@ export namespace Prisma {
     questionId?: SortOrder
     choiceNumber?: SortOrder
     essayAnswer?: SortOrder
+    cldPublicId?: SortOrder
     earnedMarks?: SortOrder
     isMarked?: SortOrder
     createdAt?: SortOrder
@@ -13274,6 +13332,7 @@ export namespace Prisma {
 
   export type QuestionCreateWithoutPaperInput = {
     type: string
+    fileUpload?: boolean
     marks: number
     content: string
     submittedAnswers?: SubmittedAnswerCreateNestedManyWithoutQuestionInput
@@ -13282,6 +13341,7 @@ export namespace Prisma {
   export type QuestionUncheckedCreateWithoutPaperInput = {
     id?: number
     type: string
+    fileUpload?: boolean
     marks: number
     content: string
     submittedAnswers?: SubmittedAnswerUncheckedCreateNestedManyWithoutQuestionInput
@@ -13375,6 +13435,7 @@ export namespace Prisma {
     id?: IntFilter<"Question"> | number
     paperId?: IntFilter<"Question"> | number
     type?: StringFilter<"Question"> | string
+    fileUpload?: BoolFilter<"Question"> | boolean
     marks?: IntFilter<"Question"> | number
     content?: StringFilter<"Question"> | string
   }
@@ -13428,6 +13489,7 @@ export namespace Prisma {
   export type SubmittedAnswerCreateWithoutQuestionInput = {
     choiceNumber?: number
     essayAnswer?: string
+    cldPublicId?: string
     earnedMarks?: number
     isMarked?: boolean
     createdAt?: Date | string
@@ -13439,6 +13501,7 @@ export namespace Prisma {
     attemptId: number
     choiceNumber?: number
     essayAnswer?: string
+    cldPublicId?: string
     earnedMarks?: number
     isMarked?: boolean
     createdAt?: Date | string
@@ -13515,6 +13578,7 @@ export namespace Prisma {
     questionId?: IntFilter<"SubmittedAnswer"> | number
     choiceNumber?: IntFilter<"SubmittedAnswer"> | number
     essayAnswer?: StringFilter<"SubmittedAnswer"> | string
+    cldPublicId?: StringFilter<"SubmittedAnswer"> | string
     earnedMarks?: IntFilter<"SubmittedAnswer"> | number
     isMarked?: BoolFilter<"SubmittedAnswer"> | boolean
     createdAt?: DateTimeFilter<"SubmittedAnswer"> | Date | string
@@ -13573,6 +13637,7 @@ export namespace Prisma {
   export type SubmittedAnswerCreateWithoutQuizAttemptInput = {
     choiceNumber?: number
     essayAnswer?: string
+    cldPublicId?: string
     earnedMarks?: number
     isMarked?: boolean
     createdAt?: Date | string
@@ -13584,6 +13649,7 @@ export namespace Prisma {
     questionId: number
     choiceNumber?: number
     essayAnswer?: string
+    cldPublicId?: string
     earnedMarks?: number
     isMarked?: boolean
     createdAt?: Date | string
@@ -13707,6 +13773,7 @@ export namespace Prisma {
 
   export type QuestionCreateWithoutSubmittedAnswersInput = {
     type: string
+    fileUpload?: boolean
     marks: number
     content: string
     paper: PaperCreateNestedOneWithoutQuestionsInput
@@ -13716,6 +13783,7 @@ export namespace Prisma {
     id?: number
     paperId: number
     type: string
+    fileUpload?: boolean
     marks: number
     content: string
   }
@@ -13772,6 +13840,7 @@ export namespace Prisma {
 
   export type QuestionUpdateWithoutSubmittedAnswersInput = {
     type?: StringFieldUpdateOperationsInput | string
+    fileUpload?: BoolFieldUpdateOperationsInput | boolean
     marks?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
     paper?: PaperUpdateOneRequiredWithoutQuestionsNestedInput
@@ -13781,6 +13850,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     paperId?: IntFieldUpdateOperationsInput | number
     type?: StringFieldUpdateOperationsInput | string
+    fileUpload?: BoolFieldUpdateOperationsInput | boolean
     marks?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
   }
@@ -13938,6 +14008,7 @@ export namespace Prisma {
   export type QuestionCreateManyPaperInput = {
     id?: number
     type: string
+    fileUpload?: boolean
     marks: number
     content: string
   }
@@ -13955,6 +14026,7 @@ export namespace Prisma {
 
   export type QuestionUpdateWithoutPaperInput = {
     type?: StringFieldUpdateOperationsInput | string
+    fileUpload?: BoolFieldUpdateOperationsInput | boolean
     marks?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
     submittedAnswers?: SubmittedAnswerUpdateManyWithoutQuestionNestedInput
@@ -13963,6 +14035,7 @@ export namespace Prisma {
   export type QuestionUncheckedUpdateWithoutPaperInput = {
     id?: IntFieldUpdateOperationsInput | number
     type?: StringFieldUpdateOperationsInput | string
+    fileUpload?: BoolFieldUpdateOperationsInput | boolean
     marks?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
     submittedAnswers?: SubmittedAnswerUncheckedUpdateManyWithoutQuestionNestedInput
@@ -13971,6 +14044,7 @@ export namespace Prisma {
   export type QuestionUncheckedUpdateManyWithoutPaperInput = {
     id?: IntFieldUpdateOperationsInput | number
     type?: StringFieldUpdateOperationsInput | string
+    fileUpload?: BoolFieldUpdateOperationsInput | boolean
     marks?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
   }
@@ -14014,6 +14088,7 @@ export namespace Prisma {
     attemptId: number
     choiceNumber?: number
     essayAnswer?: string
+    cldPublicId?: string
     earnedMarks?: number
     isMarked?: boolean
     createdAt?: Date | string
@@ -14022,6 +14097,7 @@ export namespace Prisma {
   export type SubmittedAnswerUpdateWithoutQuestionInput = {
     choiceNumber?: IntFieldUpdateOperationsInput | number
     essayAnswer?: StringFieldUpdateOperationsInput | string
+    cldPublicId?: StringFieldUpdateOperationsInput | string
     earnedMarks?: IntFieldUpdateOperationsInput | number
     isMarked?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14033,6 +14109,7 @@ export namespace Prisma {
     attemptId?: IntFieldUpdateOperationsInput | number
     choiceNumber?: IntFieldUpdateOperationsInput | number
     essayAnswer?: StringFieldUpdateOperationsInput | string
+    cldPublicId?: StringFieldUpdateOperationsInput | string
     earnedMarks?: IntFieldUpdateOperationsInput | number
     isMarked?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14043,6 +14120,7 @@ export namespace Prisma {
     attemptId?: IntFieldUpdateOperationsInput | number
     choiceNumber?: IntFieldUpdateOperationsInput | number
     essayAnswer?: StringFieldUpdateOperationsInput | string
+    cldPublicId?: StringFieldUpdateOperationsInput | string
     earnedMarks?: IntFieldUpdateOperationsInput | number
     isMarked?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14053,6 +14131,7 @@ export namespace Prisma {
     questionId: number
     choiceNumber?: number
     essayAnswer?: string
+    cldPublicId?: string
     earnedMarks?: number
     isMarked?: boolean
     createdAt?: Date | string
@@ -14061,6 +14140,7 @@ export namespace Prisma {
   export type SubmittedAnswerUpdateWithoutQuizAttemptInput = {
     choiceNumber?: IntFieldUpdateOperationsInput | number
     essayAnswer?: StringFieldUpdateOperationsInput | string
+    cldPublicId?: StringFieldUpdateOperationsInput | string
     earnedMarks?: IntFieldUpdateOperationsInput | number
     isMarked?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14072,6 +14152,7 @@ export namespace Prisma {
     questionId?: IntFieldUpdateOperationsInput | number
     choiceNumber?: IntFieldUpdateOperationsInput | number
     essayAnswer?: StringFieldUpdateOperationsInput | string
+    cldPublicId?: StringFieldUpdateOperationsInput | string
     earnedMarks?: IntFieldUpdateOperationsInput | number
     isMarked?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14082,6 +14163,7 @@ export namespace Prisma {
     questionId?: IntFieldUpdateOperationsInput | number
     choiceNumber?: IntFieldUpdateOperationsInput | number
     essayAnswer?: StringFieldUpdateOperationsInput | string
+    cldPublicId?: StringFieldUpdateOperationsInput | string
     earnedMarks?: IntFieldUpdateOperationsInput | number
     isMarked?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

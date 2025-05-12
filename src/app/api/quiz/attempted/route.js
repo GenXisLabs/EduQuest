@@ -17,11 +17,15 @@ export async function GET(request) {
             where: {
                 paperId: attemptResult.paper.id,
             },
+            orderBy: {
+                id: 'asc',
+            },
             select: {
                 id: true,
                 type: true,
                 marks: true,
                 content: true,
+                fileUpload: true,
             },
         });
 
@@ -34,6 +38,7 @@ export async function GET(request) {
                 questionId: true,
                 choiceNumber: true,
                 essayAnswer: true,
+                cldPublicId: true,
             },
         });
 
