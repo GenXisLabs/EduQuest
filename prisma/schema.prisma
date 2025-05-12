@@ -62,10 +62,14 @@ model Paper {
   createdAt DateTime @default(now())
 }
 
+// fileUpload: weather the question needs upload a file
+// cldPublicId: cloudinary public_id of the uploded file
 model Question {
   id      Int    @id @default(autoincrement())
   paperId Int
   type    String
+  fileUpload Boolean  @default(false)
+  cldPublicId String @default("")  
   marks   Int
   content String
   paper   Paper  @relation(fields: [paperId], references: [id])

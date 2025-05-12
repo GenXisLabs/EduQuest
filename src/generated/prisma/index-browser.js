@@ -162,6 +162,8 @@ exports.Prisma.QuestionScalarFieldEnum = {
   id: 'id',
   paperId: 'paperId',
   type: 'type',
+  fileUpload: 'fileUpload',
+  cldPublicId: 'cldPublicId',
   marks: 'marks',
   content: 'content'
 };
