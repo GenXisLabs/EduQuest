@@ -13,6 +13,8 @@ import Spinner from '@/components/admin/UI/Spinner';
 import CallBtn from '@/components/common/CallBtn';
 import { useRouter } from 'next/navigation';
 
+import './preventcopy.css'; // Import the CSS file for preventing copy
+
 // const sampleQuestions = [
 //     {
 //         id: 0,

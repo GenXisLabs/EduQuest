@@ -1,0 +1,11 @@
+/* styles/globals.css */
+* {
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+/* Disable iOS callout menu */
+body {
+    -webkit-touch-callout: none;
+}
