@@ -1,4 +1,4 @@
-import { CldUploadButton } from 'next-cloudinary';
+import { CldUploadButton, CldUploadWidget } from 'next-cloudinary';
 import { XMarkIcon, CheckCircleIcon } from '@heroicons/react/24/solid';
 import React from 'react';
 
@@ -64,6 +64,7 @@ const EssayInput = ({ questionId, currentText = '', fileUpload = false, cldPubli
           maxFileSize: 5 * 1024 * 1024, // 5 MB
           resourceType: 'raw',
           clientAllowedFormats: ['pdf'],
+          singleUploadAutoClose: false, // Auto close sometimes blocks the scroll
         }}
         uploadPreset='eduquest_answer_upload'
         onSuccess={(result) => {
