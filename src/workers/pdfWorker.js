@@ -4,6 +4,19 @@ const PDFDocument = require('pdfkit');
 
 const prisma = new PrismaClient();
 
+const getGrade = (marks) => {
+    if (marks >= 85) return 'A+';
+    if (marks >= 75) return 'A';
+    if (marks >= 70) return 'A-';
+    if (marks >= 65) return 'B+';
+    if (marks >= 60) return 'B';
+    if (marks >= 55) return 'B-';
+    if (marks >= 50) return 'C+';
+    if (marks >= 45) return 'C';
+    if (marks >= 40) return 'C-';
+    return 'F'; // For marks below 40
+}
+
 (async () => {
     const { paperId } = workerData;
 
@@ -40,11 +53,11 @@ const prisma = new PrismaClient();
     const doc = new PDFDocument();
     const buffers = [];
     doc.on('data', buffers.push.bind(buffers));
-    doc.on('end', () => { 
+    doc.on('end', () => {
         const pdfBuffer = Buffer.concat(buffers);
         parentPort.postMessage(pdfBuffer);
     });
-  
+
     // The header
 
     doc.fontSize(20).text(`${paper.name} Marksheet`, { align: 'center' });
@@ -56,18 +69,18 @@ const prisma = new PrismaClient();
     quizAttempts.forEach(attempt => {
         const { studentId, name } = attempt.student;
         const { finalPercentage } = attempt;
-        rows.push([studentId, name, finalPercentage]);
+        rows.push([studentId, name, getGrade(finalPercentage)]);
     });
 
     doc.table({
         data: [
-            ['Student ID', 'Name', 'Marks (%)'],
+            ['Student ID', 'Name', 'Grade'],
             ...rows
         ]
     });
 
     doc.end();
-  
+
     // const pdfBuffer = await getStream.buffer(doc);
     // parentPort.postMessage(pdfBuffer);
 
