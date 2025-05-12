@@ -25,6 +25,7 @@ function View({ id }) {
 
     const [newQuestion, setNewQuestion] = useState({
         type: 'mcq', // 'mcq' or 'essay'
+        fileUpload: false,
         marks: 0,
         content: {
             html: '',
@@ -79,6 +80,7 @@ function View({ id }) {
         const questionContent = JSON.parse(question.content);
         setNewQuestion({
             type: question.type,
+            fileUpload: question.fileUpload,
             marks: question.marks,
             content: {
                 html: questionContent.html,
@@ -270,6 +272,18 @@ function View({ id }) {
                             <option value="essay">Essay</option>
                         </select>
                     </div>
+                    {newQuestion.type === 'essay' && (
+                        <div className="mt-4">
+                            <label className="block text-gray-700 mb-2" htmlFor="fileUpload">File Upload</label>
+                            <input
+                                type="checkbox"
+                                id="fileUpload"
+                                checked={newQuestion.fileUpload}
+                                onChange={(e) => setNewQuestion({ ...newQuestion, fileUpload: e.target.checked })}
+                            />
+                            <label htmlFor="fileUpload" className="ml-2 text-sm text-gray-600">Allow file upload</label>
+                        </div>
+                    )}
                     {newQuestion.type === 'mcq' && (
                         <div className="mt-4">
                             <h4 className="text-gray-700 mb-2">Choices</h4>
