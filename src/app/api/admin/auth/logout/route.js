@@ -8,7 +8,5 @@ export async function POST(req) {
     } catch (error) {
         console.error('Logout error:', error);
         return NextResponse.json({ message: 'An error occurred during logout' }, { status: 500 });
-    } finally {
-        await prisma.$disconnect();
     }
 }
