@@ -73,9 +73,30 @@ function View({ attemptId }) {
                                 <div dangerouslySetInnerHTML={{ __html: JSON.parse(answer.question.content).html }}></div>
                             </div>
                             <h4 className="text-sm font-semibold text-gray-600">Student Answer:</h4>
-                            <div className="bg-yellow-100 p-2 rounded">
-                                <p className="text-gray-800">{answer.essayAnswer}</p>
-                            </div>
+                            {!answer.question.fileUpload && (
+                                <div className="bg-yellow-100 p-2 rounded">
+                                    <p className="text-gray-800">{answer.essayAnswer}</p>
+                                </div>
+                            )}
+                            {answer.question.fileUpload && answer.cldPublicId.length > 0 && (
+                                <div className="bg-yellow-100 p-2 rounded">
+                                    <p className="text-gray-800">
+                                        <a
+                                            href={answer.cldPublicId}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-blue-500 underline"
+                                        >
+                                            View Uploaded File
+                                        </a>
+                                    </p>
+                                </div>
+                            )}
+                            {answer.question.fileUpload && answer.cldPublicId.length === 0 && (
+                                <div className="bg-yellow-100 p-2 rounded">
+                                    <p className="text-gray-800">No file uploaded.</p>
+                                </div>
+                            )}
                             <div className="mt-4">
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
                                     Set Marks:
