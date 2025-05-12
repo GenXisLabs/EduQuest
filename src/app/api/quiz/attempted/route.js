@@ -17,6 +17,9 @@ export async function GET(request) {
             where: {
                 paperId: attemptResult.paper.id,
             },
+            orderBy: {
+                id: 'asc',
+            },
             select: {
                 id: true,
                 type: true,
