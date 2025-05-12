@@ -41,7 +41,7 @@ const QuestionContent = ({ question, questionNumber, currentAttempt, onAnswerCha
           questionId={question.id}
           currentText={currentAttempt?.essayAnswer}
           fileUpload={question.fileUpload}
-          cldPublicId={question.cldPublicId}
+          cldPublicId={currentAttempt?.cldPublicId}
           onAnswerChange={onAnswerChange}
         />
       )}

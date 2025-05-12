@@ -38,6 +38,7 @@ export async function GET(request) {
                 questionId: true,
                 choiceNumber: true,
                 essayAnswer: true,
+                cldPublicId: true,
             },
         });
 
